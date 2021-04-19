@@ -14,11 +14,30 @@
       "role": "Developer"
     },
     {
+      "name": "Felipe Robles",
+      "email": "fr433064@gmail.com",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    },
+    {
+      "name": "Lina Llanos",
+      "email": "estefaniallanos2002@gmail.com",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    },
+    {
+      "name": "Libardo Diaz",
+      "email": "libardo.diaz54@gmail.com",
+      "homepage": "http://www.sena.edu.co",
+      "role": "Developer"
+    },
+    {
       "name": "Andres Urrutia",
       "email": "uandres791@gmail.com",
       "homepage": "http://www.sena.edu.co",
       "role": "Developer"
     }
+
   ],
   "require":{
     "php": ">=8.0",
