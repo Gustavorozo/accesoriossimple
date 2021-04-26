@@ -40,8 +40,8 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? null;
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/views/"><?= $_ENV['ALIASE_SITE'] ?></a></li>
-                            <li class="breadcrumb-item"><a href="index.php"><?= $pluralModel ?></a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/views"><?= $_ENV['ALIASE_SITE'] ?></a></li>
+                            <li class="breadcrumb-item"><a href="../../index.php"><?= $pluralModel ?></a></li>
                             <li class="breadcrumb-item active">Editar</li>
                         </ol>
                     </div>
@@ -255,7 +255,7 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? null;
                                             </div>
                                             <hr>
                                             <button type="submit" class="btn btn-info">Enviar</button>
-                                            <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
+                                            <a href="../../index.php" role="button" class="btn btn-default float-right">Cancelar</a>
                                         </form>
                                     </div>
                                     <!-- /.card-body -->

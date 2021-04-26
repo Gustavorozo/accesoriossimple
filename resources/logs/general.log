@@ -1,0 +1,15 @@
+[2021-04-23T13:09:09.045314+00:00] General.ERROR: Error al cargar
+[2021-04-23T13:09:09.047931+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\views\modules\usuarios\create.php
+[2021-04-23T13:09:09.048360+00:00] General.ERROR: Line: 13
+[2021-04-23T13:09:09.048634+00:00] General.ERROR: Mensaje: Excepcion Mia
+[2021-04-23T13:09:09.048878+00:00] General.ERROR: Array
+(
+)
+
+[2021-04-23T13:09:56.471924+00:00] General.ERROR: Error al cargar
+[2021-04-23T13:09:56.474106+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\views\modules\usuarios\create.php
+[2021-04-23T13:09:56.474489+00:00] General.ERROR: Line: 13
+[2021-04-23T13:09:56.474843+00:00] General.ERROR: Mensaje: Excepcion Mia
+[2021-04-23T13:09:56.475489+00:00] General.ERROR: Array
+(
+)

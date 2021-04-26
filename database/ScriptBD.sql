@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Empresa` (
   `Correo` VARCHAR(100) NOT NULL,
   `Telefono` BIGINT NOT NULL,
   PRIMARY KEY (`idEmpresa`),
-  UNIQUE INDEX `idEmpresa_UNIQUE` (`idEmpresa` ASC) VISIBLE)
+  UNIQUE INDEX `idEmpresa_UNIQUE` (`idEmpresa` ASC))
 ENGINE = InnoDB;
 
 
@@ -45,8 +45,8 @@ CREATE TABLE IF NOT EXISTS `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Usuario` (
   `Empresa_idEmpresa` INT NOT NULL,
   `Contraseña` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`IdUsuario`),
-  UNIQUE INDEX `idUsuario_UNIQUE` (`IdUsuario` ASC) VISIBLE,
-  INDEX `fk_Usuario_Empresa1_idx` (`Empresa_idEmpresa` ASC) VISIBLE,
+  UNIQUE INDEX `idUsuario_UNIQUE` (`IdUsuario` ASC),
+  INDEX `fk_Usuario_Empresa1_idx` (`Empresa_idEmpresa` ASC),
   CONSTRAINT `fk_Usuario_Empresa1`
     FOREIGN KEY (`Empresa_idEmpresa`)
     REFERENCES `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Empresa` (`idEmpresa`)
@@ -65,8 +65,8 @@ CREATE TABLE IF NOT EXISTS `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Compras` (
   `ValorTotal` TINYINT(200) NOT NULL,
   `Proveedor_Id` INT NOT NULL,
   PRIMARY KEY (`IdCompras`),
-  UNIQUE INDEX `IdCompras_UNIQUE` (`IdCompras` ASC) VISIBLE,
-  INDEX `fk_Compras_Usuario_idx` (`Proveedor_Id` ASC) VISIBLE,
+  UNIQUE INDEX `IdCompras_UNIQUE` (`IdCompras` ASC),
+  INDEX `fk_Compras_Usuario_idx` (`Proveedor_Id` ASC),
   CONSTRAINT `fk_Compras_Usuario`
     FOREIGN KEY (`Proveedor_Id`)
     REFERENCES `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Usuario` (`IdUsuario`)
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Marca` (
   `Nombre` VARCHAR(45) NULL,
   `Proveedor_Id` INT NOT NULL,
   PRIMARY KEY (`idMarca`),
-  INDEX `fk_Marca_Usuario1_idx` (`Proveedor_Id` ASC) VISIBLE,
+  INDEX `fk_Marca_Usuario1_idx` (`Proveedor_Id` ASC),
   CONSTRAINT `fk_Marca_Usuario1`
     FOREIGN KEY (`Proveedor_Id`)
     REFERENCES `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Usuario` (`IdUsuario`)
@@ -115,9 +115,9 @@ CREATE TABLE IF NOT EXISTS `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Producto` (
   `Precio_Base` DOUBLE NOT NULL,
   `Estado` ENUM('Disponibilidad', 'Nodisponible') NOT NULL,
   PRIMARY KEY (`IdProducto`),
-  UNIQUE INDEX `idProducto_UNIQUE` (`IdProducto` ASC) VISIBLE,
-  INDEX `fk_Producto_Categoria1_idx` (`Categoria_id` ASC) VISIBLE,
-  INDEX `fk_Producto_Marca1_idx` (`Marca_id` ASC) VISIBLE,
+  UNIQUE INDEX `idProducto_UNIQUE` (`IdProducto` ASC),
+  INDEX `fk_Producto_Categoria1_idx` (`Categoria_id` ASC),
+  INDEX `fk_Producto_Marca1_idx` (`Marca_id` ASC),
   CONSTRAINT `fk_Producto_Categoria1`
     FOREIGN KEY (`Categoria_id`)
     REFERENCES `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Categoria` (`idCategoria`)
@@ -142,8 +142,8 @@ CREATE TABLE IF NOT EXISTS `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Cotizacion` (
   `ValidoDias` INT NOT NULL,
   `ValorTotal` DOUBLE NOT NULL,
   PRIMARY KEY (`idCotizacion`),
-  UNIQUE INDEX `idDetalle-venta_UNIQUE` (`idCotizacion` ASC) VISIBLE,
-  INDEX `fk_Cotizacion_Usuario1_idx` (`Cliente_Id` ASC) VISIBLE,
+  UNIQUE INDEX `idDetalle-venta_UNIQUE` (`idCotizacion` ASC),
+  INDEX `fk_Cotizacion_Usuario1_idx` (`Cliente_Id` ASC),
   CONSTRAINT `fk_Cotizacion_Usuario1`
     FOREIGN KEY (`Cliente_Id`)
     REFERENCES `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Usuario` (`IdUsuario`)
@@ -165,9 +165,9 @@ CREATE TABLE IF NOT EXISTS `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Venta` (
   `Cotizacion_Id` INT NULL,
   `Cliente_Id` INT NOT NULL,
   PRIMARY KEY (`IdVenta`),
-  UNIQUE INDEX `idfactura_UNIQUE` (`IdVenta` ASC) VISIBLE,
-  INDEX `fk_factura_Accesoria1_idx` (`Cotizacion_Id` ASC) VISIBLE,
-  INDEX `fk_Venta_Usuario1_idx` (`Cliente_Id` ASC) VISIBLE,
+  UNIQUE INDEX `idfactura_UNIQUE` (`IdVenta` ASC),
+  INDEX `fk_factura_Accesoria1_idx` (`Cotizacion_Id` ASC),
+  INDEX `fk_Venta_Usuario1_idx` (`Cliente_Id` ASC),
   CONSTRAINT `fk_factura_Accesoria1`
     FOREIGN KEY (`Cotizacion_Id`)
     REFERENCES `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Cotizacion` (`idCotizacion`)
@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Color` (
   `Producto_IdProducto` INT NOT NULL,
   `Estado` ENUM('Activo', 'Inactivo') NOT NULL,
   PRIMARY KEY (`idColor`),
-  INDEX `fk_Color_Producto1_idx` (`Producto_IdProducto` ASC) VISIBLE,
+  INDEX `fk_Color_Producto1_idx` (`Producto_IdProducto` ASC),
   CONSTRAINT `fk_Color_Producto1`
     FOREIGN KEY (`Producto_IdProducto`)
     REFERENCES `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Producto` (`IdProducto`)
@@ -212,9 +212,9 @@ CREATE TABLE IF NOT EXISTS `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Detalle_Venta
   `PrecioVenta` SMALLINT NOT NULL,
   `Talla` CHAR(3) NULL,
   PRIMARY KEY (`idVentas`),
-  UNIQUE INDEX `idVentas_UNIQUE` (`idVentas` ASC) VISIBLE,
-  INDEX `fk_Ventas_factura1_idx` (`Factura_Id` ASC) VISIBLE,
-  INDEX `fk_Detalle-Ventas_Color1_idx` (`Color_Id` ASC) VISIBLE,
+  UNIQUE INDEX `idVentas_UNIQUE` (`idVentas` ASC),
+  INDEX `fk_Ventas_factura1_idx` (`Factura_Id` ASC),
+  INDEX `fk_Detalle-Ventas_Color1_idx` (`Color_Id` ASC),
   CONSTRAINT `fk_Ventas_factura1`
     FOREIGN KEY (`Factura_Id`)
     REFERENCES `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Venta` (`IdVenta`)
@@ -238,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Foto` (
   `ruta` VARCHAR(90) NOT NULL,
   `Color_idColor` INT NOT NULL,
   PRIMARY KEY (`idFoto`),
-  INDEX `fk_Foto_Color1_idx` (`Color_idColor` ASC) VISIBLE,
+  INDEX `fk_Foto_Color1_idx` (`Color_idColor` ASC),
   CONSTRAINT `fk_Foto_Color1`
     FOREIGN KEY (`Color_idColor`)
     REFERENCES `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Color` (`idColor`)
@@ -258,8 +258,8 @@ CREATE TABLE IF NOT EXISTS `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Cotizacion_Pr
   `Precio_Venta` VARCHAR(45) NOT NULL,
   `Talla` CHAR(3) NULL,
   PRIMARY KEY (`idCotizacion_Producto`),
-  INDEX `fk_Cotizacion_Productos_Cotizacion1_idx` (`Cotizacion_id` ASC) VISIBLE,
-  INDEX `fk_Cotizacion_Productos_Color1_idx` (`Color_idColor` ASC) VISIBLE,
+  INDEX `fk_Cotizacion_Productos_Cotizacion1_idx` (`Cotizacion_id` ASC),
+  INDEX `fk_Cotizacion_Productos_Color1_idx` (`Color_idColor` ASC),
   CONSTRAINT `fk_Cotizacion_Productos_Cotizacion1`
     FOREIGN KEY (`Cotizacion_id`)
     REFERENCES `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Cotizacion` (`idCotizacion`)
@@ -283,8 +283,8 @@ CREATE TABLE IF NOT EXISTS `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`DetalleCompra
   `Cantidad` INT NOT NULL,
   `Precio` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idDetalleCompra`),
-  INDEX `fk_DetalleCompra_Compras1_idx` (`Compras_Id` ASC) VISIBLE,
-  INDEX `fk_DetalleCompra_Color1_idx` (`Color_id` ASC) VISIBLE,
+  INDEX `fk_DetalleCompra_Compras1_idx` (`Compras_Id` ASC),
+  INDEX `fk_DetalleCompra_Color1_idx` (`Color_id` ASC),
   CONSTRAINT `fk_DetalleCompra_Compras1`
     FOREIGN KEY (`Compras_Id`)
     REFERENCES `PROYECTO ACCESORIO SIMPLE INVENTARIO`.`Compras` (`IdCompras`)

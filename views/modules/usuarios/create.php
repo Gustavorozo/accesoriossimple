@@ -36,8 +36,8 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL; //Nombre del formulario (fr
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/views/"><?= $_ENV['ALIASE_SITE'] ?></a></li>
-                            <li class="breadcrumb-item"><a href="index.php"><?= $pluralModel ?></a></li>
+                            <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/views"><?= $_ENV['ALIASE_SITE'] ?></a></li>
+                            <li class="breadcrumb-item"><a href="../../index.php"><?= $pluralModel ?></a></li>
                             <li class="breadcrumb-item active">Crear</li>
                         </ol>
                     </div>
@@ -76,20 +76,12 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL; //Nombre del formulario (fr
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group row">
-                                                <label for="nombres" class="col-sm-2 col-form-label">Nombres</label>
+                                                <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                                                 <div class="col-sm-10">
-                                                    <input required type="text" class="form-control" id="nombres" name="nombres"
-                                                           placeholder="Ingrese sus nombres" value="<?= $frmSession['nombres'] ?? '' ?>">
+                                                    <input required type="text" class="form-control" id="nombre" name="nombre"
+                                                           placeholder="Ingrese su nombre" value="<?= $frmSession['nombre'] ?? '' ?>">
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="apellidos" class="col-sm-2 col-form-label">Apellidos</label>
-                                                <div class="col-sm-10">
-                                                    <input required type="text" class="form-control" id="apellidos"
-                                                           name="apellidos" placeholder="Ingrese sus apellidos"
-                                                           value="<?= $frmSession['apellidos'] ?? '' ?>">
-                                                </div>
-                                            </div>
+                                        </div>
                                             <div class="form-group row">
                                                 <label for="direccion" class="col-sm-2 col-form-label">Direccion</label>
                                                 <div class="col-sm-10">
@@ -99,11 +91,19 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL; //Nombre del formulario (fr
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="fecha_nacimiento" class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+                                                <label for="Nit" class="col-sm-2 col-form-label">Nit</label>
                                                 <div class="col-sm-10">
-                                                    <input required type="date" max="<?= Carbon::now()->subYear(18)->format('Y-m-d') ?>" class="form-control" id="fecha_nacimiento"
-                                                           name="fecha_nacimiento" placeholder="Ingrese su Fecha de Nacimiento"
-                                                           value="<?= $frmSession['fecha_nacimiento'] ?? '' ?>">
+                                                    <input required type="number" minlength="6" class="form-control"
+                                                           id="Nit" name="Nit" placeholder="Ingrese el Nit"
+                                                           value="<?= $frmSession['Nit'] ?? '' ?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Correo" class="col-sm-2 col-form-label">Correo</label>
+                                                <div class="col-sm-10">
+                                                    <input required type="text" class="form-control" id="Correo"
+                                                           name="Correo" placeholder="Ingrese su Correo"
+                                                           value="<?= $frmSession['Correo'] ?? '' ?>">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -114,22 +114,12 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL; //Nombre del formulario (fr
                                                            value="<?= $frmSession['telefono'] ?? '' ?>">
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="estado" class="col-sm-2 col-form-label">Estado</label>
-                                                <div class="col-sm-10">
-                                                    <select required id="estado" name="estado" class="custom-select">
-                                                        <option <?= ( !empty($frmSession['estado']) && $frmSession['estado'] == "Activo") ? "selected" : ""; ?> value="Activo">Activo</option>
-                                                        <option <?= ( !empty($frmSession['estado']) && $frmSession['estado'] == "Inactivo") ? "selected" : ""; ?> value="Inactivo">Inactivo</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
                                         </div>
                                     </div>
 
                                     <hr>
                                     <button type="submit" class="btn btn-info">Enviar</button>
-                                    <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
+                                    <a href="../../index.php" role="button" class="btn btn-default float-right">Cancelar</a>
                                     <!-- /.card-footer -->
                                 </form>
                             </div>
