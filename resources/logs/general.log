@@ -1,15 +1,496 @@
-[2021-04-23T13:09:09.045314+00:00] General.ERROR: Error al cargar
-[2021-04-23T13:09:09.047931+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\views\modules\usuarios\create.php
-[2021-04-23T13:09:09.048360+00:00] General.ERROR: Line: 13
-[2021-04-23T13:09:09.048634+00:00] General.ERROR: Mensaje: Excepcion Mia
+[2021-04-23T13:09:09.045314+00:00] General.ERROR: Error al cargar  
+[2021-04-23T13:09:09.047931+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\views\modules\usuarios\create.php  
+[2021-04-23T13:09:09.048360+00:00] General.ERROR: Line: 13  
+[2021-04-23T13:09:09.048634+00:00] General.ERROR: Mensaje: Excepcion Mia  
 [2021-04-23T13:09:09.048878+00:00] General.ERROR: Array
 (
 )
-
-[2021-04-23T13:09:56.471924+00:00] General.ERROR: Error al cargar
-[2021-04-23T13:09:56.474106+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\views\modules\usuarios\create.php
-[2021-04-23T13:09:56.474489+00:00] General.ERROR: Line: 13
-[2021-04-23T13:09:56.474843+00:00] General.ERROR: Mensaje: Excepcion Mia
+  
+[2021-04-23T13:09:56.471924+00:00] General.ERROR: Error al cargar  
+[2021-04-23T13:09:56.474106+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\views\modules\usuarios\create.php  
+[2021-04-23T13:09:56.474489+00:00] General.ERROR: Line: 13  
+[2021-04-23T13:09:56.474843+00:00] General.ERROR: Mensaje: Excepcion Mia  
 [2021-04-23T13:09:56.475489+00:00] General.ERROR: Array
 (
 )
+  
+[2021-04-27T13:59:29.969282+00:00] General.ERROR: Exception  
+[2021-04-27T13:59:29.971004+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php  
+[2021-04-27T13:59:29.971217+00:00] General.ERROR: Line: 128  
+[2021-04-27T13:59:29.971395+00:00] General.ERROR: Mensaje: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '2' for key 'PRIMARY'  
+[2021-04-27T13:59:29.971718+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php
+            [line] => 128
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
+            [line] => 174
+            [function] => insertRow
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO usuarios VALUES (
+            :id,:nombres,:apellidos,:direccion,:fecha_nacimiento,:telefono,:estado
+        )
+                    [1] => Array
+                        (
+                            [:id] => 2
+                            [:nombres] => Juan
+                            [:apellidos] => Perez
+                            [:direccion] => Sogamoso
+                            [:fecha_nacimiento] => 1900-01-01
+                            [:telefono] => 3118864151
+                            [:estado] => Inactivo
+                        )
+
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
+            [line] => 187
+            [function] => save
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO usuarios VALUES (
+            :id,:nombres,:apellidos,:direccion,:fecha_nacimiento,:telefono,:estado
+        )
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\test\testUsers.php
+            [line] => 34
+            [function] => insert
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-04-29T12:26:15.210814+00:00] General.ERROR: Exception  
+[2021-04-29T12:26:15.213528+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php  
+[2021-04-29T12:26:15.213823+00:00] General.ERROR: Line: 128  
+[2021-04-29T12:26:15.214080+00:00] General.ERROR: Mensaje: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'PRIMARY'  
+[2021-04-29T12:26:15.214502+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php
+            [line] => 128
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
+            [line] => 174
+            [function] => insertRow
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO usuarios VALUES (
+            :id,:nombres,:apellidos,:direccion,:fecha_nacimiento,:telefono,:estado
+        )
+                    [1] => Array
+                        (
+                            [:id] => 1
+                            [:nombres] => Diego
+                            [:apellidos] => Ojeda
+                            [:direccion] => Sogamoso
+                            [:fecha_nacimiento] => 1900-01-01
+                            [:telefono] => 3118864151
+                            [:estado] => Inactivo
+                        )
+
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
+            [line] => 188
+            [function] => save
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO usuarios VALUES (
+            :id,:nombres,:apellidos,:direccion,:fecha_nacimiento,:telefono,:estado
+        )
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\test\testUsers.php
+            [line] => 34
+            [function] => insert
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-04-30T14:39:57.663744+00:00] General.ERROR: Exception  
+[2021-04-30T14:39:57.666177+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php  
+[2021-04-30T14:39:57.666415+00:00] General.ERROR: Line: 102  
+[2021-04-30T14:39:57.666613+00:00] General.ERROR: Mensaje: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ejemploproyecto.usuario' doesn't exist  
+[2021-04-30T14:39:57.667098+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php
+            [line] => 102
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
+            [line] => 229
+            [function] => getRows
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuario WHERE nombres = 'Diego' and apellidos = 'Ojeda'
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
+            [line] => 41
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuario WHERE nombres = 'Diego' and apellidos = 'Ojeda'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Controllers\UsuariosController.php
+            [line] => 30
+            [function] => usuarioRegistrado
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Diego
+                    [1] => Ojeda
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Controllers\MainController.php
+            [line] => 29
+            [function] => create
+            [class] => App\Controllers\UsuariosController
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-04-30T14:50:21.096992+00:00] General.ERROR: Exception  
+[2021-04-30T14:50:21.098170+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php  
+[2021-04-30T14:50:21.098405+00:00] General.ERROR: Line: 102  
+[2021-04-30T14:50:21.099276+00:00] General.ERROR: Mensaje: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ejemploproyecto.usuario' doesn't exist  
+[2021-04-30T14:50:21.100428+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php
+            [line] => 102
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
+            [line] => 229
+            [function] => getRows
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuario WHERE nombres = 'Juan' and apellidos = 'Perez'
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
+            [line] => 41
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuario WHERE nombres = 'Juan' and apellidos = 'Perez'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Controllers\UsuariosController.php
+            [line] => 30
+            [function] => usuarioRegistrado
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Juan
+                    [1] => Perez
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Controllers\MainController.php
+            [line] => 29
+            [function] => create
+            [class] => App\Controllers\UsuariosController
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-08T23:24:27.963939+00:00] General.ERROR: Exception  
+[2021-05-08T23:24:28.146441+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php  
+[2021-05-08T23:24:28.146587+00:00] General.ERROR: Line: 44  
+[2021-05-08T23:24:28.146673+00:00] General.ERROR: Mensaje: SQLSTATE[HY000] [1045] Access denied for user 'ejemplo_proyecto'@'localhost' (using password: YES)  
+[2021-05-08T23:24:28.196781+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php
+            [line] => 44
+            [function] => __construct
+            [class] => PDO
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => mysql:host=127.0.0.1;port=3306;dbname=ejemploproyecto;charset=utf8
+                    [1] => ejemplo_proyecto
+                    [2] => Ejemplo2021
+                    [3] => Array
+                        (
+                            [1002] => SET NAMES utf8
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
+            [line] => 228
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
+            [line] => 268
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Controllers\UsuariosController.php
+            [line] => 75
+            [function] => getAll
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\EjemploEstructuraProyecto\views\modules\usuarios\index.php
+            [line] => 103
+            [function] => getAll
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-10T01:52:44.826068+00:00] General.ERROR: Exception  
+[2021-05-10T01:52:44.859979+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php  
+[2021-05-10T01:52:44.860121+00:00] General.ERROR: Line: 44  
+[2021-05-10T01:52:44.860208+00:00] General.ERROR: Mensaje: SQLSTATE[HY000] [1045] Access denied for user 'ciclology'@'localhost' (using password: YES)  
+[2021-05-10T01:52:44.878515+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 44
+            [function] => __construct
+            [class] => PDO
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => mysql:host=127.0.0.1;port=3306;dbname=ciclology;charset=utf8
+                    [1] => ciclology
+                    [2] => Ejemplo2021
+                    [3] => Array
+                        (
+                            [1002] => SET NAMES utf8
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 228
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 268
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 75
+            [function] => getAll
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\views\modules\usuarios\index.php
+            [line] => 102
+            [function] => getAll
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  

@@ -1,11 +1,15 @@
 <?php
-
-
 namespace App\Models;
 
+require ("AbstractDBConnection.php");
+require (__DIR__ ."\..\Interfaces\Model.php");
+require(__DIR__ .'/../../vendor/autoload.php');
+
+use App\Interfaces\Model;
+use App\Models\AbstractDBConnection;
 use Carbon\Carbon;
 
-class Usuarios extends AbstractDBConnection
+class Usuarios extends AbstractDBConnection implements Model
 {
     private ?int $id;
     private string $nombres;
@@ -30,6 +34,12 @@ class Usuarios extends AbstractDBConnection
             Carbon::parse($usuario['fecha_nacimiento']) : new Carbon());
         $this->setTelefono($usuario['telefono'] ?? 0);
         $this->setEstado($usuario['estado'] ?? '');
+    }
+
+    public static function usuarioRegistrado(string $nombres, string $apellidos) : bool
+    {
+        $usrTmp = Usuarios::search("SELECT * FROM usuario WHERE nombres = '$nombres' and apellidos = '$apellidos'");
+        return (!empty($usrTmp)) ? true : false;
     }
 
     public function __destruct()
@@ -108,7 +118,7 @@ class Usuarios extends AbstractDBConnection
      */
     public function getFechaNacimiento(): Carbon
     {
-        return $this->fecha_nacimiento;
+        return $this->fecha_nacimiento->locale('es');
     }
 
     /**
@@ -180,7 +190,14 @@ class Usuarios extends AbstractDBConnection
         $query = "INSERT INTO usuarios VALUES (
             :id,:nombres,:apellidos,:direccion,:fecha_nacimiento,:telefono,:estado
         )";
-        return $this->save($query);
+        //return $this->save($query);
+        if($this->save($query)){
+            $idUsuario = $this->getLastId('usuarios');
+            $this->setId($idUsuario);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
@@ -195,4 +212,72 @@ class Usuarios extends AbstractDBConnection
         return $this->save($query);
     }
 
+    function deleted()
+    {
+        $this->setEstado("Inactivo"); //Cambia el estado del Usuario
+        return $this->update();                    //Guarda los cambios..
+    }
+
+    //SELECT * FROM usuarios WHERE nombre = 'Diego'
+    static function search($query): ?array
+    {
+        try {
+            $arrUsuarios = array();
+            $tmp = new Usuarios();
+
+            $tmp->Connect();
+            $getrows = $tmp->getRows($query);
+            $tmp->Disconnect();
+
+            if (!empty($getrows)) {
+                foreach ($getrows as $valor) {
+                    $Usuario = new Usuarios($valor);
+                    array_push($arrUsuarios, $Usuario);
+                    unset($Usuario); //Borrar el contenido del objeto
+                }
+                return $arrUsuarios;
+            }
+            return null;
+        } catch (Exception $e) {
+            GeneralFunctions::logFile('Exception', $e);
+        }
+        return null;
+    }
+
+    static function searchForId(int $id): ?Usuarios
+    {
+        try {
+            if ($id > 0) {
+                $tmpUsuario = new Usuarios();
+                $tmpUsuario->Connect();
+                $getrow = $tmpUsuario->getRow("SELECT * FROM usuarios WHERE id = ?", array($id) );
+
+                $tmpUsuario->Disconnect();
+                return ($getrow) ? new Usuarios($getrow) : null;
+            } else {
+                throw new Exception('Id de usuario Invalido');
+            }
+        } catch (Exception $e) {
+            GeneralFunctions::logFile('Exception', $e);
+        }
+        return null;
+    }
+
+    static function getAll(): ?array
+    {
+        return Usuarios::search("SELECT * FROM usuarios");
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'nombres' => $this->getNombres(),
+            'apellidos' => $this->getApellidos(),
+            'direccion' => $this->getDireccion(),
+            'fecha_nacimiento' => $this->getFechaNacimiento()->toDateString(),
+            'telefono' => $this->getTelefono(),
+            'estado' => $this->getEstado(),
+        ];
+    }
 }

@@ -9,7 +9,7 @@ use App\Models\Usuarios;
 
 $nameModel = "Usuario";
 $pluralModel = $nameModel . 's';
-$frmSession = $_SESSION['frm' . $pluralModel] ?? NULL;
+//$frmSession = $_SESSION['frm' . $pluralModel] ?? NULL;
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,8 +37,8 @@ $frmSession = $_SESSION['frm' . $pluralModel] ?? NULL;
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a
-                                    href="<?= $baseURL; ?>/views"><?= $_ENV['ALIASE_SITE'] ?></a></li>
-                            <li class="breadcrumb-item"><a href="../../index.php"><?= $pluralModel ?></a></li>
+                                        href="<?= $baseURL; ?>/views/"><?= $_ENV['ALIASE_SITE'] ?></a></li>
+                            <li class="breadcrumb-item"><a href="index.php"><?= $pluralModel ?></a></li>
                             <li class="breadcrumb-item active">Ver</li>
                         </ol>
                     </div>
@@ -69,7 +69,7 @@ $frmSession = $_SESSION['frm' . $pluralModel] ?? NULL;
                                                     data-source="show.php" data-source-selector="#card-refresh-content"
                                                     data-load-on-init="false"><i class="fas fa-sync-alt"></i></button>
                                             <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
-                                                    class="fas fa-expand"></i></button>
+                                                        class="fas fa-expand"></i></button>
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                                     data-toggle="tooltip" title="Collapse">
                                                 <i class="fas fa-minus"></i></button>
@@ -82,58 +82,24 @@ $frmSession = $_SESSION['frm' . $pluralModel] ?? NULL;
                                         <div class="row">
                                             <div class="col-sm-10">
                                                 <p>
-                                                    <strong><i class="fas fa-book mr-1"></i> Nombres y
-                                                        Apellidos</strong>
+                                                    <strong><i class="fas fa-book mr-1"></i> Nombre y
+                                                        Correo</strong>
                                                 <p class="text-muted">
-                                                    <?= $DataUsuario->getNombres() . " " . $DataUsuario->getApellidos() ?>
+                                                    <?= $DataUsuario->getNombre() . " " . $DataUsuario->getCorreo() ?>
                                                 </p>
                                                 <hr>
-                                                <strong><i class="fas fa-user mr-1"></i> Documento</strong>
-                                                <p class="text-muted"><?= $DataUsuario->getTipoDocumento() . ": " . $DataUsuario->getDocumento() ?></p>
-                                                <hr>
-                                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Direccion</strong>
-                                                <p class="text-muted"><?= $DataUsuario->getDireccion() ?>
-                                                    , <?= $DataUsuario->getMunicipio()->getNombre() ?>
-                                                    - <?= $DataUsuario->getMunicipio()->getDepartamento()->getNombre() ?></p>
-                                                <hr>
-                                                <strong><i class="fas fa-calendar mr-1"></i> Fecha Nacimiento</strong>
-                                                <p class="text-muted"><?= $DataUsuario->getFechaNacimiento()->translatedFormat('l, j \\de F Y'); ?>
-                                                    &nbsp;
-                                                    🎉Tienes: <?= $DataUsuario->getFechaNacimiento()->diffInYears(); ?>
-                                                    Años🤡
-                                                </p>
+                                                <strong><i class="fas fa-phone mr-1"></i> Cedula</strong>
+                                                <p class="text-muted"><?= $DataUsuario->getCedula() ?></p>
                                                 <hr>
                                                 <strong><i class="fas fa-phone mr-1"></i> Telefono</strong>
                                                 <p class="text-muted"><?= $DataUsuario->getTelefono() ?></p>
-                                                <hr>
-                                                <strong><i class="fas fa-calendar-check mr-1"></i> Fecha
-                                                    Registro</strong>
-                                                <p class="text-muted"><?= $DataUsuario->getCreatedat()->toDateTimeString(); ?></p>
-                                                <hr>
-                                                <strong><i class="far fa-file-alt mr-1"></i> Estado y Rol</strong>
-                                                <p class="text-muted"><?= $DataUsuario->getEstado() . " - " . $DataUsuario->getRol() ?></p>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <div class="row info-box">
-                                                    <div class="col-12">
-                                                        <h4>Foto Perfil</h4>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <?php if (!empty($DataUsuario->getFoto())) { ?>
-                                                            <img class='img-thumbnail rounded'
-                                                                 src='../../public/uploadFiles/photos/<?= $DataUsuario->getFoto(); ?>'
-                                                                 alt="Foto Perfil">
-                                                        <?php } ?>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-footer">
                                         <div class="row">
                                             <div class="col-auto mr-auto">
-                                                <a role="button" href="../../index.php" class="btn btn-success float-right"
+                                                <a role="button" href="index.php" class="btn btn-success float-right"
                                                    style="margin-right: 5px;">
                                                     <i class="fas fa-tasks"></i> Gestionar <?= $pluralModel ?>
                                                 </a>
@@ -174,4 +140,3 @@ $frmSession = $_SESSION['frm' . $pluralModel] ?? NULL;
 <?php require('../../partials/scripts.php'); ?>
 </body>
 </html>
-
