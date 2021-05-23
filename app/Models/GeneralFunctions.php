@@ -84,39 +84,33 @@ final class GeneralFunctions
      * @param $title (titulo del log)
      * @param $description (array)
      * @param string $type (debug, info, notice, warning, error, critical, alert, emergency)
+     * @throws Exception
      */
-    public static function logFile($title, $description = array(), $type = 'error')
-    {
-        try {
-            $log = new Logger('General');
+    static function logFile($title, $description = array(), $type = 'error'){
+        $log = new Logger('General');
 
-            //format: default [%datetime%] %channel%.%level_name%: %message% %context% %extra%\n
-            $formatter = new LineFormatter(
-                null,
-                null, // Datetime format
-                true, // allowInlineLineBreaks option, default false
-                true  // discard empty Square brackets in the end, default false
-            );
+        $formatter = new LineFormatter(
+            null, // Format of message in log, default [%datetime%] %channel%.%level_name%: %message% %context% %extra%\n
+            null, // Datetime format
+            true, // allowInlineLineBreaks option, default false
+            true  // discard empty Square brackets in the end, default false
+        );
 
-            $debugHandler = new StreamHandler(GeneralFunctions::$PathLogFile, Logger::DEBUG);
-            $debugHandler->setFormatter($formatter);
-            $log->pushHandler($debugHandler);
+        $debugHandler = new StreamHandler(GeneralFunctions::$PathLogFile, Logger::DEBUG);
+        $debugHandler->setFormatter($formatter);
+        $log->pushHandler($debugHandler);
 
-            if (is_a($description, 'Exception')) {
-                $log->$type($title);
-                $log->$type("Archivo: ".$description->getFile());
-                $log->$type("Line: ".$description->getLine());
-                $log->$type("Mensaje: ".$description->getMessage());
-                $log->$type(print_r($description->getTrace(), true));
-                echo "<table class='xdebug-error xe-uncaught-exception' 
-                        dir='ltr' border='1' cellspacing='0' cellpadding='1'>" .
+        if(is_a($description,'Exception')){
+            $log->$type($title);
+            $log->$type("Archivo: ".$description->getFile());
+            $log->$type("Line: ".$description->getLine());
+            $log->$type("Mensaje: ".$description->getMessage());
+            $log->$type(print_r($description->getTrace(), true));
+            echo "<table class='xdebug-error xe-uncaught-exception' dir='ltr' border='1' cellspacing='0' cellpadding='1'>" .
                     $description->xdebug_message.
-                    "</table>";
-            } else {
-                $log->$type($title, $description);
-            }
-        } catch (Exception $ex) {
-            echo "Error general: ".$ex->getMessage();
+                "</table>";
+        }else{
+            $log->$type($title, $description);
         }
     }
 

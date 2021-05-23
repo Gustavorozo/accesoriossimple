@@ -15,23 +15,25 @@ class UsuariosController
     {
         $this->dataUsuario = array();
         $this->dataUsuario['id'] = $_FORM['id'] ?? NULL;
-        $this->dataUsuario['Nombre'] = $_FORM['Nombre'] ?? NULL;
-        $this->dataUsuario['Correo'] = $_FORM['Correo'] ?? null;
-        $this->dataUsuario['Cedula'] = $_FORM['Cedula'] ?? NULL;
-        $this->dataUsuario['Telefono'] = $_FORM['Telefono'] ?? NULL;
+        $this->dataUsuario['nombres'] = $_FORM['nombres'] ?? NULL;
+        $this->dataUsuario['apellidos'] = $_FORM['apellidos'] ?? null;
+        $this->dataUsuario['tipo_documento'] = $_FORM['tipo_documento'] ?? NULL;
+        $this->dataUsuario['documento'] = $_FORM['documento'] ?? NULL;
+        $this->dataUsuario['telefono'] = $_FORM['telefono'] ?? NULL;
         $this->dataUsuario['user'] = $_FORM['user'] ?? NULL;
         $this->dataUsuario['password'] = $_FORM['password'] ?? NULL;
-        $this->dataUsuario['Rol'] = $_FORM['Rol'] ?? 'Cliente';
-        $this->dataUsuario['Foto'] = $_FORM['nameFoto'] ?? NULL;
+        $this->dataUsuario['rol'] = $_FORM['rol'] ?? 'Cliente';
+        $this->dataUsuario['foto'] = $_FORM['nameFoto'] ?? NULL;
+        $this->dataUsuario['estado'] = $_FORM['estado'] ?? 'Activo';
     }
 
     public function create($withFiles = null) {
         try {
-            if (!empty($this->dataUsuario['Cedula']) && !Usuarios::usuarioRegistrado($this->dataUsuario['Cedula'])) {
+            if (!empty($this->dataUsuario['documento']) && !Usuarios::usuarioRegistrado($this->dataUsuario['documento'])) {
                 if(!empty($withFiles)){
-                    $fotoUsuario = $withFiles['Foto'];
+                    $fotoUsuario = $withFiles['foto'];
                     $resultUpload = GeneralFunctions::subirArchivo($fotoUsuario, "views/public/uploadFiles/photos/");
-                    $this->dataUsuario['Foto'] = ($resultUpload != false) ? $resultUpload : NULL;
+                    $this->dataUsuario['foto'] = ($resultUpload != false) ? $resultUpload : NULL;
                 }
 
                 $Usuario = new Usuarios ($this->dataUsuario);

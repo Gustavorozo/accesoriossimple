@@ -1,183 +1,13 @@
-[2021-04-23T13:09:09.045314+00:00] General.ERROR: Error al cargar  
-[2021-04-23T13:09:09.047931+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\views\modules\usuarios\create.php  
-[2021-04-23T13:09:09.048360+00:00] General.ERROR: Line: 13  
-[2021-04-23T13:09:09.048634+00:00] General.ERROR: Mensaje: Excepcion Mia  
-[2021-04-23T13:09:09.048878+00:00] General.ERROR: Array
-(
-)
-  
-[2021-04-23T13:09:56.471924+00:00] General.ERROR: Error al cargar  
-[2021-04-23T13:09:56.474106+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\views\modules\usuarios\create.php  
-[2021-04-23T13:09:56.474489+00:00] General.ERROR: Line: 13  
-[2021-04-23T13:09:56.474843+00:00] General.ERROR: Mensaje: Excepcion Mia  
-[2021-04-23T13:09:56.475489+00:00] General.ERROR: Array
-(
-)
-  
-[2021-04-27T13:59:29.969282+00:00] General.ERROR: Exception  
-[2021-04-27T13:59:29.971004+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php  
-[2021-04-27T13:59:29.971217+00:00] General.ERROR: Line: 128  
-[2021-04-27T13:59:29.971395+00:00] General.ERROR: Mensaje: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '2' for key 'PRIMARY'  
-[2021-04-27T13:59:29.971718+00:00] General.ERROR: Array
+[2020-12-06T14:06:00.461098+00:00] General.ERROR: Exception  
+[2020-12-06T14:06:00.462574+00:00] General.ERROR: Archivo: C:\laragon\www\WebER\app\Models\AbstractDBConnection.php  
+[2020-12-06T14:06:00.462891+00:00] General.ERROR: Line: 101  
+[2020-12-06T14:06:00.463140+00:00] General.ERROR: Mensaje: SQLSTATE[HY000]: General error: 1267 Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '='  
+[2020-12-06T14:06:00.463399+00:00] General.ERROR: Array
 (
     [0] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php
-            [line] => 128
-            [function] => execute
-            [class] => PDOStatement
-            [type] => ->
-            [args] => Array
-                (
-                )
-
-        )
-
-    [1] => Array
-        (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
-            [line] => 174
-            [function] => insertRow
-            [class] => App\Models\AbstractDBConnection
-            [type] => ->
-            [args] => Array
-                (
-                    [0] => INSERT INTO usuarios VALUES (
-            :id,:nombres,:apellidos,:direccion,:fecha_nacimiento,:telefono,:estado
-        )
-                    [1] => Array
-                        (
-                            [:id] => 2
-                            [:nombres] => Juan
-                            [:apellidos] => Perez
-                            [:direccion] => Sogamoso
-                            [:fecha_nacimiento] => 1900-01-01
-                            [:telefono] => 3118864151
-                            [:estado] => Inactivo
-                        )
-
-                )
-
-        )
-
-    [2] => Array
-        (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
-            [line] => 187
-            [function] => save
-            [class] => App\Models\Usuarios
-            [type] => ->
-            [args] => Array
-                (
-                    [0] => INSERT INTO usuarios VALUES (
-            :id,:nombres,:apellidos,:direccion,:fecha_nacimiento,:telefono,:estado
-        )
-                )
-
-        )
-
-    [3] => Array
-        (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\test\testUsers.php
-            [line] => 34
-            [function] => insert
-            [class] => App\Models\Usuarios
-            [type] => ->
-            [args] => Array
-                (
-                )
-
-        )
-
-)
-  
-[2021-04-29T12:26:15.210814+00:00] General.ERROR: Exception  
-[2021-04-29T12:26:15.213528+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php  
-[2021-04-29T12:26:15.213823+00:00] General.ERROR: Line: 128  
-[2021-04-29T12:26:15.214080+00:00] General.ERROR: Mensaje: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'PRIMARY'  
-[2021-04-29T12:26:15.214502+00:00] General.ERROR: Array
-(
-    [0] => Array
-        (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php
-            [line] => 128
-            [function] => execute
-            [class] => PDOStatement
-            [type] => ->
-            [args] => Array
-                (
-                )
-
-        )
-
-    [1] => Array
-        (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
-            [line] => 174
-            [function] => insertRow
-            [class] => App\Models\AbstractDBConnection
-            [type] => ->
-            [args] => Array
-                (
-                    [0] => INSERT INTO usuarios VALUES (
-            :id,:nombres,:apellidos,:direccion,:fecha_nacimiento,:telefono,:estado
-        )
-                    [1] => Array
-                        (
-                            [:id] => 1
-                            [:nombres] => Diego
-                            [:apellidos] => Ojeda
-                            [:direccion] => Sogamoso
-                            [:fecha_nacimiento] => 1900-01-01
-                            [:telefono] => 3118864151
-                            [:estado] => Inactivo
-                        )
-
-                )
-
-        )
-
-    [2] => Array
-        (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
-            [line] => 188
-            [function] => save
-            [class] => App\Models\Usuarios
-            [type] => ->
-            [args] => Array
-                (
-                    [0] => INSERT INTO usuarios VALUES (
-            :id,:nombres,:apellidos,:direccion,:fecha_nacimiento,:telefono,:estado
-        )
-                )
-
-        )
-
-    [3] => Array
-        (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\test\testUsers.php
-            [line] => 34
-            [function] => insert
-            [class] => App\Models\Usuarios
-            [type] => ->
-            [args] => Array
-                (
-                )
-
-        )
-
-)
-  
-[2021-04-30T14:39:57.663744+00:00] General.ERROR: Exception  
-[2021-04-30T14:39:57.666177+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php  
-[2021-04-30T14:39:57.666415+00:00] General.ERROR: Line: 102  
-[2021-04-30T14:39:57.666613+00:00] General.ERROR: Mensaje: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ejemploproyecto.usuario' doesn't exist  
-[2021-04-30T14:39:57.667098+00:00] General.ERROR: Array
-(
-    [0] => Array
-        (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php
-            [line] => 102
+            [file] => C:\laragon\www\WebER\app\Models\AbstractDBConnection.php
+            [line] => 101
             [function] => execute
             [class] => PDOStatement
             [type] => ->
@@ -193,53 +23,52 @@
 
     [1] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
-            [line] => 229
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 279
             [function] => getRows
             [class] => App\Models\AbstractDBConnection
             [type] => ->
             [args] => Array
                 (
-                    [0] => SELECT * FROM usuario WHERE nombres = 'Diego' and apellidos = 'Ojeda'
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
                 )
 
         )
 
     [2] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
-            [line] => 41
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 334
             [function] => search
-            [class] => App\Models\Usuarios
+            [class] => App\Models\Productos
             [type] => ::
             [args] => Array
                 (
-                    [0] => SELECT * FROM usuario WHERE nombres = 'Diego' and apellidos = 'Ojeda'
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
                 )
 
         )
 
     [3] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Controllers\UsuariosController.php
-            [line] => 30
-            [function] => usuarioRegistrado
-            [class] => App\Models\Usuarios
+            [file] => C:\laragon\www\WebER\app\Controllers\ProductosController.php
+            [line] => 28
+            [function] => productoRegistrado
+            [class] => App\Models\Productos
             [type] => ::
             [args] => Array
                 (
-                    [0] => Diego
-                    [1] => Ojeda
+                    [0] => paã±ales winny wold etapa 3
                 )
 
         )
 
     [4] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Controllers\MainController.php
+            [file] => C:\laragon\www\WebER\app\Controllers\MainController.php
             [line] => 29
             [function] => create
-            [class] => App\Controllers\UsuariosController
+            [class] => App\Controllers\ProductosController
             [type] => ->
             [args] => Array
                 (
@@ -249,16 +78,16 @@
 
 )
   
-[2021-04-30T14:50:21.096992+00:00] General.ERROR: Exception  
-[2021-04-30T14:50:21.098170+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php  
-[2021-04-30T14:50:21.098405+00:00] General.ERROR: Line: 102  
-[2021-04-30T14:50:21.099276+00:00] General.ERROR: Mensaje: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ejemploproyecto.usuario' doesn't exist  
-[2021-04-30T14:50:21.100428+00:00] General.ERROR: Array
+[2020-12-06T14:06:41.352899+00:00] General.ERROR: Exception  
+[2020-12-06T14:06:41.354006+00:00] General.ERROR: Archivo: C:\laragon\www\WebER\app\Models\AbstractDBConnection.php  
+[2020-12-06T14:06:41.354316+00:00] General.ERROR: Line: 101  
+[2020-12-06T14:06:41.354587+00:00] General.ERROR: Mensaje: SQLSTATE[HY000]: General error: 1267 Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '='  
+[2020-12-06T14:06:41.354909+00:00] General.ERROR: Array
 (
     [0] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php
-            [line] => 102
+            [file] => C:\laragon\www\WebER\app\Models\AbstractDBConnection.php
+            [line] => 101
             [function] => execute
             [class] => PDOStatement
             [type] => ->
@@ -274,53 +103,52 @@
 
     [1] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
-            [line] => 229
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 279
             [function] => getRows
             [class] => App\Models\AbstractDBConnection
             [type] => ->
             [args] => Array
                 (
-                    [0] => SELECT * FROM usuario WHERE nombres = 'Juan' and apellidos = 'Perez'
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
                 )
 
         )
 
     [2] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
-            [line] => 41
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 334
             [function] => search
-            [class] => App\Models\Usuarios
+            [class] => App\Models\Productos
             [type] => ::
             [args] => Array
                 (
-                    [0] => SELECT * FROM usuario WHERE nombres = 'Juan' and apellidos = 'Perez'
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
                 )
 
         )
 
     [3] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Controllers\UsuariosController.php
-            [line] => 30
-            [function] => usuarioRegistrado
-            [class] => App\Models\Usuarios
+            [file] => C:\laragon\www\WebER\app\Controllers\ProductosController.php
+            [line] => 28
+            [function] => productoRegistrado
+            [class] => App\Models\Productos
             [type] => ::
             [args] => Array
                 (
-                    [0] => Juan
-                    [1] => Perez
+                    [0] => paã±ales winny wold etapa 3
                 )
 
         )
 
     [4] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Controllers\MainController.php
+            [file] => C:\laragon\www\WebER\app\Controllers\MainController.php
             [line] => 29
             [function] => create
-            [class] => App\Controllers\UsuariosController
+            [class] => App\Controllers\ProductosController
             [type] => ->
             [args] => Array
                 (
@@ -330,27 +158,23 @@
 
 )
   
-[2021-05-08T23:24:27.963939+00:00] General.ERROR: Exception  
-[2021-05-08T23:24:28.146441+00:00] General.ERROR: Archivo: C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php  
-[2021-05-08T23:24:28.146587+00:00] General.ERROR: Line: 44  
-[2021-05-08T23:24:28.146673+00:00] General.ERROR: Mensaje: SQLSTATE[HY000] [1045] Access denied for user 'ejemplo_proyecto'@'localhost' (using password: YES)  
-[2021-05-08T23:24:28.196781+00:00] General.ERROR: Array
+[2020-12-06T14:07:02.448303+00:00] General.ERROR: Exception  
+[2020-12-06T14:07:02.449807+00:00] General.ERROR: Archivo: C:\laragon\www\WebER\app\Models\AbstractDBConnection.php  
+[2020-12-06T14:07:02.450192+00:00] General.ERROR: Line: 101  
+[2020-12-06T14:07:02.450545+00:00] General.ERROR: Mensaje: SQLSTATE[HY000]: General error: 1267 Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '='  
+[2020-12-06T14:07:02.451052+00:00] General.ERROR: Array
 (
     [0] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\AbstractDBConnection.php
-            [line] => 44
-            [function] => __construct
-            [class] => PDO
+            [file] => C:\laragon\www\WebER\app\Models\AbstractDBConnection.php
+            [line] => 101
+            [function] => execute
+            [class] => PDOStatement
             [type] => ->
             [args] => Array
                 (
-                    [0] => mysql:host=127.0.0.1;port=3306;dbname=ejemploproyecto;charset=utf8
-                    [1] => ejemplo_proyecto
-                    [2] => Ejemplo2021
-                    [3] => Array
+                    [0] => Array
                         (
-                            [1002] => SET NAMES utf8
                         )
 
                 )
@@ -359,51 +183,53 @@
 
     [1] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
-            [line] => 228
-            [function] => Connect
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 279
+            [function] => getRows
             [class] => App\Models\AbstractDBConnection
             [type] => ->
             [args] => Array
                 (
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
                 )
 
         )
 
     [2] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Models\Usuarios.php
-            [line] => 268
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 334
             [function] => search
-            [class] => App\Models\Usuarios
+            [class] => App\Models\Productos
             [type] => ::
             [args] => Array
                 (
-                    [0] => SELECT * FROM usuarios
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
                 )
 
         )
 
     [3] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\app\Controllers\UsuariosController.php
-            [line] => 75
-            [function] => getAll
-            [class] => App\Models\Usuarios
+            [file] => C:\laragon\www\WebER\app\Controllers\ProductosController.php
+            [line] => 28
+            [function] => productoRegistrado
+            [class] => App\Models\Productos
             [type] => ::
             [args] => Array
                 (
+                    [0] => paã±ales winny wold etapa 3
                 )
 
         )
 
     [4] => Array
         (
-            [file] => C:\laragon\www\EjemploEstructuraProyecto\views\modules\usuarios\index.php
-            [line] => 103
-            [function] => getAll
-            [class] => App\Controllers\UsuariosController
-            [type] => ::
+            [file] => C:\laragon\www\WebER\app\Controllers\MainController.php
+            [line] => 29
+            [function] => create
+            [class] => App\Controllers\ProductosController
+            [type] => ->
             [args] => Array
                 (
                 )
@@ -412,23 +238,519 @@
 
 )
   
-[2021-05-10T01:52:44.826068+00:00] General.ERROR: Exception  
-[2021-05-10T01:52:44.859979+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php  
-[2021-05-10T01:52:44.860121+00:00] General.ERROR: Line: 44  
-[2021-05-10T01:52:44.860208+00:00] General.ERROR: Mensaje: SQLSTATE[HY000] [1045] Access denied for user 'ciclology'@'localhost' (using password: YES)  
-[2021-05-10T01:52:44.878515+00:00] General.ERROR: Array
+[2020-12-06T14:07:14.690615+00:00] General.ERROR: Exception  
+[2020-12-06T14:07:14.691946+00:00] General.ERROR: Archivo: C:\laragon\www\WebER\app\Models\AbstractDBConnection.php  
+[2020-12-06T14:07:14.692237+00:00] General.ERROR: Line: 101  
+[2020-12-06T14:07:14.692567+00:00] General.ERROR: Mensaje: SQLSTATE[HY000]: General error: 1267 Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '='  
+[2020-12-06T14:07:14.692870+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\AbstractDBConnection.php
+            [line] => 101
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 279
+            [function] => getRows
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 334
+            [function] => search
+            [class] => App\Models\Productos
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Controllers\ProductosController.php
+            [line] => 28
+            [function] => productoRegistrado
+            [class] => App\Models\Productos
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => paã±ales winny wold etapa 3
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Controllers\MainController.php
+            [line] => 29
+            [function] => create
+            [class] => App\Controllers\ProductosController
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2020-12-06T14:07:25.398127+00:00] General.ERROR: Exception  
+[2020-12-06T14:07:25.400113+00:00] General.ERROR: Archivo: C:\laragon\www\WebER\app\Models\AbstractDBConnection.php  
+[2020-12-06T14:07:25.400583+00:00] General.ERROR: Line: 101  
+[2020-12-06T14:07:25.401068+00:00] General.ERROR: Mensaje: SQLSTATE[HY000]: General error: 1267 Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '='  
+[2020-12-06T14:07:25.401499+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\AbstractDBConnection.php
+            [line] => 101
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 279
+            [function] => getRows
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 334
+            [function] => search
+            [class] => App\Models\Productos
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Controllers\ProductosController.php
+            [line] => 28
+            [function] => productoRegistrado
+            [class] => App\Models\Productos
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => paã±ales winny wold etapa 3
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Controllers\MainController.php
+            [line] => 29
+            [function] => create
+            [class] => App\Controllers\ProductosController
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2020-12-06T14:07:47.956246+00:00] General.ERROR: Exception  
+[2020-12-06T14:07:47.957287+00:00] General.ERROR: Archivo: C:\laragon\www\WebER\app\Models\AbstractDBConnection.php  
+[2020-12-06T14:07:47.957570+00:00] General.ERROR: Line: 101  
+[2020-12-06T14:07:47.957985+00:00] General.ERROR: Mensaje: SQLSTATE[HY000]: General error: 1267 Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '='  
+[2020-12-06T14:07:47.958283+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\AbstractDBConnection.php
+            [line] => 101
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 279
+            [function] => getRows
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 334
+            [function] => search
+            [class] => App\Models\Productos
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Controllers\ProductosController.php
+            [line] => 28
+            [function] => productoRegistrado
+            [class] => App\Models\Productos
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => paã±ales winny wold etapa 3
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Controllers\MainController.php
+            [line] => 29
+            [function] => create
+            [class] => App\Controllers\ProductosController
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2020-12-06T14:08:44.190283+00:00] General.ERROR: Exception  
+[2020-12-06T14:08:44.191794+00:00] General.ERROR: Archivo: C:\laragon\www\WebER\app\Models\AbstractDBConnection.php  
+[2020-12-06T14:08:44.192214+00:00] General.ERROR: Line: 101  
+[2020-12-06T14:08:44.192468+00:00] General.ERROR: Mensaje: SQLSTATE[HY000]: General error: 1267 Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '='  
+[2020-12-06T14:08:44.192740+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\AbstractDBConnection.php
+            [line] => 101
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 279
+            [function] => getRows
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\Productos.php
+            [line] => 334
+            [function] => search
+            [class] => App\Models\Productos
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT id FROM weber.productos where nombre = 'paã±ales winny wold etapa 3'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Controllers\ProductosController.php
+            [line] => 28
+            [function] => productoRegistrado
+            [class] => App\Models\Productos
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => paã±ales winny wold etapa 3
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Controllers\MainController.php
+            [line] => 29
+            [function] => create
+            [class] => App\Controllers\ProductosController
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2020-12-15T20:54:23.893572+00:00] General.ERROR: Exception  
+[2020-12-15T20:54:23.895874+00:00] General.ERROR: Archivo: C:\laragon\www\WebER\app\Models\AbstractDBConnection.php  
+[2020-12-15T20:54:23.896201+00:00] General.ERROR: Line: 126  
+[2020-12-15T20:54:23.896473+00:00] General.ERROR: Mensaje: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`weber`.`compras`, CONSTRAINT `fk_compras_usuarios1` FOREIGN KEY (`proveedor_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION)  
+[2020-12-15T20:54:23.896767+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\AbstractDBConnection.php
+            [line] => 126
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\Compras.php
+            [line] => 272
+            [function] => insertRow
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO weber.compras VALUES (:id,:numero_serie,:empleado_id,:proveedor_id,:fecha_compra,:monto,:estado,:created_at,:updated_at)
+                    [1] => Array
+                        (
+                            [:id] => 
+                            [:numero_serie] => FV-1-2020-12-15
+                            [:proveedor_id] => 0
+                            [:empleado_id] => 3
+                            [:fecha_compra] => 2020-12-15 20:54:23
+                            [:monto] => 0
+                            [:estado] => En progreso
+                            [:created_at] => 2020-12-15 20:54:23
+                            [:updated_at] => 2020-12-15 20:54:23
+                        )
+
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\Compras.php
+            [line] => 283
+            [function] => save
+            [class] => App\Models\Compras
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO weber.compras VALUES (:id,:numero_serie,:empleado_id,:proveedor_id,:fecha_compra,:monto,:estado,:created_at,:updated_at)
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Controllers\ComprasController.php
+            [line] => 29
+            [function] => insert
+            [class] => App\Models\Compras
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Controllers\MainController.php
+            [line] => 29
+            [function] => create
+            [class] => App\Controllers\ComprasController
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2020-12-15T20:56:13.213253+00:00] General.ERROR: Exception  
+[2020-12-15T20:56:13.214004+00:00] General.ERROR: Archivo: C:\laragon\www\WebER\app\Models\AbstractDBConnection.php  
+[2020-12-15T20:56:13.214273+00:00] General.ERROR: Line: 126  
+[2020-12-15T20:56:13.214456+00:00] General.ERROR: Mensaje: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`weber`.`compras`, CONSTRAINT `fk_compras_usuarios2` FOREIGN KEY (`empleado_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION)  
+[2020-12-15T20:56:13.214759+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\AbstractDBConnection.php
+            [line] => 126
+            [function] => execute
+            [class] => PDOStatement
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\Compras.php
+            [line] => 272
+            [function] => insertRow
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO weber.compras VALUES (:id,:numero_serie,:empleado_id,:proveedor_id,:fecha_compra,:monto,:estado,:created_at,:updated_at)
+                    [1] => Array
+                        (
+                            [:id] => 
+                            [:numero_serie] => FV-1-2020-12-15
+                            [:proveedor_id] => 4
+                            [:empleado_id] => 0
+                            [:fecha_compra] => 2020-12-15 20:56:13
+                            [:monto] => 0
+                            [:estado] => En progreso
+                            [:created_at] => 2020-12-15 20:56:13
+                            [:updated_at] => 2020-12-15 20:56:13
+                        )
+
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Models\Compras.php
+            [line] => 283
+            [function] => save
+            [class] => App\Models\Compras
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => INSERT INTO weber.compras VALUES (:id,:numero_serie,:empleado_id,:proveedor_id,:fecha_compra,:monto,:estado,:created_at,:updated_at)
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Controllers\ComprasController.php
+            [line] => 29
+            [function] => insert
+            [class] => App\Models\Compras
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\WebER\app\Controllers\MainController.php
+            [line] => 29
+            [function] => create
+            [class] => App\Controllers\ComprasController
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T05:44:22.677145+00:00] General.ERROR: Exception  
+[2021-05-23T05:44:22.723025+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php  
+[2021-05-23T05:44:22.723160+00:00] General.ERROR: Line: 43  
+[2021-05-23T05:44:22.723248+00:00] General.ERROR: Mensaje: SQLSTATE[HY000] [1045] Access denied for user 'accesoriossimple'@'localhost' (using password: YES)  
+[2021-05-23T05:44:22.723361+00:00] General.ERROR: Array
 (
     [0] => Array
         (
             [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
-            [line] => 44
+            [line] => 43
             [function] => __construct
             [class] => PDO
             [type] => ->
             [args] => Array
                 (
-                    [0] => mysql:host=127.0.0.1;port=3306;dbname=ciclology;charset=utf8
-                    [1] => ciclology
+                    [0] => mysql:host=127.0.0.1;port=3306;dbname=accesoriossimple;charset=utf8
+                    [1] => accesoriossimple
                     [2] => Ejemplo2021
                     [3] => Array
                         (
@@ -442,7 +764,7 @@
     [1] => Array
         (
             [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
-            [line] => 228
+            [line] => 436
             [function] => Connect
             [class] => App\Models\AbstractDBConnection
             [type] => ->
@@ -455,13 +777,13 @@
     [2] => Array
         (
             [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
-            [line] => 268
+            [line] => 520
             [function] => search
             [class] => App\Models\Usuarios
             [type] => ::
             [args] => Array
                 (
-                    [0] => SELECT * FROM usuarios
+                    [0] => SELECT * FROM usuarios WHERE user = 'gustavo'
                 )
 
         )
@@ -469,10 +791,620 @@
     [3] => Array
         (
             [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
-            [line] => 75
-            [function] => getAll
+            [line] => 187
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => gustavo
+                    [1] => 1234
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T06:01:37.781734+00:00] General.ERROR: Exception  
+[2021-05-23T06:01:37.794339+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php  
+[2021-05-23T06:01:37.794469+00:00] General.ERROR: Line: 43  
+[2021-05-23T06:01:37.794563+00:00] General.ERROR: Mensaje: SQLSTATE[HY000] [1045] Access denied for user 'accesoriossimple'@'localhost' (using password: YES)  
+[2021-05-23T06:01:37.794665+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 43
+            [function] => __construct
+            [class] => PDO
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => mysql:host=127.0.0.1;port=3306;dbname=accesoriossimple;charset=utf8
+                    [1] => accesoriossimple
+                    [2] => Ejemplo2021
+                    [3] => Array
+                        (
+                            [1002] => SET NAMES utf8
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 436
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 520
+            [function] => search
             [class] => App\Models\Usuarios
             [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'gustavo'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 187
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => gustavo
+                    [1] => 1234
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T06:25:02.388297+00:00] General.ERROR: Exception  
+[2021-05-23T06:25:02.399981+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php  
+[2021-05-23T06:25:02.400198+00:00] General.ERROR: Line: 43  
+[2021-05-23T06:25:02.400290+00:00] General.ERROR: Mensaje: SQLSTATE[HY000] [1045] Access denied for user 'accesoriossimple'@'localhost' (using password: YES)  
+[2021-05-23T06:25:02.400386+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 43
+            [function] => __construct
+            [class] => PDO
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => mysql:host=127.0.0.1;port=3306;dbname=accesoriossimple;charset=utf8
+                    [1] => accesoriossimple
+                    [2] => Ejemplo2021
+                    [3] => Array
+                        (
+                            [1002] => SET NAMES utf8
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 436
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 520
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'gustavo'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 187
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => gustavo
+                    [1] => 1234
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T06:58:36.223672+00:00] General.ERROR: Exception  
+[2021-05-23T06:58:36.268621+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php  
+[2021-05-23T06:58:36.268760+00:00] General.ERROR: Line: 43  
+[2021-05-23T06:58:36.268848+00:00] General.ERROR: Mensaje: SQLSTATE[HY000] [1045] Access denied for user 'accesoriossimple'@'localhost' (using password: YES)  
+[2021-05-23T06:58:36.268949+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 43
+            [function] => __construct
+            [class] => PDO
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => mysql:host=127.0.0.1;port=3306;dbname=accesoriossimple;charset=utf8
+                    [1] => accesoriossimple
+                    [2] => Ejemplo2021
+                    [3] => Array
+                        (
+                            [1002] => SET NAMES utf8
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 382
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 466
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'admin'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 184
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => admin
+                    [1] => 1234
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T07:07:17.371358+00:00] General.ERROR: Exception  
+[2021-05-23T07:07:17.371974+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php  
+[2021-05-23T07:07:17.372089+00:00] General.ERROR: Line: 43  
+[2021-05-23T07:07:17.372182+00:00] General.ERROR: Mensaje: SQLSTATE[HY000] [1045] Access denied for user 'accesoriossimple'@'localhost' (using password: YES)  
+[2021-05-23T07:07:17.372283+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 43
+            [function] => __construct
+            [class] => PDO
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => mysql:host=127.0.0.1;port=3306;dbname=accesoriossimple;charset=utf8
+                    [1] => accesoriossimple
+                    [2] => Ejemplo2021
+                    [3] => Array
+                        (
+                            [1002] => SET NAMES utf8
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 344
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 428
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'admin'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 184
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => admin
+                    [1] => 1234
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T07:11:30.628278+00:00] General.ERROR: Exception  
+[2021-05-23T07:11:30.629067+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php  
+[2021-05-23T07:11:30.629200+00:00] General.ERROR: Line: 43  
+[2021-05-23T07:11:30.629292+00:00] General.ERROR: Mensaje: SQLSTATE[HY000] [1045] Access denied for user 'accesoriossimple'@'localhost' (using password: YES)  
+[2021-05-23T07:11:30.629388+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 43
+            [function] => __construct
+            [class] => PDO
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => mysql:host=127.0.0.1;port=3306;dbname=accesoriossimple;charset=utf8
+                    [1] => accesoriossimple
+                    [2] => Ejemplo2021
+                    [3] => Array
+                        (
+                            [1002] => SET NAMES utf8
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 344
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 428
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'accesoriossimple'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 184
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => accesoriossimple
+                    [1] => YES
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T07:13:46.067735+00:00] General.ERROR: Carga de variables de entorno fallo.  
+[2021-05-23T07:13:46.068340+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\vendor\vlucas\phpdotenv\src\Validator.php  
+[2021-05-23T07:13:46.068444+00:00] General.ERROR: Line: 189  
+[2021-05-23T07:13:46.068542+00:00] General.ERROR: Mensaje: One or more environment variables failed assertions: DB_PASSWORD is empty.  
+[2021-05-23T07:13:46.068693+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\vendor\vlucas\phpdotenv\src\Validator.php
+            [line] => 72
+            [function] => assertCallback
+            [class] => Dotenv\Validator
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Closure Object
+                        (
+                            [this] => Dotenv\Validator Object
+                                (
+                                    [variables:protected] => Array
+                                        (
+                                            [0] => DB_CONNECTION
+                                            [1] => DB_HOST
+                                            [2] => DB_PORT
+                                            [3] => DB_DATABASE
+                                            [4] => DB_USERNAME
+                                            [5] => DB_PASSWORD
+                                        )
+
+                                    [loader:protected] => Dotenv\Loader Object
+                                        (
+                                            [filePaths:protected] => Array
+                                                (
+                                                    [0] => C:\laragon\www\accesoriossimple\app\Models/../../\.env
+                                                )
+
+                                            [envFactory:protected] => Dotenv\Environment\DotenvFactory Object
+                                                (
+                                                    [adapters:protected] => Array
+                                                        (
+                                                            [0] => Dotenv\Environment\Adapter\EnvConstAdapter Object
+                                                                (
+                                                                )
+
+                                                            [1] => Dotenv\Environment\Adapter\ServerConstAdapter Object
+                                                                (
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [envVariables:protected] => Dotenv\Environment\DotenvVariables Object
+                                                (
+                                                    [adapters:protected] => Array
+                                                        (
+                                                            [0] => Dotenv\Environment\Adapter\EnvConstAdapter Object
+                                                                (
+                                                                )
+
+                                                            [1] => Dotenv\Environment\Adapter\ServerConstAdapter Object
+                                                                (
+                                                                )
+
+                                                        )
+
+                                                    [immutable:Dotenv\Environment\AbstractVariables:private] => 1
+                                                    [loaded:Dotenv\Environment\AbstractVariables:private] => Dotenv\Environment\Adapter\ArrayAdapter Object
+                                                        (
+                                                            [variables:Dotenv\Environment\Adapter\ArrayAdapter:private] => Array
+                                                                (
+                                                                    [ROOT_FOLDER] => 
+                                                                    [TITLE_SITE] => 
+                                                                    [ALIASE_SITE] => 
+                                                                    [CHAR_SET] => 
+                                                                    [DB_CONNECTION] => 
+                                                                    [DB_HOST] => 
+                                                                    [DB_PORT] => 
+                                                                    [DB_DATABASE] => 
+                                                                    [DB_USERNAME] => 
+                                                                    [DB_PASSWORD] => 
+                                                                    [DB_CHAR_SET] => 
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [variableNames:protected] => Array
+                                                (
+                                                    [0] => ROOT_FOLDER
+                                                    [1] => TITLE_SITE
+                                                    [2] => ALIASE_SITE
+                                                    [3] => CHAR_SET
+                                                    [4] => DB_CONNECTION
+                                                    [5] => DB_HOST
+                                                    [6] => DB_PORT
+                                                    [7] => DB_DATABASE
+                                                    [8] => DB_USERNAME
+                                                    [9] => DB_PASSWORD
+                                                    [10] => DB_CHAR_SET
+                                                )
+
+                                        )
+
+                                )
+
+                            [parameter] => Array
+                                (
+                                    [$value] => <required>
+                                )
+
+                        )
+
+                    [1] => is empty
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\GeneralFunctions.php
+            [line] => 30
+            [function] => notEmpty
+            [class] => Dotenv\Validator
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 37
+            [function] => loadEnv
+            [class] => App\Models\GeneralFunctions
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [0] => DB_CONNECTION
+                            [1] => DB_HOST
+                            [2] => DB_PORT
+                            [3] => DB_DATABASE
+                            [4] => DB_USERNAME
+                            [5] => DB_PASSWORD
+                        )
+
+                    [1] => Array
+                        (
+                            [0] => DB_PORT
+                        )
+
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 344
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
             [args] => Array
                 (
                 )
@@ -481,9 +1413,437 @@
 
     [4] => Array
         (
-            [file] => C:\laragon\www\accesoriossimple\views\modules\usuarios\index.php
-            [line] => 102
-            [function] => getAll
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 428
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'admin'
+                )
+
+        )
+
+    [5] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 184
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => admin
+                    [1] => 1234
+                )
+
+        )
+
+    [6] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T07:13:46.069191+00:00] General.ERROR: Exception  
+[2021-05-23T07:13:46.069570+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\GeneralFunctions.php  
+[2021-05-23T07:13:46.069680+00:00] General.ERROR: Line: 35  
+[2021-05-23T07:13:46.069770+00:00] General.ERROR: Mensaje: One or more environment variables failed assertions: DB_PASSWORD is empty.  
+[2021-05-23T07:13:46.069869+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 37
+            [function] => loadEnv
+            [class] => App\Models\GeneralFunctions
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [0] => DB_CONNECTION
+                            [1] => DB_HOST
+                            [2] => DB_PORT
+                            [3] => DB_DATABASE
+                            [4] => DB_USERNAME
+                            [5] => DB_PASSWORD
+                        )
+
+                    [1] => Array
+                        (
+                            [0] => DB_PORT
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 344
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 428
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'admin'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 184
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => admin
+                    [1] => 1234
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T07:20:15.257323+00:00] General.ERROR: Carga de variables de entorno fallo.  
+[2021-05-23T07:20:15.257904+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\vendor\vlucas\phpdotenv\src\Validator.php  
+[2021-05-23T07:20:15.258030+00:00] General.ERROR: Line: 189  
+[2021-05-23T07:20:15.258133+00:00] General.ERROR: Mensaje: One or more environment variables failed assertions: DB_PASSWORD is empty.  
+[2021-05-23T07:20:15.258266+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\vendor\vlucas\phpdotenv\src\Validator.php
+            [line] => 72
+            [function] => assertCallback
+            [class] => Dotenv\Validator
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Closure Object
+                        (
+                            [this] => Dotenv\Validator Object
+                                (
+                                    [variables:protected] => Array
+                                        (
+                                            [0] => DB_CONNECTION
+                                            [1] => DB_HOST
+                                            [2] => DB_PORT
+                                            [3] => DB_DATABASE
+                                            [4] => DB_USERNAME
+                                            [5] => DB_PASSWORD
+                                        )
+
+                                    [loader:protected] => Dotenv\Loader Object
+                                        (
+                                            [filePaths:protected] => Array
+                                                (
+                                                    [0] => C:\laragon\www\accesoriossimple\app\Models/../../\.env
+                                                )
+
+                                            [envFactory:protected] => Dotenv\Environment\DotenvFactory Object
+                                                (
+                                                    [adapters:protected] => Array
+                                                        (
+                                                            [0] => Dotenv\Environment\Adapter\EnvConstAdapter Object
+                                                                (
+                                                                )
+
+                                                            [1] => Dotenv\Environment\Adapter\ServerConstAdapter Object
+                                                                (
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [envVariables:protected] => Dotenv\Environment\DotenvVariables Object
+                                                (
+                                                    [adapters:protected] => Array
+                                                        (
+                                                            [0] => Dotenv\Environment\Adapter\EnvConstAdapter Object
+                                                                (
+                                                                )
+
+                                                            [1] => Dotenv\Environment\Adapter\ServerConstAdapter Object
+                                                                (
+                                                                )
+
+                                                        )
+
+                                                    [immutable:Dotenv\Environment\AbstractVariables:private] => 1
+                                                    [loaded:Dotenv\Environment\AbstractVariables:private] => Dotenv\Environment\Adapter\ArrayAdapter Object
+                                                        (
+                                                            [variables:Dotenv\Environment\Adapter\ArrayAdapter:private] => Array
+                                                                (
+                                                                    [ROOT_FOLDER] => 
+                                                                    [TITLE_SITE] => 
+                                                                    [ALIASE_SITE] => 
+                                                                    [CHAR_SET] => 
+                                                                    [DB_CONNECTION] => 
+                                                                    [DB_HOST] => 
+                                                                    [DB_PORT] => 
+                                                                    [DB_DATABASE] => 
+                                                                    [DB_USERNAME] => 
+                                                                    [DB_PASSWORD] => 
+                                                                    [DB_CHAR_SET] => 
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [variableNames:protected] => Array
+                                                (
+                                                    [0] => ROOT_FOLDER
+                                                    [1] => TITLE_SITE
+                                                    [2] => ALIASE_SITE
+                                                    [3] => CHAR_SET
+                                                    [4] => DB_CONNECTION
+                                                    [5] => DB_HOST
+                                                    [6] => DB_PORT
+                                                    [7] => DB_DATABASE
+                                                    [8] => DB_USERNAME
+                                                    [9] => DB_PASSWORD
+                                                    [10] => DB_CHAR_SET
+                                                )
+
+                                        )
+
+                                )
+
+                            [parameter] => Array
+                                (
+                                    [$value] => <required>
+                                )
+
+                        )
+
+                    [1] => is empty
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\GeneralFunctions.php
+            [line] => 30
+            [function] => notEmpty
+            [class] => Dotenv\Validator
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 37
+            [function] => loadEnv
+            [class] => App\Models\GeneralFunctions
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [0] => DB_CONNECTION
+                            [1] => DB_HOST
+                            [2] => DB_PORT
+                            [3] => DB_DATABASE
+                            [4] => DB_USERNAME
+                            [5] => DB_PASSWORD
+                        )
+
+                    [1] => Array
+                        (
+                            [0] => DB_PORT
+                        )
+
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 344
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 428
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'admin'
+                )
+
+        )
+
+    [5] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 184
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => admin
+                    [1] => 1234
+                )
+
+        )
+
+    [6] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T07:20:15.258725+00:00] General.ERROR: Exception  
+[2021-05-23T07:20:15.259099+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\GeneralFunctions.php  
+[2021-05-23T07:20:15.259216+00:00] General.ERROR: Line: 35  
+[2021-05-23T07:20:15.259314+00:00] General.ERROR: Mensaje: One or more environment variables failed assertions: DB_PASSWORD is empty.  
+[2021-05-23T07:20:15.259419+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 37
+            [function] => loadEnv
+            [class] => App\Models\GeneralFunctions
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [0] => DB_CONNECTION
+                            [1] => DB_HOST
+                            [2] => DB_PORT
+                            [3] => DB_DATABASE
+                            [4] => DB_USERNAME
+                            [5] => DB_PASSWORD
+                        )
+
+                    [1] => Array
+                        (
+                            [0] => DB_PORT
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 344
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 428
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'admin'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 184
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => admin
+                    [1] => 1234
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
             [class] => App\Controllers\UsuariosController
             [type] => ::
             [args] => Array

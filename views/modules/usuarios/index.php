@@ -1,11 +1,11 @@
 <?php
-require("../../partials/routes.php");
+require_once("../../../app/Controllers/UsuariosController.php");
+require_once("../../partials/routes.php");
 require_once("../../partials/check_login.php");
 
-use App\Controllers\DepartamentosController;
-use App\Controllers\MunicipiosController;
+use App\Controllers\UsuariosController;
 use App\Models\GeneralFunctions;
-use Carbon\Carbon;
+use App\Models\Usuarios;
 
 $nameModel = "Usuario";
 $pluralModel = $nameModel.'s';
@@ -14,17 +14,20 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= $_ENV['TITLE_SITE'] ?> | Crear <?= $nameModel ?></title>
+    <title><?= $_ENV['TITLE_SITE'] ?> | Gestión de <?= $pluralModel ?></title>
     <?php require("../../partials/head_imports.php"); ?>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-responsive/css/responsive.bootstrap4.css">
+    <link rel="stylesheet" href="<?= $adminlteURL ?>/plugins/datatables-buttons/css/buttons.bootstrap4.css">
 </head>
 <body class="hold-transition sidebar-mini">
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?php require("../../partials/navbar_customization.php"); ?>
+    <?php require_once("../../partials/navbar_customization.php"); ?>
 
-    <?php require("../../partials/sliderbar_main_menu.php"); ?>
-
+    <?php require_once("../../partials/sliderbar_main_menu.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -33,13 +36,12 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Crear un Nuevo <?= $nameModel ?></h1>
+                        <h1>Pagina Principal</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?= $baseURL; ?>/views/"><?= $_ENV['ALIASE_SITE'] ?></a></li>
-                            <li class="breadcrumb-item"><a href="index.php"><?= $pluralModel ?></a></li>
-                            <li class="breadcrumb-item active">Crear</li>
+                            <li class="breadcrumb-item active"><?= $pluralModel ?></li>
                         </ol>
                     </div>
                 </div>
@@ -48,124 +50,132 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
 
         <!-- Main content -->
         <section class="content">
-            <!-- Generar Mensaje de alerta -->
+            <!-- Generar Mensajes de alerta -->
             <?= (!empty($_GET['respuesta'])) ? GeneralFunctions::getAlertDialog($_GET['respuesta'], $_GET['mensaje']) : ""; ?>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <!-- Horizontal Form -->
-                        <div class="card card-info">
+                        <!-- Default box -->
+                        <div class="card card-dark">
                             <div class="card-header">
-                                <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Información del <?= $nameModel ?></h3>
+                                <h3 class="card-title"><i class="fas fa-user"></i> &nbsp; Gestionar <?= $pluralModel ?></h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="card-refresh"
-                                            data-source="create.php" data-source-selector="#card-refresh-content"
+                                            data-source="index.php" data-source-selector="#card-refresh-content"
                                             data-load-on-init="false"><i class="fas fa-sync-alt"></i></button>
                                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
                                                 class="fas fa-expand"></i></button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                                class="fas fa-minus"></i></button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                            data-toggle="tooltip" title="Collapse">
+                                        <i class="fas fa-minus"></i></button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"
+                                            data-toggle="tooltip" title="Remove">
+                                        <i class="fas fa-times"></i></button>
                                 </div>
                             </div>
-                            <!-- /.card-header -->
                             <div class="card-body">
-                                <!-- form start -->
-                                <form class="form-horizontal" enctype="multipart/form-data" method="post" id="frmCreate<?= $nameModel ?>"
-                                      name="frmCreate<?= $nameModel ?>"
-                                      action="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=create">
-                                    <div class="row">
-                                        <div class="col-sm-10">
-                                            <div class="form-group row">
-                                                <label for="Nombre" class="col-sm-2 col-form-label">Nombre</label>
-                                                <div class="col-sm-10">
-                                                    <input required type="text" class="form-control" id="Nombre" name="Nombre"
-                                                           placeholder="Ingrese su Nombre" value="<?= $frmSession['Nombre'] ?? '' ?>">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="Correo" class="col-sm-2 col-form-label">Correo</label>
-                                                <div class="col-sm-10">
-                                                    <input required type="text" class="form-control" id="Correo"
-                                                           name="Correo" placeholder="Ingrese su Correo"
-                                                           value="<?= $frmSession['Correo'] ?? '' ?>">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="Cedula" class="col-sm-2 col-form-label">Cedula</label>
-                                                <div class="col-sm-10">
-                                                    <input required type="number" minlength="6" class="form-control"
-                                                           id="Cedula" name="Cedula" placeholder="Ingrese su Cedula"
-                                                           value="<?= $frmSession['Cedula'] ?? '' ?>">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="Telefono" class="col-sm-2 col-form-label">Telefono</label>
-                                                <div class="col-sm-10">
-                                                    <input required type="number" minlength="6" class="form-control"
-                                                           id="Telefono" name="Telefono" placeholder="Ingrese su Telefono"
-                                                           value="<?= $frmSession['Telefono'] ?? '' ?>">
-                                                </div>
-                                            </div>
-                                            <?php if ($_SESSION['UserInSession']['rol'] == 'Administrativo'){ ?>
-                                                <div class="form-group row">
-                                                    <label for="user" class="col-sm-2 col-form-label">Usuario</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="user" name="user"
-                                                               placeholder="Ingrese su Usuario" value="<?= $frmSession['user'] ?? '' ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="password" class="col-sm-2 col-form-label">Password</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese su Usuario">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="rol" class="col-sm-2 col-form-label">Rol</label>
-                                                    <div class="col-sm-10">
-                                                        <select required id="rol" name="rol" class="custom-select">
-                                                            <option <?= (!empty($frmSession['rol']) && $frmSession['rol'] == "Administrativo") ? "selected" : ""; ?> value="Administrador">Administrador</option>
-                                                            <option <?= (!empty($frmSession['rol']) && $frmSession['rol'] == "Empleado") ? "selected" : ""; ?> value="Empleado">Empleado</option>
-                                                            <option <?= (!empty($frmSession['rol']) && $frmSession['rol'] == "Cliente") ? "selected" : ""; ?> value="Cliente">Cliente</option>
-                                                            <option <?= (!empty($frmSession['rol']) && $frmSession['rol'] == "Proveedor") ? "selected" : ""; ?> value="Proveedor">Proveedor</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            <?php } ?>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <div class="info-box">
-                                                <div class="imageupload panel panel-primary">
-                                                    <div class="panel-heading clearfix">
-                                                        <h5 class="panel-title pull-left">Foto de Perfil</h5>
-                                                    </div>
-                                                    <div class="file-tab panel-body">
-                                                        <label class="btn btn-default btn-file">
-                                                            <span>Seleccionar</span>
-                                                            <!-- The file is stored here. -->
-                                                            <input type="file" id="foto" name="foto">
-                                                        </label>
-                                                        <button type="button" class="btn btn-default">Eliminar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-auto mr-auto"></div>
+                                    <div class="col-auto">
+                                        <a role="button" href="create.php" class="btn btn-primary float-right"
+                                           style="margin-right: 5px;">
+                                            <i class="fas fa-plus"></i> Crear <?= $nameModel ?>
+                                        </a>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <table id="tbl<?= $pluralModel ?>" class="datatable table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nombres</th>
+                                                <th>Apellidos</th>
+                                                <th>Tipo Doc.</th>
+                                                <th>Documento</th>
+                                                <th>Telefono</th>
+                                                <th>Rol</th>
+                                                <th>Foto</th>
+                                                <th>Estado</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php
+                                            $arrUsuarios = UsuariosController::getAll();
+                                            /* @var $arrUsuarios Usuarios[] */
+                                            foreach ($arrUsuarios as $usuario) {
+                                                ?>
+                                                <tr>
+                                                    <td><?= $usuario->getId(); ?></td>
+                                                    <td><?= $usuario->getNombres(); ?></td>
+                                                    <td><?= $usuario->getApellidos(); ?></td>
+                                                    <td><?= $usuario->getTipoDocumento(); ?></td>
+                                                    <td><?= $usuario->getDocumento(); ?></td>
+                                                    <td><?= $usuario->getTelefono(); ?></td>
+                                                    <td><?= $usuario->getRol(); ?></td>
+                                                    <td>
+                                                        <?php if(!empty($usuario->getFoto())){ ?>
+                                                        <span class="badge badge-info" data-toggle="tooltip" data-html="true"
+                                                              title="<img class='img-thumbnail' src='../../public/uploadFiles/photos/<?= $usuario->getFoto(); ?>'>">Foto
+                                                        </span>
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td><?= $usuario->getEstado(); ?></td>
+                                                    <td>
+                                                        <a href="edit.php?id=<?php echo $usuario->getId(); ?>"
+                                                           type="button" data-toggle="tooltip" title="Actualizar"
+                                                           class="btn docs-tooltip btn-primary btn-xs"><i
+                                                                    class="fa fa-edit"></i></a>
+                                                        <a href="show.php?id=<?php echo $usuario->getId(); ?>"
+                                                           type="button" data-toggle="tooltip" title="Ver"
+                                                           class="btn docs-tooltip btn-warning btn-xs"><i
+                                                                    class="fa fa-eye"></i></a>
+                                                        <?php if ($usuario->getEstado() != "Activo") { ?>
+                                                            <a href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=activate&id=<?= $usuario->getId(); ?>"
+                                                               type="button" data-toggle="tooltip" title="Activar"
+                                                               class="btn docs-tooltip btn-success btn-xs"><i
+                                                                        class="fa fa-check-square"></i></a>
+                                                        <?php } else { ?>
+                                                            <a type="button"
+                                                               href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=inactivate&id=<?= $usuario->getId(); ?>"
+                                                               data-toggle="tooltip" title="Inactivar"
+                                                               class="btn docs-tooltip btn-danger btn-xs"><i
+                                                                        class="fa fa-times-circle"></i></a>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
 
-                                    <hr>
-                                    <button type="submit" class="btn btn-info">Enviar</button>
-                                    <a href="index.php" role="button" class="btn btn-default float-right">Cancelar</a>
-                                    <!-- /.card-footer -->
-                                </form>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nombres</th>
+                                                <th>Apellidos</th>
+                                                <th>Tipo Doc.</th>
+                                                <th>Documento</th>
+                                                <th>Telefono</th>
+                                                <th>Rol</th>
+                                                <th>Foto</th>
+                                                <th>Estado</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
-
+                            <div class="card-footer">
+                                Pie de Página.
+                            </div>
+                            <!-- /.card-footer-->
                         </div>
                         <!-- /.card -->
                     </div>
                 </div>
             </div>
-
         </section>
         <!-- /.content -->
     </div>
@@ -175,6 +185,8 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
 </div>
 <!-- ./wrapper -->
 <?php require('../../partials/scripts.php'); ?>
+<!-- Scripts requeridos para las datatables -->
+<?php require('../../partials/datatables_scripts.php'); ?>
+
 </body>
 </html>
-

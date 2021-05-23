@@ -13,13 +13,13 @@ require_once("../../partials/routes.php");
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="login.php"><b>Web</b>ER</a>
+        <a href="login.php"><b>CICLO</b>LOGY</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Ingrese sus datos para iniciar sesión</p>
-            <form action="../../../app/Controllers/MainController.php?controller=Usuario&action=login" method="post">
+            <form action="../../../app/Controllers/MainController.php?controller=Usuarios&action=login" method="post">
                 <div class="input-group mb-3">
                     <input type="text" id="user" name="user" class="form-control" placeholder="User">
                     <div class="input-group-append">

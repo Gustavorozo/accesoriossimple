@@ -4,14 +4,14 @@ namespace App\Controllers;
 require (__DIR__.'/../../vendor/autoload.php');
 use App\Models\GeneralFunctions;
 
-//if(session_status() == PHP_SESSION_NONE){ //Si la session no ha iniciado
-//    session_start();
-//}
+if(session_status() == PHP_SESSION_NONE){ //Si la session no ha iniciado
+    session_start();
+}
 
 if (!empty($_GET['controller'])){
 
-    //unset( $_SESSION['frm'.ucfirst($_GET['controller'])] );
-    //$_SESSION['frm'.ucfirst($_GET['controller'])] = $_POST; //Guarda Valores en la sesion por si hay erroes en el formulario
+    unset( $_SESSION['frm'.ucfirst($_GET['controller'])] );
+    $_SESSION['frm'.ucfirst($_GET['controller'])] = $_POST; //Guarda Valores en la sesion por si hay erroes en el formulario
 
     $nameController = 'App\Controllers\\'.(ucfirst($_GET['controller'])."Controller");
     if(class_exists($nameController)){
@@ -19,7 +19,7 @@ if (!empty($_GET['controller'])){
         if (!empty($_GET['action']) and method_exists($controller, $_GET['action'])) {
             if(!empty($_GET['id'])){
                 $controller->{$_GET['action']}($_GET['id']);
-            }else if (!empty($_POST['request']) && $_POST['request'] == "ajax") {
+            }else if(!empty($_POST['request']) && $_POST['request'] == "ajax"){
                 //echo call_user_func_array(array($controller, $_GET['action']), $_POST);
                 echo $controller->{$_GET['action']}($_POST);
             }else{

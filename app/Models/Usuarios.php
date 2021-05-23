@@ -1,23 +1,29 @@
 <?php
 namespace App\Models;
 
-require ("AbstractDBConnection.php");
-require (__DIR__ ."\..\Interfaces\Model.php");
-require(__DIR__ .'/../../vendor/autoload.php');
-
 use App\Interfaces\Model;
-use App\Models\AbstractDBConnection;
 use Carbon\Carbon;
+use Exception;
+use JsonSerializable;
 
-class Usuarios extends AbstractDBConnection implements Model
+class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
 {
+    /* Tipos de Datos => bool, int, float,  */
     private ?int $id;
     private string $nombres;
     private string $apellidos;
-    private string $direccion;
-    private Carbon $fecha_nacimiento;
+    private string $tipo_documento;
+    private int $documento;
     private int $telefono;
+    private ?string $user;
+    private ?string $password;
+    private ?string $foto;
+    private string $rol;
     private string $estado;
+
+    /* Relaciones */
+    private ?array $ventasCliente;
+    private ?array $ventasEmpleado;
 
     /**
      * Usuarios constructor. Recibe un array asociativo
@@ -26,33 +32,30 @@ class Usuarios extends AbstractDBConnection implements Model
     public function __construct(array $usuario = [])
     {
         parent::__construct();
-        $this->setId($usuario['id'] ?? null);
+        $this->setId($usuario['id'] ?? NULL);
         $this->setNombres($usuario['nombres'] ?? '');
         $this->setApellidos($usuario['apellidos'] ?? '');
-        $this->setDireccion($usuario['direccion'] ?? '');
-        $this->setFechaNacimiento(!empty($usuario['fecha_nacimiento']) ?
-            Carbon::parse($usuario['fecha_nacimiento']) : new Carbon());
+        $this->setTipoDocumento($usuario['tipo_documento'] ?? '');
+        $this->setDocumento($usuario['documento'] ?? 0);
         $this->setTelefono($usuario['telefono'] ?? 0);
+        $this->setUser($usuario['user'] ?? null);
+        $this->setPassword($usuario['password'] ?? null);
+        $this->setFoto($usuario['foto'] ?? null);
+        $this->setRol($usuario['rol'] ?? '');
         $this->setEstado($usuario['estado'] ?? '');
     }
 
-    public static function usuarioRegistrado(string $nombres, string $apellidos) : bool
+    function __destruct()
     {
-        $usrTmp = Usuarios::search("SELECT * FROM usuario WHERE nombres = '$nombres' and apellidos = '$apellidos'");
-        return (!empty($usrTmp)) ? true : false;
-    }
-
-    public function __destruct()
-    {
-        if ($this->isConnected()) {
+        if($this->isConnected){
             $this->Disconnect();
         }
     }
 
     /**
-     * @return int|null
+     * @return int|mixed
      */
-    public function getId(): ?int
+    public function getId() : ?int
     {
         return $this->id;
     }
@@ -66,79 +69,79 @@ class Usuarios extends AbstractDBConnection implements Model
     }
 
     /**
-     * @return string
+     * @return mixed|string
      */
-    public function getNombres(): string
+    public function getNombres() : string
     {
-        return $this->nombres;
+        return ucwords($this->nombres);
     }
 
     /**
-     * @param string $nombres
+     * @param mixed|string $nombres
      */
     public function setNombres(string $nombres): void
     {
-        $this->nombres = $nombres;
+        $this->nombres = trim(mb_strtolower($nombres, 'UTF-8'));
     }
 
     /**
-     * @return string
+     * @return mixed|string
      */
-    public function getApellidos(): string
+    public function getApellidos() : string
     {
-        return $this->apellidos;
+        return ucwords($this->apellidos);
     }
 
     /**
-     * @param string $apellidos
+     * @param mixed|string $apellidos
      */
     public function setApellidos(string $apellidos): void
     {
-        $this->apellidos = $apellidos;
+        $this->apellidos = trim(mb_strtolower($apellidos, 'UTF-8'));
     }
 
     /**
-     * @return string
+     * @return mixed|string
      */
-    public function getDireccion(): string
+    public function getTipoDocumento() : string
     {
-        return $this->direccion;
+        return $this->tipo_documento;
     }
 
     /**
-     * @param string $direccion
+     * @param mixed|string $tipo_documento
      */
-    public function setDireccion(string $direccion): void
+    public function setTipoDocumento(string $tipo_documento): void
     {
-        $this->direccion = $direccion;
+        $this->tipo_documento = $tipo_documento;
     }
 
     /**
-     * @return Carbon
+     * @return int|mixed
      */
-    public function getFechaNacimiento(): Carbon
+    public function getDocumento() : int
     {
-        return $this->fecha_nacimiento->locale('es');
+        return $this->documento;
     }
 
     /**
-     * @param Carbon $fecha_nacimiento
+     * @param int|mixed $documento
      */
-    public function setFechaNacimiento(Carbon $fecha_nacimiento): void
+    public function setDocumento(int $documento): void
     {
-        $this->fecha_nacimiento = $fecha_nacimiento;
+        $this->documento = $documento;
     }
 
     /**
-     * @return int
+     * @return int|mixed
      */
-    public function getTelefono(): int
+    public function getTelefono() : int
     {
         return $this->telefono;
     }
 
     /**
-     * @param int $telefono
+     * @param int|mixed $telefono
      */
     public function setTelefono(int $telefono): void
     {
@@ -146,19 +149,125 @@ class Usuarios extends AbstractDBConnection implements Model
     }
 
     /**
-     * @return string
+     * @return mixed|string
      */
-    public function getEstado(): string
+    public function getDireccion() : string
+    {
+        return $this->direccion;
+    }
+
+    /**
+     * @param mixed|string $direccion
+     */
+    public function setDireccion(string $direccion): void
+    {
+        $this->direccion = $direccion;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getUser() : ?string
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed|string $user
+     */
+    public function setUser(?string $user): void
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getPassword() : ?string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed|string $password
+     */
+    public function setPassword(?string $password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFoto(): ?string
+    {
+        return $this->foto;
+    }
+
+    /**
+     * @param string|null $foto
+     */
+    public function setFoto(?string $foto): void
+    {
+        $this->foto = $foto;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getRol() : string
+    {
+        return $this->rol;
+    }
+
+    /**
+     * @param mixed|string $rol
+     */
+    public function setRol(string $rol): void
+    {
+        $this->rol = $rol;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getEstado() : string
     {
         return $this->estado;
     }
 
     /**
-     * @param string $estado
+     * @param mixed|string $estado
      */
     public function setEstado(string $estado): void
     {
         $this->estado = $estado;
+    }
+
+
+
+    /**
+     * @return array
+     */
+    public function getVentasCliente(): ?array
+    {
+        if(!empty($this->getId())){
+            $this->ventasCliente = Ventas::search('SELECT * FROM ventas WHERE cliente_id = '.$this->getId());
+            return $this->ventasCliente;
+        }
+        return null;
+    }
+
+    /**
+     * @return array
+     */
+    public function getVentasEmpleado(): ?array
+    {
+        if(!empty($this->getId())){
+            $this->ventasEmpleado = Ventas::search('SELECT * FROM ventas WHERE empleado_id = '.$this->getId());
+            return $this->ventasEmpleado;
+        }
+        return null;
     }
 
     /**
@@ -171,9 +280,13 @@ class Usuarios extends AbstractDBConnection implements Model
             ':id' =>    $this->getId(),
             ':nombres' =>   $this->getNombres(),
             ':apellidos' =>   $this->getApellidos(),
-            ':direccion' =>   $this->getDireccion(),
-            ':fecha_nacimiento' =>  $this->getFechaNacimiento()->toDateString(), //YYYY-MM-DD
+            ':tipo_documento' =>  $this->getTipoDocumento(),
+            ':documento' =>   $this->getDocumento(),
             ':telefono' =>   $this->getTelefono(),
+            ':user' =>  $this->getUser(),
+            ':password' =>   $this->getPassword(),
+            ':foto' =>   $this->getFoto(),
+            ':rol' =>   $this->getRol(),
             ':estado' =>   $this->getEstado(),
         ];
         $this->Connect();
@@ -187,17 +300,12 @@ class Usuarios extends AbstractDBConnection implements Model
      */
     public function insert(): ?bool
     {
-        $query = "INSERT INTO usuarios VALUES (
-            :id,:nombres,:apellidos,:direccion,:fecha_nacimiento,:telefono,:estado
+        $query = "INSERT INTO weber.usuarios VALUES (
+            :id,:nombres,:apellidos,:tipo_documento,:documento,
+            :telefono,:user,
+            :password,:foto,:rol,:estado
         )";
-        //return $this->save($query);
-        if($this->save($query)){
-            $idUsuario = $this->getLastId('usuarios');
-            $this->setId($idUsuario);
-            return true;
-        }else{
-            return false;
-        }
+        return $this->save($query);
     }
 
     /**
@@ -205,26 +313,34 @@ class Usuarios extends AbstractDBConnection implements Model
      */
     public function update(): ?bool
     {
-        $query = "UPDATE usuarios SET 
-            nombres = :nombres, apellidos = :apellidos, direccion = :direccion, 
-            fecha_nacimiento = :fecha_nacimiento, telefono = :telefono,  
-            estado = :estado WHERE id = :id";
+        $query = "UPDATE weber.usuarios SET 
+            nombres = :nombres, apellidos = :apellidos, tipo_documento = :tipo_documento, 
+            documento = :documento, telefono = :telefono, user = :user,  
+            password = :password, foto = :foto, rol = :rol, estado = :estado WHERE id = :id";
         return $this->save($query);
     }
 
-    function deleted()
+    /**
+     * @param $id
+     * @return bool
+     * @throws Exception
+     */
+    public function deleted(): bool
     {
         $this->setEstado("Inactivo"); //Cambia el estado del Usuario
         return $this->update();                    //Guarda los cambios..
     }
 
-    //SELECT * FROM usuarios WHERE nombre = 'Diego'
-    static function search($query): ?array
+    /**
+     * @param $query
+     * @return Usuarios|array
+     * @throws Exception
+     */
+    public static function search($query) : ?array
     {
         try {
             $arrUsuarios = array();
             $tmp = new Usuarios();
-
             $tmp->Connect();
             $getrows = $tmp->getRows($query);
             $tmp->Disconnect();
@@ -233,39 +349,100 @@ class Usuarios extends AbstractDBConnection implements Model
                 foreach ($getrows as $valor) {
                     $Usuario = new Usuarios($valor);
                     array_push($arrUsuarios, $Usuario);
-                    unset($Usuario); //Borrar el contenido del objeto
+                    unset($Usuario);
                 }
                 return $arrUsuarios;
             }
             return null;
         } catch (Exception $e) {
-            GeneralFunctions::logFile('Exception', $e);
+            GeneralFunctions::logFile('Exception',$e, 'error');
         }
         return null;
     }
 
-    static function searchForId(int $id): ?Usuarios
+    /**
+     * @param $id
+     * @return Usuarios
+     * @throws Exception
+     */
+    public static function searchForId(int $id): ?Usuarios
     {
         try {
             if ($id > 0) {
                 $tmpUsuario = new Usuarios();
                 $tmpUsuario->Connect();
-                $getrow = $tmpUsuario->getRow("SELECT * FROM usuarios WHERE id = ?", array($id) );
-
+                $getrow = $tmpUsuario->getRow("SELECT * FROM accesoriossimple.usuarios WHERE id =?", array($id));
                 $tmpUsuario->Disconnect();
                 return ($getrow) ? new Usuarios($getrow) : null;
-            } else {
+            }else{
                 throw new Exception('Id de usuario Invalido');
             }
         } catch (Exception $e) {
-            GeneralFunctions::logFile('Exception', $e);
+            GeneralFunctions::logFile('Exception',$e, 'error');
         }
         return null;
     }
 
-    static function getAll(): ?array
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public static function getAll(): array
     {
-        return Usuarios::search("SELECT * FROM usuarios");
+        return Usuarios::search("SELECT * FROM accesoriossimple.usuarios");
+    }
+
+    /**
+     * @param $documento
+     * @return bool
+     * @throws Exception
+     */
+    public static function usuarioRegistrado($documento): bool
+    {
+        $result = Usuarios::search("SELECT * FROM accesoriossimple.usuarios where documento = " . $documento);
+        if ( !empty($result) && count ($result) > 0 ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function nombresCompletos() : string
+    {
+        return $this->nombres . " " . $this->apellidos;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() : string
+    {
+        return "Nombres: $this->nombres, Apellidos: $this->nombres, Tipo Documento: $this->tipo_documento, Documento: $this->documento, Telefono: $this->telefono,";
+    }
+
+    public function Login($User, $Password){
+        try {
+            $resultUsuarios = Usuarios::search("SELECT * FROM usuarios WHERE user = '$User'");
+            if(count($resultUsuarios) >= 1){
+                if($resultUsuarios[0]->password == $Password){
+                    if($resultUsuarios[0]->estado == 'Activo'){
+                        return $resultUsuarios[0];
+                    }else{
+                        return "Usuario Inactivo";
+                    }
+                }else{
+                    return "Contraseña Incorrecta";
+                }
+            }else{
+                return "Usuario Incorrecto";
+            }
+        } catch (Exception $e) {
+            GeneralFunctions::logFile('Exception',$e, 'error');
+            return "Error en Servidor";
+        }
     }
 
     public function jsonSerialize()
@@ -274,10 +451,15 @@ class Usuarios extends AbstractDBConnection implements Model
             'id' => $this->getId(),
             'nombres' => $this->getNombres(),
             'apellidos' => $this->getApellidos(),
-            'direccion' => $this->getDireccion(),
-            'fecha_nacimiento' => $this->getFechaNacimiento()->toDateString(),
+            'tipo_documento' => $this->getTipoDocumento(),
+            'documento' => $this->getDocumento(),
             'telefono' => $this->getTelefono(),
+            'user' => $this->getUser(),
+            'password' => $this->getPassword(),
+            'foto' => $this->getFoto(),
+            'rol' => $this->getRol(),
             'estado' => $this->getEstado(),
+
         ];
     }
 }

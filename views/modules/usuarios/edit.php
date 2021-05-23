@@ -12,7 +12,7 @@ use Carbon\Carbon;
 
 $nameModel = "Usuario";
 $pluralModel = $nameModel.'s';
-//$frmSession = $_SESSION['frm'.$pluralModel] ?? null;
+$frmSession = $_SESSION['frm'.$pluralModel] ?? null;
 
 ?>
 <!DOCTYPE html>
@@ -88,41 +88,66 @@ $pluralModel = $nameModel.'s';
                                             <input id="id" name="id" value="<?= $DataUsuario->getId(); ?>" hidden
                                                    required="required" type="text">
                                             <div class="row">
-                                                <div class="col-sm-12">
+                                                <div class="col-sm-10">
                                                     <div class="form-group row">
-                                                        <label for="Nombre" class="col-sm-2 col-form-label">Nombre</label>
+                                                        <label for="nombres" class="col-sm-2 col-form-label">Nombres</label>
                                                         <div class="col-sm-10">
-                                                            <input required type="text" class="form-control" id="Nombre"
-                                                                   name="Nombre" value="<?= $DataUsuario->getNombre(); ?>"
-                                                                   placeholder="Ingrese su nombre">
+                                                            <input required type="text" class="form-control" id="nombres"
+                                                                   name="nombres" value="<?= $DataUsuario->getNombres(); ?>"
+                                                                   placeholder="Ingrese sus nombres">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="Correo" class="col-sm-2 col-form-label">Correo</label>
+                                                        <label for="apellidos" class="col-sm-2 col-form-label">Apellidos</label>
                                                         <div class="col-sm-10">
-                                                            <input required type="text" class="form-control" id="Correo"
-                                                                   name="Correo" value="<?= $DataUsuario->getCorreo(); ?>"
-                                                                   placeholder="Ingrese su Correo">
+                                                            <input required type="text" class="form-control" id="apellidos"
+                                                                   name="apellidos" value="<?= $DataUsuario->getApellidos(); ?>"
+                                                                   placeholder="Ingrese sus apellidos">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="Cedula" class="col-sm-2 col-form-label">Cedula</label>
+                                                        <label for="tipo_documento" class="col-sm-2 col-form-label">Tipo
+                                                            Documento</label>
                                                         <div class="col-sm-10">
-                                                            <input required type="text" class="form-control" id="Cedula"
-                                                                   name="Cedula" value="<?= $DataUsuario->getCedula(); ?>"
-                                                                   placeholder="Ingrese su Cedula">
+                                                            <select id="tipo_documento" name="tipo_documento"
+                                                                    class="custom-select">
+                                                                <option <?= ($DataUsuario->getTipoDocumento() == "C.C") ? "selected" : ""; ?>
+                                                                        value="C.C">Cedula de Ciudadania
+                                                                </option>
+                                                                <option <?= ($DataUsuario->getTipoDocumento() == "T.I") ? "selected" : ""; ?>
+                                                                        value="T.I">Tarjeta de Identidad
+                                                                </option>
+                                                                <option <?= ($DataUsuario->getTipoDocumento() == "R.C") ? "selected" : ""; ?>
+                                                                        value="R.C">Registro Civil
+                                                                </option>
+                                                                <option <?= ($DataUsuario->getTipoDocumento() == "Pasaporte") ? "selected" : ""; ?>
+                                                                        value="Pasaporte">Pasaporte
+                                                                </option>
+                                                                <option <?= ($DataUsuario->getTipoDocumento() == "C.E") ? "selected" : ""; ?>
+                                                                        value="C.E">Cedula de Extranjeria
+                                                                </option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="Telefono" class="col-sm-2 col-form-label">Telefono</label>
+                                                        <label for="documento" class="col-sm-2 col-form-label">Documento</label>
                                                         <div class="col-sm-10">
                                                             <input required type="number" minlength="6" class="form-control"
-                                                                   id="Telefono" name="Telefono"
-                                                                   value="<?= $DataUsuario->getTelefono(); ?>"
-                                                                   placeholder="Ingrese su Telefono">
+                                                                   id="documento" name="documento"
+                                                                   value="<?= $DataUsuario->getDocumento(); ?>"
+                                                                   placeholder="Ingrese su documento">
                                                         </div>
                                                     </div>
-                                                    <?php if ($_SESSION['UserInSession']['rol'] == 'Administrativo'){ ?>
+                                                    <div class="form-group row">
+                                                        <label for="telefono" class="col-sm-2 col-form-label">Telefono</label>
+                                                        <div class="col-sm-10">
+                                                            <input required type="number" minlength="6" class="form-control"
+                                                                   id="telefono" name="telefono"
+                                                                   value="<?= $DataUsuario->getTelefono(); ?>"
+                                                                   placeholder="Ingrese su telefono">
+                                                        </div>
+                                                    </div>
+                                                    <?php if ($_SESSION['UserInSession']['rol'] == 'Administrador'){ ?>
                                                         <div class="form-group row">
                                                             <label for="user" class="col-sm-2 col-form-label">Usuario</label>
                                                             <div class="col-sm-10">
@@ -141,10 +166,20 @@ $pluralModel = $nameModel.'s';
                                                             <label for="rol" class="col-sm-2 col-form-label">Rol</label>
                                                             <div class="col-sm-10">
                                                                 <select required id="rol" name="rol" class="custom-select">
-                                                                    <option <?= ($DataUsuario->getRol() == "Administrativo") ? "selected" : ""; ?> value="Administrativo">Administrativo</option>
+                                                                    <option <?= ($DataUsuario->getRol() == "Administrador") ? "selected" : ""; ?> value="Administrador">Administrador</option>
                                                                     <option <?= ($DataUsuario->getRol() == "Empleado") ? "selected" : ""; ?> value="Empleado">Empleado</option>
                                                                     <option <?= ($DataUsuario->getRol() == "Cliente") ? "selected" : ""; ?> value="Cliente">Cliente</option>
                                                                     <option <?= ($DataUsuario->getRol() == "Proveedor") ? "selected" : ""; ?> value="Proveedor">Proveedor</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <label for="estado" class="col-sm-2 col-form-label">Estado</label>
+                                                            <div class="col-sm-10">
+                                                                <select required id="estado" name="estado" class="custom-select">
+                                                                    <option <?= ($DataUsuario->getEstado() == "Activo") ? "selected" : ""; ?> value="Activo">Activo</option>
+                                                                    <option <?= ($DataUsuario->getEstado() == "Inactivo") ? "selected" : ""; ?> value="Inactivo">Inactivo</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -157,7 +192,7 @@ $pluralModel = $nameModel.'s';
                                                                 <h5 class="panel-title pull-left">Foto de Perfil</h5>
                                                             </div>
                                                             <div class="file-tab panel-body">
-                                                                <label class="btn btn-default btn-file">
+                                                                    <label class="btn btn-default btn-file">
                                                                     <span>Seleccionar</span>
                                                                     <!-- The file is stored here. -->
                                                                     <input value="<?= $DataUsuario->getFoto(); ?>" type="file" id="foto" name="foto">
@@ -166,8 +201,8 @@ $pluralModel = $nameModel.'s';
                                                             </div>
                                                             <div class="panel-footer">
                                                                 <?php if(!empty($DataUsuario->getFoto())){?>
-                                                                    <img id="thumbFoto" src="../../public/uploadFiles/photos/<?= $DataUsuario->getFoto(); ?>"
-                                                                         alt="Sin Foto de Perfil" class="thumbnail" style="max-width: 250px; max-height: 250px">
+                                                                <img id="thumbFoto" src="../../public/uploadFiles/photos/<?= $DataUsuario->getFoto(); ?>"
+                                                                     alt="Sin Foto de Perfil" class="thumbnail" style="max-width: 250px; max-height: 250px">
                                                                 <?php } ?>
                                                                 <input type="hidden" name="nameFoto" id="nameFoto" value="<?= $DataUsuario->getFoto() ?? '' ?>">
                                                             </div>
@@ -208,5 +243,8 @@ $pluralModel = $nameModel.'s';
 </div>
 <!-- ./wrapper -->
 <?php require('../../partials/scripts.php'); ?>
+<script>
+
+</script>
 </body>
 </html>
