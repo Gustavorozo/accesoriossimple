@@ -1854,3 +1854,927 @@
 
 )
   
+[2021-05-23T19:05:06.829035+00:00] General.ERROR: Carga de variables de entorno fallo.  
+[2021-05-23T19:05:06.890406+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\vendor\vlucas\phpdotenv\src\Validator.php  
+[2021-05-23T19:05:06.890546+00:00] General.ERROR: Line: 189  
+[2021-05-23T19:05:06.890633+00:00] General.ERROR: Mensaje: One or more environment variables failed assertions: DB_PASSWORD is empty.  
+[2021-05-23T19:05:06.891219+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\vendor\vlucas\phpdotenv\src\Validator.php
+            [line] => 72
+            [function] => assertCallback
+            [class] => Dotenv\Validator
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Closure Object
+                        (
+                            [this] => Dotenv\Validator Object
+                                (
+                                    [variables:protected] => Array
+                                        (
+                                            [0] => DB_CONNECTION
+                                            [1] => DB_HOST
+                                            [2] => DB_PORT
+                                            [3] => DB_DATABASE
+                                            [4] => DB_USERNAME
+                                            [5] => DB_PASSWORD
+                                        )
+
+                                    [loader:protected] => Dotenv\Loader Object
+                                        (
+                                            [filePaths:protected] => Array
+                                                (
+                                                    [0] => C:\laragon\www\accesoriossimple\app\Models/../../\.env
+                                                )
+
+                                            [envFactory:protected] => Dotenv\Environment\DotenvFactory Object
+                                                (
+                                                    [adapters:protected] => Array
+                                                        (
+                                                            [0] => Dotenv\Environment\Adapter\EnvConstAdapter Object
+                                                                (
+                                                                )
+
+                                                            [1] => Dotenv\Environment\Adapter\ServerConstAdapter Object
+                                                                (
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [envVariables:protected] => Dotenv\Environment\DotenvVariables Object
+                                                (
+                                                    [adapters:protected] => Array
+                                                        (
+                                                            [0] => Dotenv\Environment\Adapter\EnvConstAdapter Object
+                                                                (
+                                                                )
+
+                                                            [1] => Dotenv\Environment\Adapter\ServerConstAdapter Object
+                                                                (
+                                                                )
+
+                                                        )
+
+                                                    [immutable:Dotenv\Environment\AbstractVariables:private] => 1
+                                                    [loaded:Dotenv\Environment\AbstractVariables:private] => Dotenv\Environment\Adapter\ArrayAdapter Object
+                                                        (
+                                                            [variables:Dotenv\Environment\Adapter\ArrayAdapter:private] => Array
+                                                                (
+                                                                    [ROOT_FOLDER] => 
+                                                                    [TITLE_SITE] => 
+                                                                    [ALIASE_SITE] => 
+                                                                    [CHAR_SET] => 
+                                                                    [DB_CONNECTION] => 
+                                                                    [DB_HOST] => 
+                                                                    [DB_PORT] => 
+                                                                    [DB_DATABASE] => 
+                                                                    [DB_USERNAME] => 
+                                                                    [DB_PASSWORD] => 
+                                                                    [DB_CHAR_SET] => 
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [variableNames:protected] => Array
+                                                (
+                                                    [0] => ROOT_FOLDER
+                                                    [1] => TITLE_SITE
+                                                    [2] => ALIASE_SITE
+                                                    [3] => CHAR_SET
+                                                    [4] => DB_CONNECTION
+                                                    [5] => DB_HOST
+                                                    [6] => DB_PORT
+                                                    [7] => DB_DATABASE
+                                                    [8] => DB_USERNAME
+                                                    [9] => DB_PASSWORD
+                                                    [10] => DB_CHAR_SET
+                                                )
+
+                                        )
+
+                                )
+
+                            [parameter] => Array
+                                (
+                                    [$value] => <required>
+                                )
+
+                        )
+
+                    [1] => is empty
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\GeneralFunctions.php
+            [line] => 30
+            [function] => notEmpty
+            [class] => Dotenv\Validator
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 37
+            [function] => loadEnv
+            [class] => App\Models\GeneralFunctions
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [0] => DB_CONNECTION
+                            [1] => DB_HOST
+                            [2] => DB_PORT
+                            [3] => DB_DATABASE
+                            [4] => DB_USERNAME
+                            [5] => DB_PASSWORD
+                        )
+
+                    [1] => Array
+                        (
+                            [0] => DB_PORT
+                        )
+
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 344
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 428
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'admin'
+                )
+
+        )
+
+    [5] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 184
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => admin
+                    [1] => 1234
+                )
+
+        )
+
+    [6] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T19:05:06.891768+00:00] General.ERROR: Exception  
+[2021-05-23T19:05:06.892166+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\GeneralFunctions.php  
+[2021-05-23T19:05:06.892279+00:00] General.ERROR: Line: 35  
+[2021-05-23T19:05:06.892374+00:00] General.ERROR: Mensaje: One or more environment variables failed assertions: DB_PASSWORD is empty.  
+[2021-05-23T19:05:06.892474+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 37
+            [function] => loadEnv
+            [class] => App\Models\GeneralFunctions
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [0] => DB_CONNECTION
+                            [1] => DB_HOST
+                            [2] => DB_PORT
+                            [3] => DB_DATABASE
+                            [4] => DB_USERNAME
+                            [5] => DB_PASSWORD
+                        )
+
+                    [1] => Array
+                        (
+                            [0] => DB_PORT
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 344
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 428
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'admin'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 184
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => admin
+                    [1] => 1234
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T20:39:32.104567+00:00] General.ERROR: Carga de variables de entorno fallo.  
+[2021-05-23T20:39:32.150668+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\vendor\vlucas\phpdotenv\src\Validator.php  
+[2021-05-23T20:39:32.150804+00:00] General.ERROR: Line: 189  
+[2021-05-23T20:39:32.150894+00:00] General.ERROR: Mensaje: One or more environment variables failed assertions: DB_PASSWORD is empty.  
+[2021-05-23T20:39:32.151014+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\vendor\vlucas\phpdotenv\src\Validator.php
+            [line] => 72
+            [function] => assertCallback
+            [class] => Dotenv\Validator
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Closure Object
+                        (
+                            [this] => Dotenv\Validator Object
+                                (
+                                    [variables:protected] => Array
+                                        (
+                                            [0] => DB_CONNECTION
+                                            [1] => DB_HOST
+                                            [2] => DB_PORT
+                                            [3] => DB_DATABASE
+                                            [4] => DB_USERNAME
+                                            [5] => DB_PASSWORD
+                                        )
+
+                                    [loader:protected] => Dotenv\Loader Object
+                                        (
+                                            [filePaths:protected] => Array
+                                                (
+                                                    [0] => C:\laragon\www\accesoriossimple\app\Models/../../\.env
+                                                )
+
+                                            [envFactory:protected] => Dotenv\Environment\DotenvFactory Object
+                                                (
+                                                    [adapters:protected] => Array
+                                                        (
+                                                            [0] => Dotenv\Environment\Adapter\EnvConstAdapter Object
+                                                                (
+                                                                )
+
+                                                            [1] => Dotenv\Environment\Adapter\ServerConstAdapter Object
+                                                                (
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [envVariables:protected] => Dotenv\Environment\DotenvVariables Object
+                                                (
+                                                    [adapters:protected] => Array
+                                                        (
+                                                            [0] => Dotenv\Environment\Adapter\EnvConstAdapter Object
+                                                                (
+                                                                )
+
+                                                            [1] => Dotenv\Environment\Adapter\ServerConstAdapter Object
+                                                                (
+                                                                )
+
+                                                        )
+
+                                                    [immutable:Dotenv\Environment\AbstractVariables:private] => 1
+                                                    [loaded:Dotenv\Environment\AbstractVariables:private] => Dotenv\Environment\Adapter\ArrayAdapter Object
+                                                        (
+                                                            [variables:Dotenv\Environment\Adapter\ArrayAdapter:private] => Array
+                                                                (
+                                                                    [ROOT_FOLDER] => 
+                                                                    [TITLE_SITE] => 
+                                                                    [ALIASE_SITE] => 
+                                                                    [CHAR_SET] => 
+                                                                    [DB_CONNECTION] => 
+                                                                    [DB_HOST] => 
+                                                                    [DB_PORT] => 
+                                                                    [DB_DATABASE] => 
+                                                                    [DB_USERNAME] => 
+                                                                    [DB_PASSWORD] => 
+                                                                    [DB_CHAR_SET] => 
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [variableNames:protected] => Array
+                                                (
+                                                    [0] => ROOT_FOLDER
+                                                    [1] => TITLE_SITE
+                                                    [2] => ALIASE_SITE
+                                                    [3] => CHAR_SET
+                                                    [4] => DB_CONNECTION
+                                                    [5] => DB_HOST
+                                                    [6] => DB_PORT
+                                                    [7] => DB_DATABASE
+                                                    [8] => DB_USERNAME
+                                                    [9] => DB_PASSWORD
+                                                    [10] => DB_CHAR_SET
+                                                )
+
+                                        )
+
+                                )
+
+                            [parameter] => Array
+                                (
+                                    [$value] => <required>
+                                )
+
+                        )
+
+                    [1] => is empty
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\GeneralFunctions.php
+            [line] => 30
+            [function] => notEmpty
+            [class] => Dotenv\Validator
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 37
+            [function] => loadEnv
+            [class] => App\Models\GeneralFunctions
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [0] => DB_CONNECTION
+                            [1] => DB_HOST
+                            [2] => DB_PORT
+                            [3] => DB_DATABASE
+                            [4] => DB_USERNAME
+                            [5] => DB_PASSWORD
+                        )
+
+                    [1] => Array
+                        (
+                            [0] => DB_PORT
+                        )
+
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 436
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 520
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'admin'
+                )
+
+        )
+
+    [5] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 187
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => admin
+                    [1] => 1234
+                )
+
+        )
+
+    [6] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T20:39:32.151709+00:00] General.ERROR: Exception  
+[2021-05-23T20:39:32.152278+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\GeneralFunctions.php  
+[2021-05-23T20:39:32.152410+00:00] General.ERROR: Line: 35  
+[2021-05-23T20:39:32.152511+00:00] General.ERROR: Mensaje: One or more environment variables failed assertions: DB_PASSWORD is empty.  
+[2021-05-23T20:39:32.152618+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 37
+            [function] => loadEnv
+            [class] => App\Models\GeneralFunctions
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [0] => DB_CONNECTION
+                            [1] => DB_HOST
+                            [2] => DB_PORT
+                            [3] => DB_DATABASE
+                            [4] => DB_USERNAME
+                            [5] => DB_PASSWORD
+                        )
+
+                    [1] => Array
+                        (
+                            [0] => DB_PORT
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 436
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 520
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'admin'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 187
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => admin
+                    [1] => 1234
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T20:55:14.151284+00:00] General.ERROR: Carga de variables de entorno fallo.  
+[2021-05-23T20:55:14.164333+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\vendor\vlucas\phpdotenv\src\Validator.php  
+[2021-05-23T20:55:14.164468+00:00] General.ERROR: Line: 189  
+[2021-05-23T20:55:14.164557+00:00] General.ERROR: Mensaje: One or more environment variables failed assertions: DB_PASSWORD is empty.  
+[2021-05-23T20:55:14.164678+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\vendor\vlucas\phpdotenv\src\Validator.php
+            [line] => 72
+            [function] => assertCallback
+            [class] => Dotenv\Validator
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => Closure Object
+                        (
+                            [this] => Dotenv\Validator Object
+                                (
+                                    [variables:protected] => Array
+                                        (
+                                            [0] => DB_CONNECTION
+                                            [1] => DB_HOST
+                                            [2] => DB_PORT
+                                            [3] => DB_DATABASE
+                                            [4] => DB_USERNAME
+                                            [5] => DB_PASSWORD
+                                        )
+
+                                    [loader:protected] => Dotenv\Loader Object
+                                        (
+                                            [filePaths:protected] => Array
+                                                (
+                                                    [0] => C:\laragon\www\accesoriossimple\app\Models/../../\.env
+                                                )
+
+                                            [envFactory:protected] => Dotenv\Environment\DotenvFactory Object
+                                                (
+                                                    [adapters:protected] => Array
+                                                        (
+                                                            [0] => Dotenv\Environment\Adapter\EnvConstAdapter Object
+                                                                (
+                                                                )
+
+                                                            [1] => Dotenv\Environment\Adapter\ServerConstAdapter Object
+                                                                (
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [envVariables:protected] => Dotenv\Environment\DotenvVariables Object
+                                                (
+                                                    [adapters:protected] => Array
+                                                        (
+                                                            [0] => Dotenv\Environment\Adapter\EnvConstAdapter Object
+                                                                (
+                                                                )
+
+                                                            [1] => Dotenv\Environment\Adapter\ServerConstAdapter Object
+                                                                (
+                                                                )
+
+                                                        )
+
+                                                    [immutable:Dotenv\Environment\AbstractVariables:private] => 1
+                                                    [loaded:Dotenv\Environment\AbstractVariables:private] => Dotenv\Environment\Adapter\ArrayAdapter Object
+                                                        (
+                                                            [variables:Dotenv\Environment\Adapter\ArrayAdapter:private] => Array
+                                                                (
+                                                                    [ROOT_FOLDER] => 
+                                                                    [TITLE_SITE] => 
+                                                                    [ALIASE_SITE] => 
+                                                                    [CHAR_SET] => 
+                                                                    [DB_CONNECTION] => 
+                                                                    [DB_HOST] => 
+                                                                    [DB_PORT] => 
+                                                                    [DB_DATABASE] => 
+                                                                    [DB_USERNAME] => 
+                                                                    [DB_PASSWORD] => 
+                                                                    [DB_CHAR_SET] => 
+                                                                )
+
+                                                        )
+
+                                                )
+
+                                            [variableNames:protected] => Array
+                                                (
+                                                    [0] => ROOT_FOLDER
+                                                    [1] => TITLE_SITE
+                                                    [2] => ALIASE_SITE
+                                                    [3] => CHAR_SET
+                                                    [4] => DB_CONNECTION
+                                                    [5] => DB_HOST
+                                                    [6] => DB_PORT
+                                                    [7] => DB_DATABASE
+                                                    [8] => DB_USERNAME
+                                                    [9] => DB_PASSWORD
+                                                    [10] => DB_CHAR_SET
+                                                )
+
+                                        )
+
+                                )
+
+                            [parameter] => Array
+                                (
+                                    [$value] => <required>
+                                )
+
+                        )
+
+                    [1] => is empty
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\GeneralFunctions.php
+            [line] => 30
+            [function] => notEmpty
+            [class] => Dotenv\Validator
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 37
+            [function] => loadEnv
+            [class] => App\Models\GeneralFunctions
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [0] => DB_CONNECTION
+                            [1] => DB_HOST
+                            [2] => DB_PORT
+                            [3] => DB_DATABASE
+                            [4] => DB_USERNAME
+                            [5] => DB_PASSWORD
+                        )
+
+                    [1] => Array
+                        (
+                            [0] => DB_PORT
+                        )
+
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 366
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 450
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'admin'
+                )
+
+        )
+
+    [5] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 184
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => admin
+                    [1] => 1234
+                )
+
+        )
+
+    [6] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  
+[2021-05-23T20:55:14.165175+00:00] General.ERROR: Exception  
+[2021-05-23T20:55:14.165584+00:00] General.ERROR: Archivo: C:\laragon\www\accesoriossimple\app\Models\GeneralFunctions.php  
+[2021-05-23T20:55:14.165700+00:00] General.ERROR: Line: 35  
+[2021-05-23T20:55:14.165797+00:00] General.ERROR: Mensaje: One or more environment variables failed assertions: DB_PASSWORD is empty.  
+[2021-05-23T20:55:14.165901+00:00] General.ERROR: Array
+(
+    [0] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\AbstractDBConnection.php
+            [line] => 37
+            [function] => loadEnv
+            [class] => App\Models\GeneralFunctions
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => Array
+                        (
+                            [0] => DB_CONNECTION
+                            [1] => DB_HOST
+                            [2] => DB_PORT
+                            [3] => DB_DATABASE
+                            [4] => DB_USERNAME
+                            [5] => DB_PASSWORD
+                        )
+
+                    [1] => Array
+                        (
+                            [0] => DB_PORT
+                        )
+
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 366
+            [function] => Connect
+            [class] => App\Models\AbstractDBConnection
+            [type] => ->
+            [args] => Array
+                (
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Models\Usuarios.php
+            [line] => 450
+            [function] => search
+            [class] => App\Models\Usuarios
+            [type] => ::
+            [args] => Array
+                (
+                    [0] => SELECT * FROM usuarios WHERE user = 'admin'
+                )
+
+        )
+
+    [3] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\UsuariosController.php
+            [line] => 184
+            [function] => Login
+            [class] => App\Models\Usuarios
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => admin
+                    [1] => 1234
+                )
+
+        )
+
+    [4] => Array
+        (
+            [file] => C:\laragon\www\accesoriossimple\app\Controllers\MainController.php
+            [line] => 29
+            [function] => login
+            [class] => App\Controllers\UsuariosController
+            [type] => ::
+            [args] => Array
+                (
+                )
+
+        )
+
+)
+  

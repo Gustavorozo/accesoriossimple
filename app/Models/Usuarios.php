@@ -20,8 +20,11 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
     private ?string $foto;
     private string $rol;
     private string $estado;
+    private Carbon $created_at;
+    private Carbon $updated_at;
 
     /* Relaciones */
+    private ?Municipios $municipio;
     private ?array $ventasCliente;
     private ?array $ventasEmpleado;
 
@@ -43,6 +46,8 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
         $this->setFoto($usuario['foto'] ?? null);
         $this->setRol($usuario['rol'] ?? '');
         $this->setEstado($usuario['estado'] ?? '');
+        $this->setCreatedAt(!empty($usuario['created_at']) ? Carbon::parse($usuario['created_at']) : new Carbon());
+        $this->setUpdatedAt(!empty($usuario['updated_at']) ? Carbon::parse($usuario['updated_at']) : new Carbon());
     }
 
     function __destruct()
@@ -151,22 +156,6 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
     /**
      * @return mixed|string
      */
-    public function getDireccion() : string
-    {
-        return $this->direccion;
-    }
-
-    /**
-     * @param mixed|string $direccion
-     */
-    public function setDireccion(string $direccion): void
-    {
-        $this->direccion = $direccion;
-    }
-
-    /**
-     * @return mixed|string
-     */
     public function getUser() : ?string
     {
         return $this->user;
@@ -244,7 +233,37 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
         $this->estado = $estado;
     }
 
+    /**
+     * @return Carbon|mixed
+     */
+    public function getCreatedAt() : Carbon
+    {
+        return $this->created_at->locale('es');
+    }
 
+    /**
+     * @param Carbon|mixed $created_at
+     */
+    public function setCreatedAt(Carbon $created_at): void
+    {
+        $this->created_at = $created_at;
+    }
+
+    /**
+     * @return Carbon
+     */
+    public function getUpdatedAt(): Carbon
+    {
+        return $this->updated_at->locale('es');
+    }
+
+    /**
+     * @param Carbon $updated_at
+     */
+    public function setUpdatedAt(Carbon $updated_at): void
+    {
+        $this->updated_at = $updated_at;
+    }
 
     /**
      * @return array
@@ -288,6 +307,8 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
             ':foto' =>   $this->getFoto(),
             ':rol' =>   $this->getRol(),
             ':estado' =>   $this->getEstado(),
+            ':created_at' =>  $this->getCreatedAt()->toDateTimeString(), //YYYY-MM-DD HH:MM:SS
+            ':updated_at' =>  $this->getUpdatedAt()->toDateTimeString()
         ];
         $this->Connect();
         $result = $this->insertRow($query, $arrData);
@@ -303,7 +324,7 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
         $query = "INSERT INTO weber.usuarios VALUES (
             :id,:nombres,:apellidos,:tipo_documento,:documento,
             :telefono,:user,
-            :password,:foto,:rol,:estado
+            :password,:foto,:rol,:estado,:created_at,:updated_at
         )";
         return $this->save($query);
     }
@@ -316,7 +337,8 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
         $query = "UPDATE weber.usuarios SET 
             nombres = :nombres, apellidos = :apellidos, tipo_documento = :tipo_documento, 
             documento = :documento, telefono = :telefono, user = :user,  
-            password = :password, foto = :foto, rol = :rol, estado = :estado WHERE id = :id";
+            password = :password, foto = :foto, rol = :rol, estado = :estado, created_at = :created_at, 
+            updated_at = :updated_at WHERE id = :id";
         return $this->save($query);
     }
 
@@ -371,7 +393,7 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
             if ($id > 0) {
                 $tmpUsuario = new Usuarios();
                 $tmpUsuario->Connect();
-                $getrow = $tmpUsuario->getRow("SELECT * FROM accesoriossimple.usuarios WHERE id =?", array($id));
+                $getrow = $tmpUsuario->getRow("SELECT * FROM weber.usuarios WHERE id =?", array($id));
                 $tmpUsuario->Disconnect();
                 return ($getrow) ? new Usuarios($getrow) : null;
             }else{
@@ -420,7 +442,7 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
      */
     public function __toString() : string
     {
-        return "Nombres: $this->nombres, Apellidos: $this->nombres, Tipo Documento: $this->tipo_documento, Documento: $this->documento, Telefono: $this->telefono,";
+        return "Nombres: $this->nombres, Apellidos: $this->nombres, Tipo Documento: $this->tipo_documento, Documento: $this->documento, Telefono: $this->telefono, Direccion: $this->direccion, Direccion: $this->fecha_nacimiento->toDateTimeString()";
     }
 
     public function Login($User, $Password){
@@ -459,7 +481,8 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
             'foto' => $this->getFoto(),
             'rol' => $this->getRol(),
             'estado' => $this->getEstado(),
-
+            'created_at' => $this->getCreatedAt()->toDateTimeString(),
+            'updated_at' => $this->getUpdatedAt()->toDateTimeString(),
         ];
     }
 }

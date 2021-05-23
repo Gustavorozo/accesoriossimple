@@ -31,9 +31,11 @@ CREATE TABLE IF NOT EXISTS `accesoriossimple`.`usuarios` (
   `user` VARCHAR(100) NULL,
   `password` VARCHAR(150) NULL,
   `foto` VARCHAR(45) NULL,
-  `estado` ENUM('Activo', 'Inactivo') NULL,
+  `estado` ENUM('Activo', 'Inactivo') NOT NULL,
+  `created_at` TIMESTAMP NOT NULL,
+  `updated_at` TIMESTAMP NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `idUsuario_UNIQUE` (`id` ASC))
+  UNIQUE INDEX `idUsuario_UNIQUE` (`id` ASC) )
 ENGINE = InnoDB;
 
 

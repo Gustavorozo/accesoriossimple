@@ -147,6 +147,7 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? null;
                                                                    placeholder="Ingrese su telefono">
                                                         </div>
                                                     </div>
+
                                                     <?php if ($_SESSION['UserInSession']['rol'] == 'Administrador'){ ?>
                                                         <div class="form-group row">
                                                             <label for="user" class="col-sm-2 col-form-label">Usuario</label>
@@ -244,7 +245,6 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? null;
 <!-- ./wrapper -->
 <?php require('../../partials/scripts.php'); ?>
 <script>
-
 </script>
 </body>
 </html>
