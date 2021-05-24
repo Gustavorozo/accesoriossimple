@@ -4,28 +4,28 @@ require ("..\app\Models\Usuarios.php");
 use App\Models\Usuarios;
 
 $arrUser = [
-    'nombres' => 'Diego',
-    'apellidos' => 'Ojeda',
+    'nombres' => 'Gustavo',
+    'apellidos' => 'Rozo',
     'direccion' =>  'Sogamoso',
-    'fecha_nacimiento' => '1900-01-01',
-    'telefono' => '3118864151',
+    'fecha_nacimiento' => '1997-01-06',
+    'telefono' => '31234',
     'estado' => 'Activo'
 ];
 
 $arrUser2 = [
-    'nombres' => 'Carlos',
-    'apellidos' => 'Caro',
+    'nombres' => 'Andres',
+    'apellidos' => 'Perez',
     'direccion' =>  'Sogamoso',
     'fecha_nacimiento' => '1990-01-01',
-    'telefono' => '3164182345',
+    'telefono' => '3134558',
     'estado' => 'Activo'
 ];
 
 $objUser = new Usuarios($arrUser); // Creamos un usuario... Pero no echo nada con el.
 $objUser->insert(); //Registramos el objeto en la base de datos
 
-$objUser->setNombres("Diego"); //Cambio Valores
-$objUser->setApellidos("Ojeda"); //Cambio Valores
+$objUser->setNombres("Gustavo"); //Cambio Valores
+$objUser->setApellidos("Rozo"); //Cambio Valores
 //$objUser->update();
 
 //$objUser->deleted();
@@ -41,11 +41,7 @@ if(!empty($arrResult)){
     }
 }
 
-$objUserCarlos = Usuarios::searchForId(3);
-if(!empty($objUserCarlos)){
-    $objUserCarlos->setDireccion('Manizales');
-    $objUserCarlos->update();
-}
+
 
 $arrUsers = Usuarios::getAll();
 $arrUsers = Usuarios::getAll();
@@ -57,4 +53,4 @@ if(!empty($arrUsers)){
 }
 
 $objUserCarlos = Usuarios::searchForId(5);
-echo json_encode($objUserCarlos);
+echo json_encode($objUserAndres);
