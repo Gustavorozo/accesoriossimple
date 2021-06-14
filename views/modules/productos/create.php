@@ -3,6 +3,8 @@ require("../../partials/routes.php");
 require_once("../../partials/check_login.php");
 
 use App\Controllers\CategoriasController;
+use App\Controllers\MarcasController;
+use App\Controllers\ColorsController;
 use App\Models\GeneralFunctions;
 use Carbon\Carbon;
 
@@ -107,6 +109,36 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
                                                     'id' => 'categoria_id',
                                                     'name' => 'categoria_id',
                                                     'defaultValue' => (!empty($frmSession['categoria_id'])) ? $frmSession['categoria_id'] : '',
+                                                    'class' => 'form-control select2bs4 select2-info',
+                                                    'where' => "estado = 'Activo'"
+                                                )
+                                            );
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="marca_id" class="col-sm-2 col-form-label">Marca</label>
+                                        <div class="col-sm-10 ">
+                                            <?= MarcasController::selectMarca(
+                                                array(
+                                                    'id' => 'marca_id',
+                                                    'name' => 'marca_id',
+                                                    'defaultValue' => (!empty($frmSession['marca_id'])) ? $frmSession['marca_id'] : '',
+                                                    'class' => 'form-control select2bs4 select2-info',
+                                                    'where' => "estado = 'Activo'"
+                                                )
+                                            );
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="color_id" class="col-sm-2 col-form-label">Color</label>
+                                        <div class="col-sm-10 ">
+                                            <?= ColorsController::selectColor(
+                                                array(
+                                                    'id' => 'color_id',
+                                                    'name' => 'color_id',
+                                                    'defaultValue' => (!empty($frmSession['color_id'])) ? $frmSession['color_id'] : '',
                                                     'class' => 'form-control select2bs4 select2-info',
                                                     'where' => "estado = 'Activo'"
                                                 )

@@ -161,7 +161,7 @@ final class Departamentos extends AbstractDBConnection implements Model, JsonSer
     public function getMunicipiosDepartamento(): ?array
     {
         if(!empty($this-> MunicipiosDepartamento)){
-            $this-> MunicipiosDepartamento = Municipios::search("SELECT * FROM weber.municipios WHERE departamento_id = ".$this->id);
+            $this-> MunicipiosDepartamento = Municipios::search("SELECT * FROM accesoriossimple.municipios WHERE departamento_id = ".$this->id);
             return $this-> MunicipiosDepartamento;
         }
         return null;
@@ -194,7 +194,7 @@ final class Departamentos extends AbstractDBConnection implements Model, JsonSer
             if ($id > 0) {
                 $tmpDepartamento = new Departamentos();
                 $tmpDepartamento->Connect();
-                $getrow = $tmpDepartamento->getRow("SELECT * FROM weber.departamentos WHERE id =?", array($id));
+                $getrow = $tmpDepartamento->getRow("SELECT * FROM accesoriossimple.departamentos WHERE id =?", array($id));
                 $tmpDepartamento->Disconnect();
                 return ($getrow) ? new Departamentos($getrow) : null;
             }else{
@@ -208,7 +208,7 @@ final class Departamentos extends AbstractDBConnection implements Model, JsonSer
 
     static function getAll(): array
     {
-        return Departamentos::search("SELECT * FROM weber.departamentos");
+        return Departamentos::search("SELECT * FROM accesoriossimple.departamentos");
     }
 
     public function __toString() : string

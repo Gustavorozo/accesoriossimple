@@ -1,4 +1,4 @@
- <?php
+<?php
 require("../../partials/routes.php");
 require_once("../../partials/check_login.php");
 
@@ -119,6 +119,46 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
                                                            value="<?= $frmSession['telefono'] ?? '' ?>">
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
+                                                <label for="direccion" class="col-sm-2 col-form-label">Direccion</label>
+                                                <div class="col-sm-10">
+                                                    <input required type="text" class="form-control" id="direccion"
+                                                           name="direccion" placeholder="Ingrese su direccion"
+                                                           value="<?= $frmSession['direccion'] ?? '' ?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="municipio_id" class="col-sm-2 col-form-label">Municipio</label>
+                                                <div class="col-sm-5">
+                                                    <?= DepartamentosController::selectDepartamentos(
+                                                        array(
+                                                            'id' => 'departamento_id',
+                                                            'name' => 'departamento_id',
+                                                            'defaultValue' => '15', //Boyacá
+                                                            'class' => 'form-control select2bs4 select2-info',
+                                                            'where' => "estado = 'Activo'"
+                                                        )
+                                                    )
+                                                    ?>
+                                                </div>
+                                                <div class="col-sm-5 ">
+                                                    <?= MunicipiosController::selectMunicipios(array (
+                                                        'id' => 'municipio_id',
+                                                        'name' => 'municipio_id',
+                                                        'defaultValue' => (!empty($frmSession['municipio_id'])) ? $frmSession['municipio_id'] : '',
+                                                        'class' => 'form-control select2bs4 select2-info',
+                                                        'where' => "departamento_id = 15 and estado = 'Activo'"))
+                                                    ?>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="fecha_nacimiento" class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+                                                <div class="col-sm-10">
+                                                    <input required type="date" max="<?= Carbon::now()->subYear(12)->format('Y-m-d') ?>" class="form-control" id="fecha_nacimiento"
+                                                           name="fecha_nacimiento" placeholder="Ingrese su Fecha de Nacimiento"
+                                                           value="<?= $frmSession['fecha_nacimiento'] ?? '' ?>">
+                                                </div>
+                                            </div>
                                             <?php if ($_SESSION['UserInSession']['rol'] == 'Administrador'){ ?>
                                                 <div class="form-group row">
                                                     <label for="user" class="col-sm-2 col-form-label">Usuario</label>
@@ -198,6 +238,25 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
 <!-- ./wrapper -->
 <?php require('../../partials/scripts.php'); ?>
 <script>
+    $(function() {
+        $('#departamento_id').on('change', function() {
+            $.post("../../../app/Controllers/MainController.php?controller=Municipios&action=selectMunicipios", {
+                isMultiple: false,
+                isRequired: true,
+                id: "municipio_id",
+                nombre: "municipio_id",
+                defaultValue: "",
+                class: "form-control select2bs4 select2-info",
+                where: "departamento_id = "+$('#departamento_id').val()+" and estado = 'Activo'",
+                request: 'ajax'
+            }, function(e) {
+                if (e)
+                    console.log(e);
+                $("#municipio_id").html(e).select2({ height: '100px'});
+            });
+        });
+        $('.btn-file span').html('Seleccionar');
+    });
 </script>
 </body>
 </html>

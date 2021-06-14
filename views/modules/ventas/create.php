@@ -197,7 +197,7 @@ if (!empty($_GET['id'])) {
                                             <tbody>
                                             <?php
                                             if (!empty($dataVenta) and !empty($dataVenta->getId())) {
-                                                $arrDetalleVentas = DetalleVentas::search("SELECT * FROM weber.detalle_ventas WHERE venta_id = ".$dataVenta->getId());
+                                                $arrDetalleVentas = DetalleVentas::search("SELECT * FROM accesoriossimple.detalle_ventas WHERE venta_id = ".$dataVenta->getId());
                                                 if(count($arrDetalleVentas) > 0) {
                                                     /* @var $arrDetalleVentas DetalleVentas[] */
                                                     foreach ($arrDetalleVentas as $detalleVenta) {

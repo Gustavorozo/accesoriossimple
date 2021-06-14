@@ -4,6 +4,8 @@ require_once("../../partials/routes.php");
 require_once("../../partials/check_login.php");
 
 use App\Controllers\CategoriasController;
+use App\Controllers\MarcasController;
+use App\Controllers\ColorsController;
 use App\Controllers\ProductosController;
 use App\Models\GeneralFunctions;
 use App\Models\Productos;
@@ -16,6 +18,12 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
 /* Si llega el idCategoria cargar los datos de esa categoria */
 /* @var $_SESSION['idCategoria'] Categorias */
 $_SESSION['idCategoria'] = !empty($_GET['idCategoria']) ? CategoriasController::searchForID(['id' => $_GET['idCategoria']]) : NULL;
+/* Si llega el idMarca cargar los datos de esa Marca */
+/* @var $_SESSION['idMarca'] Marcas */
+$_SESSION['idMarca'] = !empty($_GET['idMarca']) ? MarcasController::searchForID(['id' => $_GET['idMarca']]) : NULL;
+/* Si llega el idColor cargar los datos de esa color */
+/* @var $_SESSION['idColor'] Colors */
+$_SESSION['idColor'] = !empty($_GET['idColor']) ? ColorsController::searchForID(['id' => $_GET['idColor']]) : NULL;
 ?>
 <!DOCTYPE html>
 <html>
@@ -101,6 +109,8 @@ $_SESSION['idCategoria'] = !empty($_GET['idCategoria']) ? CategoriasController::
                                                 <th>Venta</th>
                                                 <th>Stock</th>
                                                 <th>Categoría</th>
+                                                <th>Marca</th>
+                                                <th>Color</th>
                                                 <th>Estado</th>
                                                 <th>Acciones</th>
                                             </tr>
@@ -110,6 +120,14 @@ $_SESSION['idCategoria'] = !empty($_GET['idCategoria']) ? CategoriasController::
                                             $arrProductos = array();
                                             if(!empty($_SESSION['idCategoria'])){
                                                 $arrProductos = $_SESSION['idCategoria']->getProductosCategoria();
+                                            }else{
+                                                $arrProductos = ProductosController::getAll();
+                                            }if(!empty($_SESSION['idMarca'])){
+                                                $arrProductos = $_SESSION['idMarca']->getProductosMarca();
+                                            }else{
+                                                $arrProductos = ProductosController::getAll();
+                                            }if(!empty($_SESSION['idColor'])){
+                                                $arrProductos = $_SESSION['idColor']->getProductosColor();
                                             }else{
                                                 $arrProductos = ProductosController::getAll();
                                             }
@@ -125,6 +143,8 @@ $_SESSION['idCategoria'] = !empty($_GET['idCategoria']) ? CategoriasController::
                                                     <td><?= GeneralFunctions::formatCurrency($producto->getPrecioVenta()); ?></td>
                                                     <td><?= $producto->getStock(); ?></td>
                                                     <td><?= $producto->getCategoria()->getNombre(); ?></td>
+                                                    <td><?= $producto->getMarca()->getNombre(); ?></td>
+                                                    <td><?= $producto->getColor()->getNombre(); ?></td>
                                                     <td><?= $producto->getEstado(); ?></td>
                                                     <td>
                                                         <a href="edit.php?id=<?= $producto->getId(); ?>"
@@ -165,6 +185,8 @@ $_SESSION['idCategoria'] = !empty($_GET['idCategoria']) ? CategoriasController::
                                                 <th>Venta</th>
                                                 <th>Stock</th>
                                                 <th>Categoría</th>
+                                                <th>Marca</th>
+                                                <th>Color</th>
                                                 <th>Estado</th>
                                                 <th>Acciones</th>
                                             </tr>

@@ -194,7 +194,7 @@ class DetalleVentas extends AbstractDBConnection implements Model, JsonSerializa
 
     function insert()
     {
-        $query = "INSERT INTO weber.detalle_ventas VALUES (:id,:venta_id,:producto_id,:cantidad,:precio_venta,:created_at)";
+        $query = "INSERT INTO accesoriossimple.detalle_ventas VALUES (:id,:venta_id,:producto_id,:cantidad,:precio_venta,:created_at)";
         if($this->save($query)){
             return $this->getProducto()->substractStock($this->getCantidad());
         }
@@ -206,7 +206,7 @@ class DetalleVentas extends AbstractDBConnection implements Model, JsonSerializa
      */
     public function update() : bool
     {
-        $query = "UPDATE weber.detalle_ventas SET 
+        $query = "UPDATE accesoriossimple.detalle_ventas SET 
             venta_id = :venta_id, producto_id = :producto_id, cantidad = :cantidad, 
             precio_venta = :precio_venta, created_at = :created_at WHERE id = :id";
         return $this->save($query);
@@ -256,7 +256,7 @@ class DetalleVentas extends AbstractDBConnection implements Model, JsonSerializa
             if ($id > 0) {
                 $DetalleVenta = new DetalleVentas();
                 $DetalleVenta->Connect();
-                $getrow = $DetalleVenta->getRow("SELECT * FROM weber.detalle_ventas WHERE id = ?", array($id));
+                $getrow = $DetalleVenta->getRow("SELECT * FROM accesoriossimple.detalle_ventas WHERE id = ?", array($id));
                 $DetalleVenta->Disconnect();
                 return ($getrow) ? new DetalleVentas($getrow) : null;
             }else{
@@ -273,7 +273,7 @@ class DetalleVentas extends AbstractDBConnection implements Model, JsonSerializa
      */
     public static function getAll() : array
     {
-        return DetalleVentas::search("SELECT * FROM weber.detalle_ventas");
+        return DetalleVentas::search("SELECT * FROM accesoriossimple.detalle_ventas");
     }
 
     /**
@@ -283,7 +283,7 @@ class DetalleVentas extends AbstractDBConnection implements Model, JsonSerializa
      */
     public static function productoEnFactura($venta_id,$producto_id): bool
     {
-        $result = DetalleVentas::search("SELECT id FROM weber.detalle_ventas where venta_id = '" . $venta_id. "' and producto_id = '" . $producto_id. "'");
+        $result = DetalleVentas::search("SELECT id FROM accesoriossimple.detalle_ventas where venta_id = '" . $venta_id. "' and producto_id = '" . $producto_id. "'");
         if (count($result) > 0) {
             return true;
         } else {

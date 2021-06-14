@@ -8,8 +8,8 @@ use PDOException;
 
 /**
  * Created by PhpStorm.
- * @author: Diego Ojeda
- * Date: 10/12/2019
+ * @author: Gustavo Rozo
+ * Date: 10/06/2021
  * Time: 9:17
  */
 
@@ -67,7 +67,7 @@ abstract class AbstractDBConnection {
     /**
      * Devuelve un solo registro (fila) de una Tabla como un array asociativo.
      *
-     * $database->getRow("SELECT email, username FROM users WHERE username = ? and password = ?", array("diego","123456"));
+     * $database->getRow("SELECT email, username FROM users WHERE username = ? and password = ?", array("gustavo","123456"));
      * @param string $query
      * @param array $params
      * @return array|false
@@ -111,7 +111,7 @@ abstract class AbstractDBConnection {
     /**
      * Inserta registros en una tabla.
      *
-     * $database ->insertRow("INSERT INTO users (username, email) VALUES (?, ?)", array("Diego", "yusaf@email.com"));
+     * $database ->insertRow("INSERT INTO users (username, email) VALUES (?, ?)", array("Gustavo", "gustavo@email.com"));
      * @param string $query
      * @param array $params
      * @return bool|null
@@ -136,7 +136,7 @@ abstract class AbstractDBConnection {
     /**
      * Actualizar registros de una tabla
      *
-     * $database->updateRow("UPDATE users SET username = ?, email = ? WHERE id = ?", array("yusafk", "yusafk@email.com", "1"));
+     * $database->updateRow("UPDATE users SET username = ?, email = ? WHERE id = ?", array("gustavo", "gustavo@email.com", "1"));
      * @param string $query
      * @param array $params
      * @return bool|null

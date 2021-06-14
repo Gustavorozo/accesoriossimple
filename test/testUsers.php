@@ -8,16 +8,16 @@ $arrUser = [
     'apellidos' => 'Rozo',
     'direccion' =>  'Sogamoso',
     'fecha_nacimiento' => '1997-01-06',
-    'telefono' => '31234',
+    'telefono' => '3133474',
     'estado' => 'Activo'
 ];
 
 $arrUser2 = [
-    'nombres' => 'Andres',
-    'apellidos' => 'Perez',
+    'nombres' => 'juliana',
+    'apellidos' => 'perez',
     'direccion' =>  'Sogamoso',
-    'fecha_nacimiento' => '1990-01-01',
-    'telefono' => '3134558',
+    'fecha_nacimiento' => '1999-02-01',
+    'telefono' => '3137479',
     'estado' => 'Activo'
 ];
 
@@ -33,7 +33,7 @@ $objUser->setApellidos("Rozo"); //Cambio Valores
 $objUser2 = new Usuarios($arrUser2);
 $objUser2->insert();
 
-$arrResult = Usuarios::search("SELECT * FROM usuarios WHERE direccion = 'Tunja'");
+$arrResult = Usuarios::search("SELECT * FROM usuarios WHERE direccion = 'Duitama'");
 if(!empty($arrResult)){
     /* @var $arrResult Usuarios[] */
     foreach ($arrResult as $Usuario){
@@ -41,7 +41,11 @@ if(!empty($arrResult)){
     }
 }
 
-
+$objUserjuluana = Usuarios::searchForId(3);
+if(!empty($objUserjuliana)){
+    $objUserjuliana->setDireccion('Manizales');
+    $objUserjuliana->update();
+}
 
 $arrUsers = Usuarios::getAll();
 $arrUsers = Usuarios::getAll();
@@ -52,5 +56,5 @@ if(!empty($arrUsers)){
     }
 }
 
-$objUserCarlos = Usuarios::searchForId(5);
-echo json_encode($objUserAndres);
+$objUserJuliana = Usuarios::searchForId(5);
+echo json_encode($objUserJuliana);

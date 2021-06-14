@@ -247,7 +247,7 @@ class Compras extends AbstractDBConnection implements Model, JsonSerializable
     public function getDetalleCompra(): ?array
     {
 
-        $this->detalleCompra = DetalleCompras::search('SELECT * FROM weber.detalle_compras where compra_id = '.$this->id);
+        $this->detalleCompra = DetalleCompras::search('SELECT * FROM accesoriossimple.detalle_compras where compra_id = '.$this->id);
         return $this->detalleCompra;
     }
 
@@ -279,7 +279,7 @@ class Compras extends AbstractDBConnection implements Model, JsonSerializable
      */
     function insert(): ?bool
     {
-        $query = "INSERT INTO weber.compras VALUES (:id,:numero_serie,:empleado_id,:proveedor_id,:fecha_compra,:monto,:estado,:created_at,:updated_at)";
+        $query = "INSERT INTO accesoriossimple.compras VALUES (:id,:numero_serie,:empleado_id,:proveedor_id,:fecha_compra,:monto,:estado,:created_at,:updated_at)";
         return $this->save($query);
     }
 
@@ -288,7 +288,7 @@ class Compras extends AbstractDBConnection implements Model, JsonSerializable
      */
     public function update() : ?bool
     {
-        $query = "UPDATE weber.compras SET 
+        $query = "UPDATE accesoriossimple.compras SET 
             numero_serie = :numero_serie, empleado_id = :empleado_id, 
             proveedor_id = :proveedor_id, fecha_compra = :fecha_compra,
             monto = :monto, estado = :estado,
@@ -341,7 +341,7 @@ class Compras extends AbstractDBConnection implements Model, JsonSerializable
             if ($id > 0) {
                 $Compra = new Compras();
                 $Compra->Connect();
-                $getrow = $Compra->getRow("SELECT * FROM weber.compras WHERE id =?", array($id));
+                $getrow = $Compra->getRow("SELECT * FROM accesoriossimple.compras WHERE id =?", array($id));
                 $Compra->Disconnect();
                 return ($getrow) ? new Compras($getrow) : null;
             }else{
@@ -359,7 +359,7 @@ class Compras extends AbstractDBConnection implements Model, JsonSerializable
      */
     public static function getAll() : array
     {
-        return Compras::search("SELECT * FROM weber.compras");
+        return Compras::search("SELECT * FROM accesoriossimple.compras");
     }
 
     /**
@@ -370,7 +370,7 @@ class Compras extends AbstractDBConnection implements Model, JsonSerializable
     public static function facturaRegistrada($numeroSerie): bool
     {
         $numeroSerie = trim(strtolower($numeroSerie));
-        $result = Compras::search("SELECT id FROM weber.compras where numero_serie = '" . $numeroSerie. "'");
+        $result = Compras::search("SELECT id FROM accesoriossimple.compras where numero_serie = '" . $numeroSerie. "'");
         if ( !empty($result) && count ($result) > 0 ) {
             return true;
         } else {

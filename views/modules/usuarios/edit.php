@@ -147,7 +147,49 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? null;
                                                                    placeholder="Ingrese su telefono">
                                                         </div>
                                                     </div>
-
+                                                    <div class="form-group row">
+                                                        <label for="direccion" class="col-sm-2 col-form-label">Direccion</label>
+                                                        <div class="col-sm-10">
+                                                            <input required type="text" class="form-control" id="direccion"
+                                                                   name="direccion" value="<?= $DataUsuario->getDireccion(); ?>"
+                                                                   placeholder="Ingrese su direccion">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="municipio_id" class="col-sm-2 col-form-label">Municipio</label>
+                                                        <div class="col-sm-5">
+                                                            <?=
+                                                            DepartamentosController::selectDepartamentos(
+                                                                array(
+                                                                    'id' => 'departamento_id',
+                                                                    'name' => 'departamento_id',
+                                                                    'defaultValue' => (!empty($DataUsuario)) ? $DataUsuario->getMunicipio()->getDepartamento()->getId() : '15',
+                                                                    'class' => 'form-control select2bs4 select2-info',
+                                                                    'where' => "estado = 'Activo'"
+                                                                )
+                                                            )
+                                                            ?>
+                                                        </div>
+                                                        <div class="col-sm-5 ">
+                                                            <?= MunicipiosController::selectMunicipios(
+                                                                array (
+                                                                    'id' => 'municipio_id',
+                                                                    'name' => 'municipio_id',
+                                                                    'defaultValue' => (!empty($DataUsuario)) ? $DataUsuario->getMunicipioId() : '',
+                                                                    'class' => 'form-control select2bs4 select2-info',
+                                                                    'where' => "departamento_id = ".$DataUsuario->getMunicipio()->getDepartamento()->getId()." and estado = 'Activo'")
+                                                            )
+                                                            ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="fecha_nacimiento" class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+                                                        <div class="col-sm-10">
+                                                            <input required type="date" max="<?= Carbon::now()->subYear(12)->format('Y-m-d') ?>"
+                                                                   value="<?= $DataUsuario->getFechaNacimiento()->toDateString(); ?>" class="form-control" id="fecha_nacimiento"
+                                                                   name="fecha_nacimiento" placeholder="Ingrese su Fecha de Nacimiento">
+                                                        </div>
+                                                    </div>
                                                     <?php if ($_SESSION['UserInSession']['rol'] == 'Administrador'){ ?>
                                                         <div class="form-group row">
                                                             <label for="user" class="col-sm-2 col-form-label">Usuario</label>
@@ -159,7 +201,7 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? null;
                                                         <div class="form-group row">
                                                             <label for="password" class="col-sm-2 col-form-label">Password</label>
                                                             <div class="col-sm-10">
-                                                                <input type="password" class="form-control" id="password" name="password" value="<?= $DataUsuario->getPassword(); ?>" placeholder="Ingrese su Password">
+                                                                <input type="password" class="form-control" id="password" name="password" value="" placeholder="Ingrese su Password">
                                                             </div>
                                                         </div>
 
@@ -193,7 +235,7 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? null;
                                                                 <h5 class="panel-title pull-left">Foto de Perfil</h5>
                                                             </div>
                                                             <div class="file-tab panel-body">
-                                                                    <label class="btn btn-default btn-file">
+                                                                <label class="btn btn-default btn-file">
                                                                     <span>Seleccionar</span>
                                                                     <!-- The file is stored here. -->
                                                                     <input value="<?= $DataUsuario->getFoto(); ?>" type="file" id="foto" name="foto">
@@ -202,8 +244,8 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? null;
                                                             </div>
                                                             <div class="panel-footer">
                                                                 <?php if(!empty($DataUsuario->getFoto())){?>
-                                                                <img id="thumbFoto" src="../../public/uploadFiles/photos/<?= $DataUsuario->getFoto(); ?>"
-                                                                     alt="Sin Foto de Perfil" class="thumbnail" style="max-width: 250px; max-height: 250px">
+                                                                    <img id="thumbFoto" src="../../public/uploadFiles/photos/<?= $DataUsuario->getFoto(); ?>"
+                                                                         alt="Sin Foto de Perfil" class="thumbnail" style="max-width: 250px; max-height: 250px">
                                                                 <?php } ?>
                                                                 <input type="hidden" name="nameFoto" id="nameFoto" value="<?= $DataUsuario->getFoto() ?? '' ?>">
                                                             </div>
@@ -245,6 +287,27 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? null;
 <!-- ./wrapper -->
 <?php require('../../partials/scripts.php'); ?>
 <script>
+    $(function() {
+        $('#departamento_id').on('change', function() {
+            $.post("../../../app/Controllers/MainController.php?controller=Municipios&action=selectMunicipios", {
+                isMultiple: false,
+                isRequired: true,
+                id: "municipio_id",
+                nombre: "municipio_id",
+                defaultValue: "",
+                class: "form-control select2bs4 select2-info",
+                where: "departamento_id = "+$('#departamento_id').val()+" and estado = 'Activo'",
+                request: 'ajax'
+            }, function(e) {
+                if (e)
+                    console.log(e);
+                $("#municipio_id").html(e).select2({ height: '100px'});
+            })
+        });
+        $('#foto').on("change", function(){
+            $( "#thumbFoto" ).remove();
+        });
+    });
 </script>
 </body>
 </html>

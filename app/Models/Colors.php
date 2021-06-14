@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Exception;
 use JsonSerializable;
 
-class Categorias extends AbstractDBConnection implements Model, JsonSerializable
+class Colors extends AbstractDBConnection implements Model, JsonSerializable
 {
     private ?int $id;
     private string $nombre;
@@ -17,21 +17,21 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
     private Carbon $updated_at;
 
     /* Relaciones */
-    private ?array $productosCategoria;
+    private ?array $productosColor;
 
     /**
-     * Categorias constructor. Recibe un array asociativo
-     * @param array $categoria
+     * Colores constructor. Recibe un array asociativo
+     * @param array $color
      */
-    public function __construct(array $categoria = [])
+    public function __construct(array $color = [])
     {
         parent::__construct();
-        $this->setId($categoria['id'] ?? NULL);
-        $this->setNombre($categoria['nombre'] ?? '');
-        $this->setDescripcion($categoria['descripcion'] ?? '');
-        $this->setEstado($categoria['estado'] ?? '');
-        $this->setCreatedAt(!empty($categoria['created_at']) ? Carbon::parse($categoria['created_at']) : new Carbon());
-        $this->setUpdatedAt(!empty($categoria['updated_at']) ? Carbon::parse($categoria['updated_at']) : new Carbon());
+        $this->setId($color['id'] ?? NULL);
+        $this->setNombre($color['nombre'] ?? '');
+        $this->setDescripcion($color['descripcion'] ?? '');
+        $this->setEstado($color['estado'] ?? '');
+        $this->setCreatedAt(!empty($color['created_at']) ? Carbon::parse($color['created_at']) : new Carbon());
+        $this->setUpdatedAt(!empty($color['updated_at']) ? Carbon::parse($color['updated_at']) : new Carbon());
     }
 
     function __destruct()
@@ -139,13 +139,13 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
 
     /* Relaciones */
     /**
-     * retorna un array de productos que pertenecen a una categoria
+     * retorna un array de productos que pertenecen a un color
      * @return array
      */
-    public function getProductosCategoria(): ?array
+    public function getProductosColor(): ?array
     {
-        $this->productosCategoria = Productos::search("SELECT * FROM accesoriossimple.productos WHERE categoria_id = ".$this->id." and estado = 'Activo'");
-        return $this->productosCategoria;
+        $this->productosColor = Productos::search("SELECT * FROM accesoriossimple.productos WHERE color_id = ".$this->id." and estado = 'Activo'");
+        return $this->productosColor;
     }
 
     /**
@@ -173,7 +173,7 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
      */
     function insert(): ?bool
     {
-        $query = "INSERT INTO accesoriossimple.categorias VALUES (:id,:nombre,:descripcion,:estado,:created_at,:updated_at)";
+        $query = "INSERT INTO accesoriossimple.colors VALUES (:id,:nombre,:descripcion,:estado,:created_at,:updated_at)";
         return $this->save($query);
     }
 
@@ -182,7 +182,7 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
      */
     public function update(): ?bool
     {
-        $query = "UPDATE accesoriossimple.categorias SET 
+        $query = "UPDATE accesoriossimple.colors SET 
             nombre = :nombre, descripcion = :descripcion,
             estado = :estado, created_at = :created_at, 
             updated_at = :updated_at WHERE id = :id";
@@ -201,24 +201,24 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
 
     /**
      * @param $query
-     * @return Categorias|array
+     * @return Colors|array
      * @throws Exception
      */
     public static function search($query) : ?array
     {
         try {
-            $arrCategorias = array();
-            $tmp = new Categorias();
+            $arrColors = array();
+            $tmp = new Colors();
             $tmp->Connect();
             $getrows = $tmp->getRows($query);
             $tmp->Disconnect();
 
             foreach ($getrows as $valor) {
-                $Categoria = new Categorias($valor);
-                array_push($arrCategorias, $Categoria);
-                unset($Categoria);
+                $Color = new Colors($valor);
+                array_push($arrColors, $Color);
+                unset($Color);
             }
-            return $arrCategorias;
+            return $arrColors;
         } catch (Exception $e) {
             GeneralFunctions::logFile('Exception',$e, 'error');
         }
@@ -227,20 +227,20 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
 
     /**
      * @param $id
-     * @return Categorias
+     * @return Colors
      * @throws Exception
      */
-    public static function searchForId($id) : ?Categorias
+    public static function searchForId($id) : ?Colors
     {
         try {
             if ($id > 0) {
-                $Categoria = new Categorias();
-                $Categoria->Connect();
-                $getrow = $Categoria->getRow("SELECT * FROM accesoriossimple.categorias WHERE id =?", array($id));
-                $Categoria->Disconnect();
-                return ($getrow) ? new Categorias($getrow) : null;
+                $Color = new Colors();
+                $Color->Connect();
+                $getrow = $Color->getRow("SELECT * FROM accesoriossimple.colors WHERE id =?", array($id));
+                $Color->Disconnect();
+                return ($getrow) ? new Colors($getrow) : null;
             }else{
-                throw new Exception('Id de categoria Invalido');
+                throw new Exception('Id de color Invalido');
             }
         } catch (Exception $e) {
             GeneralFunctions::logFile('Exception',$e, 'error');
@@ -254,7 +254,7 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
      */
     public static function getAll() : ?array
     {
-        return Categorias::search("SELECT * FROM accesoriossimple.categorias");
+        return Colors::search("SELECT * FROM accesoriossimple.colors");
     }
 
     /**
@@ -262,10 +262,10 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
      * @return bool
      * @throws Exception
      */
-    public static function categoriaRegistrada($nombre): bool
+    public static function colorRegistrada($nombre): bool
     {
         $nombre = trim(strtolower($nombre));
-        $result = Categorias::search("SELECT id FROM accesoriossimple.categorias where nombre = '" . $nombre. "'");
+        $result = Colors::search("SELECT id FROM accesoriossimple.colors where nombre = '" . $nombre. "'");
         if ( !empty($result) && count ($result) > 0 ) {
             return true;
         } else {

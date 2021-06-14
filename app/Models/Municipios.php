@@ -214,7 +214,7 @@ final class Municipios extends AbstractDBConnection implements Model, JsonSerial
 
     static function getAll(): array
     {
-        return Municipios::search("SELECT * FROM weber.municipios");
+        return Municipios::search("SELECT * FROM accesoriossimple.municipios");
     }
 
     static function searchForId(int $id): ?object
@@ -223,7 +223,7 @@ final class Municipios extends AbstractDBConnection implements Model, JsonSerial
             if ($id > 0) {
                 $tmpMun = new Municipios();
                 $tmpMun->Connect();
-                $getrow = $tmpMun->getRow("SELECT * FROM weber.municipios WHERE id =?", array($id));
+                $getrow = $tmpMun->getRow("SELECT * FROM accesoriossimple.municipios WHERE id =?", array($id));
                 $tmpMun->Disconnect();
                 return ($getrow) ? new Municipios($getrow) : null;
             }else{

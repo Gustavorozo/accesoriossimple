@@ -111,6 +111,12 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
                                                 <strong><i class="fas fa-sitemap mr-1"></i> Categoría</strong>
                                                 <p class="text-muted"><?= $DataProducto->getCategoria()->getNombre() ?></p>
                                                 <hr>
+                                                <strong><i class="fas fa-sitemap mr-1"></i> Marca</strong>
+                                                <p class="text-muted"><?= $DataProducto->getMarca()->getNombre() ?></p>
+                                                <hr>
+                                                <strong><i class="fas fa-sitemap mr-1"></i> Color</strong>
+                                                <p class="text-muted"><?= $DataProducto->getColor()->getNombre() ?></p>
+                                                <hr>
                                                 <strong><i class="far fa-file-alt mr-1"></i> Estado</strong>
                                                 <p class="text-muted"><?= $DataProducto->getEstado() ?></p>
                                                 </p>

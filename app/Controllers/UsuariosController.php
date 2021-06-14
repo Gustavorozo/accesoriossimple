@@ -20,6 +20,9 @@ class UsuariosController
         $this->dataUsuario['tipo_documento'] = $_FORM['tipo_documento'] ?? NULL;
         $this->dataUsuario['documento'] = $_FORM['documento'] ?? NULL;
         $this->dataUsuario['telefono'] = $_FORM['telefono'] ?? NULL;
+        $this->dataUsuario['direccion'] = $_FORM['direccion'] ?? NULL;
+        $this->dataUsuario['municipio_id'] = $_FORM['municipio_id'] ?? NULL;
+        $this->dataUsuario['fecha_nacimiento'] = !empty($_FORM['fecha_nacimiento']) ? Carbon::parse($_FORM['fecha_nacimiento']) : new Carbon();
         $this->dataUsuario['user'] = $_FORM['user'] ?? NULL;
         $this->dataUsuario['password'] = $_FORM['password'] ?? NULL;
         $this->dataUsuario['rol'] = $_FORM['rol'] ?? 'Cliente';
@@ -181,7 +184,7 @@ class UsuariosController
         try {
             if(!empty($_POST['user']) && !empty($_POST['password'])){
                 $tmpUser = new Usuarios();
-                $respuesta = $tmpUser->Login($_POST['user'], $_POST['password']);
+                $respuesta = $tmpUser->login($_POST['user'], $_POST['password']);
                 if (is_a($respuesta,"App\Models\Usuarios")) {
                     $_SESSION['UserInSession'] = $respuesta->jsonSerialize();
                     header("Location: ../../views/index.php");

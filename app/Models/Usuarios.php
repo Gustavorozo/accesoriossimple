@@ -15,6 +15,9 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
     private string $tipo_documento;
     private int $documento;
     private int $telefono;
+    private string $direccion;
+    private int $municipio_id;
+    private Carbon $fecha_nacimiento;
     private ?string $user;
     private ?string $password;
     private ?string $foto;
@@ -41,6 +44,9 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
         $this->setTipoDocumento($usuario['tipo_documento'] ?? '');
         $this->setDocumento($usuario['documento'] ?? 0);
         $this->setTelefono($usuario['telefono'] ?? 0);
+        $this->setDireccion($usuario['direccion'] ?? '');
+        $this->setMunicipioId($usuario['municipio_id'] ?? 0);
+        $this->setFechaNacimiento( !empty($usuario['fecha_nacimiento']) ? Carbon::parse($usuario['fecha_nacimiento']) : new Carbon());
         $this->setUser($usuario['user'] ?? null);
         $this->setPassword($usuario['password'] ?? null);
         $this->setFoto($usuario['foto'] ?? null);
@@ -156,6 +162,54 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
     /**
      * @return mixed|string
      */
+    public function getDireccion() : string
+    {
+        return $this->direccion;
+    }
+
+    /**
+     * @param mixed|string $direccion
+     */
+    public function setDireccion(string $direccion): void
+    {
+        $this->direccion = $direccion;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMunicipioId(): int
+    {
+        return $this->municipio_id;
+    }
+
+    /**
+     * @param int $municipio_id
+     */
+    public function setMunicipioId(int $municipio_id): void
+    {
+        $this->municipio_id = $municipio_id;
+    }
+
+    /**
+     * @return Carbon|mixed
+     */
+    public function getFechaNacimiento() : Carbon
+    {
+        return $this->fecha_nacimiento->locale('es');
+    }
+
+    /**
+     * @param Carbon|mixed $fecha_nacimiento
+     */
+    public function setFechaNacimiento(Carbon $fecha_nacimiento): void
+    {
+        $this->fecha_nacimiento = $fecha_nacimiento;
+    }
+
+    /**
+     * @return mixed|string
+     */
     public function getUser() : ?string
     {
         return $this->user;
@@ -266,6 +320,18 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
     }
 
     /**
+     * @return Municipios
+     */
+    public function getMunicipio(): ?Municipios
+    {
+        if(!empty($this->municipio_id)){
+            $this->municipio = Municipios::searchForId($this->municipio_id) ?? new Municipios();
+            return $this->municipio;
+        }
+        return NULL;
+    }
+
+    /**
      * @return array
      */
     public function getVentasCliente(): ?array
@@ -302,6 +368,9 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
             ':tipo_documento' =>  $this->getTipoDocumento(),
             ':documento' =>   $this->getDocumento(),
             ':telefono' =>   $this->getTelefono(),
+            ':direccion' =>   $this->getDireccion(),
+            ':municipio_id' =>   $this->getMunicipioId(),
+            ':fecha_nacimiento' =>  $this->getFechaNacimiento()->toDateString(), //YYYY-MM-DD
             ':user' =>  $this->getUser(),
             ':password' =>   $this->getPassword(),
             ':foto' =>   $this->getFoto(),
@@ -321,9 +390,9 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
      */
     public function insert(): ?bool
     {
-        $query = "INSERT INTO weber.usuarios VALUES (
+        $query = "INSERT INTO accesoriossimple.usuarios VALUES (
             :id,:nombres,:apellidos,:tipo_documento,:documento,
-            :telefono,:user,
+            :telefono,:direccion,:municipio_id,:fecha_nacimiento,:user,
             :password,:foto,:rol,:estado,:created_at,:updated_at
         )";
         return $this->save($query);
@@ -334,9 +403,10 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
      */
     public function update(): ?bool
     {
-        $query = "UPDATE weber.usuarios SET 
+        $query = "UPDATE accesoriossimple.usuarios SET 
             nombres = :nombres, apellidos = :apellidos, tipo_documento = :tipo_documento, 
-            documento = :documento, telefono = :telefono, user = :user,  
+            documento = :documento, telefono = :telefono, direccion = :direccion, 
+            municipio_id = :municipio_id, fecha_nacimiento = :fecha_nacimiento, user = :user,  
             password = :password, foto = :foto, rol = :rol, estado = :estado, created_at = :created_at, 
             updated_at = :updated_at WHERE id = :id";
         return $this->save($query);
@@ -393,7 +463,7 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
             if ($id > 0) {
                 $tmpUsuario = new Usuarios();
                 $tmpUsuario->Connect();
-                $getrow = $tmpUsuario->getRow("SELECT * FROM weber.usuarios WHERE id =?", array($id));
+                $getrow = $tmpUsuario->getRow("SELECT * FROM accesoriossimple.usuarios WHERE id =?", array($id));
                 $tmpUsuario->Disconnect();
                 return ($getrow) ? new Usuarios($getrow) : null;
             }else{
@@ -448,7 +518,7 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
     public function Login($User, $Password){
         try {
             $resultUsuarios = Usuarios::search("SELECT * FROM usuarios WHERE user = '$User'");
-            if(count($resultUsuarios) >= 1){
+            if (!empty($resultUsuarios) && count($resultUsuarios) >= 1) {
                 if($resultUsuarios[0]->password == $Password){
                     if($resultUsuarios[0]->estado == 'Activo'){
                         return $resultUsuarios[0];
@@ -476,6 +546,9 @@ class Usuarios extends AbstractDBConnection implements Model, JsonSerializable
             'tipo_documento' => $this->getTipoDocumento(),
             'documento' => $this->getDocumento(),
             'telefono' => $this->getTelefono(),
+            'direccion' => $this->getDireccion(),
+            'municipio_id' => $this->getMunicipioId(),
+            'fecha_nacimiento' => $this->getFechaNacimiento()->toDateString(),
             'user' => $this->getUser(),
             'password' => $this->getPassword(),
             'foto' => $this->getFoto(),

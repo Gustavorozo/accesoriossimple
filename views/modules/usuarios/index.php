@@ -94,6 +94,8 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
                                                 <th>Tipo Doc.</th>
                                                 <th>Documento</th>
                                                 <th>Telefono</th>
+                                                <th>Direccion</th>
+                                                <th>Fecha Nacimiento</th>
                                                 <th>Rol</th>
                                                 <th>Foto</th>
                                                 <th>Estado</th>
@@ -113,11 +115,13 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
                                                     <td><?= $usuario->getTipoDocumento(); ?></td>
                                                     <td><?= $usuario->getDocumento(); ?></td>
                                                     <td><?= $usuario->getTelefono(); ?></td>
+                                                    <td><?= $usuario->getDireccion(); ?>, <?= $usuario->getMunicipio()->getNombre(); ?></td>
+                                                    <td><?= $usuario->getFechaNacimiento()->translatedFormat('l, j \\de F Y'); ?></td>
                                                     <td><?= $usuario->getRol(); ?></td>
                                                     <td>
                                                         <?php if(!empty($usuario->getFoto())){ ?>
-                                                        <span class="badge badge-info" data-toggle="tooltip" data-html="true"
-                                                              title="<img class='img-thumbnail' src='../../public/uploadFiles/photos/<?= $usuario->getFoto(); ?>'>">Foto
+                                                            <span class="badge badge-info" data-toggle="tooltip" data-html="true"
+                                                                  title="<img class='img-thumbnail' src='../../public/uploadFiles/photos/<?= $usuario->getFoto(); ?>'>">Foto
                                                         </span>
                                                         <?php } ?>
                                                     </td>
@@ -156,6 +160,8 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
                                                 <th>Tipo Doc.</th>
                                                 <th>Documento</th>
                                                 <th>Telefono</th>
+                                                <th>Direccion</th>
+                                                <th>Fecha Nacimiento</th>
                                                 <th>Rol</th>
                                                 <th>Foto</th>
                                                 <th>Estado</th>

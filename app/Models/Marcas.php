@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Exception;
 use JsonSerializable;
 
-class Categorias extends AbstractDBConnection implements Model, JsonSerializable
+class Marcas extends AbstractDBConnection implements Model, JsonSerializable
 {
     private ?int $id;
     private string $nombre;
@@ -17,21 +17,21 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
     private Carbon $updated_at;
 
     /* Relaciones */
-    private ?array $productosCategoria;
+    private ?array $productosMarca;
 
     /**
      * Categorias constructor. Recibe un array asociativo
-     * @param array $categoria
+     * @param array $marca
      */
-    public function __construct(array $categoria = [])
+    public function __construct(array $marca = [])
     {
         parent::__construct();
-        $this->setId($categoria['id'] ?? NULL);
-        $this->setNombre($categoria['nombre'] ?? '');
-        $this->setDescripcion($categoria['descripcion'] ?? '');
-        $this->setEstado($categoria['estado'] ?? '');
-        $this->setCreatedAt(!empty($categoria['created_at']) ? Carbon::parse($categoria['created_at']) : new Carbon());
-        $this->setUpdatedAt(!empty($categoria['updated_at']) ? Carbon::parse($categoria['updated_at']) : new Carbon());
+        $this->setId($marca['id'] ?? NULL);
+        $this->setNombre($marca['nombre'] ?? '');
+        $this->setDescripcion($marca['descripcion'] ?? '');
+        $this->setEstado($marca['estado'] ?? '');
+        $this->setCreatedAt(!empty($marca['created_at']) ? Carbon::parse($marca['created_at']) : new Carbon());
+        $this->setUpdatedAt(!empty($marca['updated_at']) ? Carbon::parse($marca['updated_at']) : new Carbon());
     }
 
     function __destruct()
@@ -142,10 +142,10 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
      * retorna un array de productos que pertenecen a una categoria
      * @return array
      */
-    public function getProductosCategoria(): ?array
+    public function getProductosMarca(): ?array
     {
-        $this->productosCategoria = Productos::search("SELECT * FROM accesoriossimple.productos WHERE categoria_id = ".$this->id." and estado = 'Activo'");
-        return $this->productosCategoria;
+        $this->productosMarca = Productos::search("SELECT * FROM accesoriossimple.productos WHERE marca_id = ".$this->id." and estado = 'Activo'");
+        return $this->productosMarca;
     }
 
     /**
@@ -173,7 +173,7 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
      */
     function insert(): ?bool
     {
-        $query = "INSERT INTO accesoriossimple.categorias VALUES (:id,:nombre,:descripcion,:estado,:created_at,:updated_at)";
+        $query = "INSERT INTO accesoriossimple.marcas VALUES (:id,:nombre,:descripcion,:estado,:created_at,:updated_at)";
         return $this->save($query);
     }
 
@@ -182,7 +182,7 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
      */
     public function update(): ?bool
     {
-        $query = "UPDATE accesoriossimple.categorias SET 
+        $query = "UPDATE accesoriossimple.marcas SET 
             nombre = :nombre, descripcion = :descripcion,
             estado = :estado, created_at = :created_at, 
             updated_at = :updated_at WHERE id = :id";
@@ -201,24 +201,24 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
 
     /**
      * @param $query
-     * @return Categorias|array
+     * @return Marcas|array
      * @throws Exception
      */
     public static function search($query) : ?array
     {
         try {
-            $arrCategorias = array();
-            $tmp = new Categorias();
+            $arrMarcas = array();
+            $tmp = new Marcas();
             $tmp->Connect();
             $getrows = $tmp->getRows($query);
             $tmp->Disconnect();
 
             foreach ($getrows as $valor) {
-                $Categoria = new Categorias($valor);
-                array_push($arrCategorias, $Categoria);
-                unset($Categoria);
+                $Marca = new Marcas($valor);
+                array_push($arrMarcas, $Marca);
+                unset($Marca);
             }
-            return $arrCategorias;
+            return $arrMarcas;
         } catch (Exception $e) {
             GeneralFunctions::logFile('Exception',$e, 'error');
         }
@@ -227,20 +227,20 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
 
     /**
      * @param $id
-     * @return Categorias
+     * @return Marcas
      * @throws Exception
      */
-    public static function searchForId($id) : ?Categorias
+    public static function searchForId($id) : ?Marcas
     {
         try {
             if ($id > 0) {
-                $Categoria = new Categorias();
-                $Categoria->Connect();
-                $getrow = $Categoria->getRow("SELECT * FROM accesoriossimple.categorias WHERE id =?", array($id));
-                $Categoria->Disconnect();
-                return ($getrow) ? new Categorias($getrow) : null;
+                $Marca = new Marcas();
+                $Marca->Connect();
+                $getrow = $Marca->getRow("SELECT * FROM accesoriossimple.marcas WHERE id =?", array($id));
+                $Marca->Disconnect();
+                return ($getrow) ? new Marcas($getrow) : null;
             }else{
-                throw new Exception('Id de categoria Invalido');
+                throw new Exception('Id de marca Invalido');
             }
         } catch (Exception $e) {
             GeneralFunctions::logFile('Exception',$e, 'error');
@@ -254,7 +254,7 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
      */
     public static function getAll() : ?array
     {
-        return Categorias::search("SELECT * FROM accesoriossimple.categorias");
+        return Marcas::search("SELECT * FROM accesoriossimple.marcas");
     }
 
     /**
@@ -262,10 +262,10 @@ class Categorias extends AbstractDBConnection implements Model, JsonSerializable
      * @return bool
      * @throws Exception
      */
-    public static function categoriaRegistrada($nombre): bool
+    public static function marcaRegistrada($nombre): bool
     {
         $nombre = trim(strtolower($nombre));
-        $result = Categorias::search("SELECT id FROM accesoriossimple.categorias where nombre = '" . $nombre. "'");
+        $result = Marcas::search("SELECT id FROM accesoriossimple.marcas where nombre = '" . $nombre. "'");
         if ( !empty($result) && count ($result) > 0 ) {
             return true;
         } else {

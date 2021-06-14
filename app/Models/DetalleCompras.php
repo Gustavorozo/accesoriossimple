@@ -194,7 +194,7 @@ class DetalleCompras extends AbstractDBConnection implements Model, JsonSerializ
 
     function insert()
     {
-        $query = "INSERT INTO weber.detalle_compras VALUES (:id,:producto_id,:compra_id,:cantidad,:precio_venta,:created_at)";
+        $query = "INSERT INTO accesoriossimple.detalle_compras VALUES (:id,:producto_id,:compra_id,:cantidad,:precio_venta,:created_at)";
         if($this->save($query)){
             return $this->getProducto()->addStock($this->getCantidad());
         }
@@ -206,7 +206,7 @@ class DetalleCompras extends AbstractDBConnection implements Model, JsonSerializ
      */
     public function update() : bool
     {
-        $query = "UPDATE weber.detalle_compras SET 
+        $query = "UPDATE accesoriossimple.detalle_compras SET
             producto_id = :producto_id, compra_id = :compra_id, cantidad = :cantidad, 
             precio_venta = :precio_venta, created_at = :created_at WHERE id = :id";
         return $this->save($query);
@@ -256,7 +256,7 @@ class DetalleCompras extends AbstractDBConnection implements Model, JsonSerializ
             if ($id > 0) {
                 $DetalleCompra = new DetalleCompras();
                 $DetalleCompra->Connect();
-                $getrow = $DetalleCompra->getRow("SELECT * FROM weber.detalle_compras WHERE id = ?", array($id));
+                $getrow = $DetalleCompra->getRow("SELECT * FROM accesoriossimple.detalle_compras WHERE id = ?", array($id));
                 $DetalleCompra->Disconnect();
                 return ($getrow) ? new DetalleCompras($getrow) : null;
             }else{
@@ -273,7 +273,7 @@ class DetalleCompras extends AbstractDBConnection implements Model, JsonSerializ
      */
     public static function getAll() : array
     {
-        return DetalleCompras::search("SELECT * FROM weber.detalle_compras");
+        return DetalleCompras::search("SELECT * FROM accesoriossimple.detalle_compras");
     }
 
     /**
@@ -283,7 +283,7 @@ class DetalleCompras extends AbstractDBConnection implements Model, JsonSerializ
      */
     public static function productoEnFactura($compra_id,$producto_id): bool
     {
-        $result = DetalleCompras::search("SELECT id FROM weber.detalle_compras where compra_id = '" . $compra_id. "' and producto_id = '" . $producto_id. "'");
+        $result = DetalleCompras::search("SELECT id FROM accesoriossimple.detalle_compras where compra_id = '" . $compra_id. "' and producto_id = '" . $producto_id. "'");
         if (count($result) > 0) {
             return true;
         } else {

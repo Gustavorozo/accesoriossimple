@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Interfaces\Model;
 use Carbon\Carbon;
+use Carbon\Traits\Creator;
 use Exception;
 use JsonSerializable;
 
@@ -15,12 +16,16 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
     private float $porcentaje_ganancia;
     private int $stock;
     private int $categoria_id;
+    private int $marca_id;
+    private int $color_id;
     private string $estado;
     private Carbon $created_at;
     private Carbon $updated_at;
 
     /* Relaciones */
     private ?Categorias $categoria;
+    private ?Marcas $marca;
+    private ?Colors $color;
     private ?array $fotosProducto;
 
     /**
@@ -36,9 +41,51 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
         $this->setPorcentajeGanancia($categoria['porcentaje_ganancia'] ?? 0.0);
         $this->setStock($categoria['stock'] ?? 0);
         $this->setCategoriaId($categoria['categoria_id'] ?? 0);
+        $this->setMarcaId($categoria['marca_id'] ?? 0);
+        $this->setColorId($categoria['color_id'] ?? 0);
         $this->setEstado($categoria['estado'] ?? '');
         $this->setCreatedAt(!empty($categoria['created_at']) ? Carbon::parse($categoria['created_at']) : new Carbon());
         $this->setUpdatedAt(!empty($categoria['updated_at']) ? Carbon::parse($categoria['updated_at']) : new Carbon());
+    }
+
+    /**
+     * Producto constructor. Recibe un array asociativo
+     * @param array $marca
+     */
+    public function __construct2(array $marca = [])
+    {
+        parent::__construct2();
+        $this->setId($marca['id'] ?? NULL);
+        $this->setNombre($marca['nombre'] ?? '');
+        $this->setPrecio($marca['precio'] ?? 0.0);
+        $this->setPorcentajeGanancia($marca['porcentaje_ganancia'] ?? 0.0);
+        $this->setStock($marca['stock'] ?? 0);
+        $this->setCategoriaId($marca['categoria_id'] ?? 0);
+        $this->setMarcaId($marca['marca_id'] ?? 0);
+        $this->setColorId($marca['color_id'] ?? 0);
+        $this->setEstado($marca['estado'] ?? '');
+        $this->setCreatedAt(!empty($marca['created_at']) ? Carbon::parse($marca['created_at']) : new Carbon());
+        $this->setUpdatedAt(!empty($marca['updated_at']) ? Carbon::parse($marca['updated_at']) : new Carbon());
+    }
+
+     /**
+     * Producto constructor. Recibe un array asociativo
+     * @param array $color
+     */
+    public function __construct1 (array $color = [])
+    {
+        parent::__construct1();
+        $this->setId($color['id'] ?? NULL);
+        $this->setNombre($color['nombre'] ?? '');
+        $this->setPrecio($color['precio'] ?? 0.0);
+        $this->setPorcentajeGanancia($color['porcentaje_ganancia'] ?? 0.0);
+        $this->setStock($color['stock'] ?? 0);
+        $this->setCategoriaId($color['categoria_id'] ?? 0);
+        $this->setMarcaId($color['marca_id'] ?? 0);
+        $this->setColorId($color['color_id'] ?? 0);
+        $this->setEstado($color['estado'] ?? '');
+        $this->setCreatedAt(!empty($color['created_at']) ? Carbon::parse($color['created_at']) : new Carbon());
+        $this->setUpdatedAt(!empty($color['updated_at']) ? Carbon::parse($color['updated_at']) : new Carbon());
     }
 
     function __destruct()
@@ -79,6 +126,9 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
     {
         $this->nombre = trim(mb_strtolower($nombre, 'UTF-8'));
     }
+     /**
+     * @return mixed|string
+     */
 
     /**
      * @return float|mixed
@@ -143,6 +193,36 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
     {
         $this->categoria_id = $categoria_id;
     }
+     /**
+     * @return int
+     */
+    public function getMarcaId(): int
+    {
+        return $this->marca_id;
+    }
+
+    /**
+     * @param int $marca_id
+     */
+    public function setMarcaId(int $marca_id): void
+    {
+        $this->marca_id = $marca_id;
+    }
+     /**
+     * @return int
+     */
+    public function getColorId(): int
+    {
+        return $this->color_id;
+    }
+
+    /**
+     * @param int $color_id
+     */
+    public function setColorId(int $color_id): void
+    {
+        $this->color_id = $color_id;
+    }
 
     /**
      * @return mixed|string
@@ -204,6 +284,30 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
         }
         return NULL;
     }
+     /* Relaciones */
+    /**
+     * @return Marcas
+     */
+    public function getMarca(): ?Marcas
+    {
+        if(!empty($this->marca_id)){
+            $this->marca = Marcas::searchForId($this->marca_id) ?? new Marcas();
+            return $this->marca;
+        }
+        return NULL;
+    }
+     /* Relaciones */
+    /**
+     * @return Colors
+     */
+    public function getColor(): ?Colors
+    {
+        if(!empty($this->color_id)){
+            $this->color = Colors::searchForId($this->color_id) ?? new Colors();
+            return $this->color;
+        }
+        return NULL;
+    }
 
     /**
      * retorna un array de fotos que pertenecen al producto
@@ -211,7 +315,7 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
      */
     public function getFotosProducto(): ?array
     {
-        $this->fotosProducto = Fotos::search("SELECT * FROM weber.fotos WHERE producto_id = ".$this->id." and estado = 'Activo'");
+        $this->fotosProducto = Fotos::search("SELECT * FROM accesoriossimple.fotos WHERE producto_id = ".$this->id." and estado = 'Activo'");
         return $this->fotosProducto;
     }
 
@@ -224,6 +328,8 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
             ':porcentaje_ganancia' =>  $this->getPorcentajeGanancia(),
             ':stock' =>   $this->getStock(),
             ':categoria_id' =>   $this->getCategoriaId(),
+            ':marca_id' =>   $this->getMarcaId(),
+            ':color_id' =>   $this->getColorId(),
             ':estado' =>   $this->getEstado(),
             ':created_at' =>  $this->getCreatedAt()->toDateTimeString(), //YYYY-MM-DD HH:MM:SS
             ':updated_at' =>  $this->getUpdatedAt()->toDateTimeString() //YYYY-MM-DD HH:MM:SS
@@ -234,12 +340,13 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
         return $result;
     }
 
+
     /**
      * @return bool|null
      */
     function insert(): ?bool
     {
-        $query = "INSERT INTO weber.productos VALUES (:id,:nombre,:precio,:porcentaje_ganancia,:stock,:categoria_id,:estado,:created_at,:updated_at)";
+        $query = "INSERT INTO accesoriossimple.productos VALUES (:id,:nombre,:precio,:porcentaje_ganancia,:stock,:categoria_id,:marca_id,:color_id,:estado,:created_at,:updated_at)";
         return $this->save($query);
     }
 
@@ -248,9 +355,9 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
      */
     public function update(): ?bool
     {
-        $query = "UPDATE weber.productos SET 
+        $query = "UPDATE accesoriossimple.productos SET 
             nombre = :nombre, precio = :precio, porcentaje_ganancia = :porcentaje_ganancia, 
-            stock = :stock, categoria_id = :categoria_id, estado = :estado, created_at = :created_at, 
+            stock = :stock, categoria_id = :categoria_id, marca_id = :marca_id, color_id = :color_id, estado = :estado, created_at = :created_at, 
             updated_at = :updated_at WHERE id = :id";
         return $this->save($query);
     }
@@ -302,7 +409,7 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
             if ($id > 0) {
                 $Producto = new Productos();
                 $Producto->Connect();
-                $getrow = $Producto->getRow("SELECT * FROM weber.productos WHERE id =?", array($id));
+                $getrow = $Producto->getRow("SELECT * FROM accesoriossimple.productos WHERE id =?", array($id));
                 $Producto->Disconnect();
                 return ($getrow) ? new Productos($getrow) : null;
             }else{
@@ -320,7 +427,7 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
      */
     public static function getAll() : ?array
     {
-        return Productos::search("SELECT * FROM weber.productos");
+        return Productos::search("SELECT * FROM accesoriossimple.productos");
     }
 
     /**
@@ -331,7 +438,7 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
     public static function productoRegistrado($nombre): bool
     {
         $nombre = trim(strtolower($nombre));
-        $result = Productos::search("SELECT id FROM weber.productos where nombre = '" . $nombre. "'");
+        $result = Productos::search("SELECT id FROM accesoriossimple.productos where nombre = '" . $nombre. "'");
         if ( !empty($result) && count ($result) > 0 ) {
             return true;
         } else {
@@ -391,6 +498,8 @@ class Productos extends AbstractDBConnection implements Model, JsonSerializable
             'precio_venta' => $this->getPrecioVenta(),
             'stock' => $this->getStock(),
             'categoria' => $this->getCategoria()->jsonSerialize(),
+            'marca' => $this->getMarca()->jsonSerialize(),
+            'color' => $this->getColor()->jsonSerialize(),
             'estado' => $this->getEstado(),
         ];
     }

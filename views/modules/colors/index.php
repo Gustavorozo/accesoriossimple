@@ -1,13 +1,13 @@
 <?php
-require_once("../../../app/Controllers/CategoriasController.php");
+require_once("../../../app/Controllers/ColorsController.php");
 require_once("../../partials/routes.php");
 require_once("../../partials/check_login.php");
 
-use App\Controllers\CategoriasController;
+use App\Controllers\ColorsController;
 use App\Models\GeneralFunctions;
-use App\Models\Categorias;
+use App\Models\Colors;
 
-$nameModel = "Categoria";
+$nameModel = "Color";
 $pluralModel = $nameModel.'s';
 $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
 ?>
@@ -97,36 +97,36 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
                                             </thead>
                                             <tbody>
                                             <?php
-                                            $arrCategorias = CategoriasController::getAll();
-                                            /* @var $arrCategorias Categorias[] */
-                                            foreach ($arrCategorias as $categoria) {
+                                            $arrColors = ColorsController::getAll();
+                                            /* @var $arrColors Colors[] */
+                                            foreach ($arrColors as $color) {
                                                 ?>
                                                 <tr>
-                                                    <td><?= $categoria->getId(); ?></td>
-                                                    <td><?= $categoria->getNombre(); ?></td>
-                                                    <td><?= $categoria->getDescripcion(); ?></td>
-                                                    <td><?= $categoria->getEstado(); ?></td>
+                                                    <td><?= $color->getId(); ?></td>
+                                                    <td><?= $color->getNombre(); ?></td>
+                                                    <td><?= $color->getDescripcion(); ?></td>
+                                                    <td><?= $color->getEstado(); ?></td>
                                                     <td>
-                                                        <a href="edit.php?id=<?= $categoria->getId(); ?>"
+                                                        <a href="edit.php?id=<?= $color->getId(); ?>"
                                                            type="button" data-toggle="tooltip" title="Actualizar"
                                                            class="btn docs-tooltip btn-primary btn-xs"><i
                                                                     class="fa fa-edit"></i></a>
-                                                        <a href="show.php?id=<?= $categoria->getId(); ?>"
+                                                        <a href="show.php?id=<?= $color->getId(); ?>"
                                                            type="button" data-toggle="tooltip" title="Ver"
                                                            class="btn docs-tooltip btn-warning btn-xs"><i
                                                                     class="fa fa-eye"></i></a>
-                                                        <a href="../productos/index.php?idCategoria=<?= $categoria->getId(); ?>"
+                                                        <a href="../productos/index.php?idColor=<?= $color->getId(); ?>"
                                                            type="button" data-toggle="tooltip" title="Ver Productos"
                                                            class="btn docs-tooltip btn-success btn-xs"><i
                                                                     class="fa fa-sitemap"></i></a>
-                                                        <?php if ($categoria->getEstado() != "Activo") { ?>
-                                                            <a href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=activate&id=<?= $categoria->getId(); ?>"
+                                                        <?php if ($color->getEstado() != "Activo") { ?>
+                                                            <a href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=activate&id=<?= $color->getId(); ?>"
                                                                type="button" data-toggle="tooltip" title="Activar"
                                                                class="btn docs-tooltip btn-success btn-xs"><i
                                                                         class="fa fa-check-square"></i></a>
                                                         <?php } else { ?>
                                                             <a type="button"
-                                                               href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=inactivate&id=<?= $categoria->getId(); ?>"
+                                                               href="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=inactivate&id=<?= $color->getId(); ?>"
                                                                data-toggle="tooltip" title="Inactivar"
                                                                class="btn docs-tooltip btn-danger btn-xs"><i
                                                                         class="fa fa-times-circle"></i></a>

@@ -1,17 +1,14 @@
 <?php
 require("../../partials/routes.php");
 require_once("../../partials/check_login.php");
-require("../../../app/Controllers/ProductosController.php");
+require("../../../app/Controllers/MarcasController.php");
 
-use App\Controllers\CategoriasController;
 use App\Controllers\MarcasController;
-use App\Controllers\ColorsController;
-use App\Controllers\ProductosController;
+use App\Models\Marcas;
 use App\Models\GeneralFunctions;
-use App\Models\Productos;
 use Carbon\Carbon;
 
-$nameModel = "Producto";
+$nameModel = "Marca";
 $pluralModel = $nameModel.'s';
 $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
 
@@ -76,102 +73,40 @@ $frmSession = $_SESSION['frm'.$pluralModel] ?? NULL;
                             <?php if (!empty($_GET["id"]) && isset($_GET["id"])) { ?>
                                 <p>
                                 <?php
-                                $DataProducto = ProductosController::searchForID(["id" => $_GET["id"]]);
-                                /* @var $DataProducto Productos */
-                                if (!empty($DataProducto)) {
+                                $DataMarca = MarcasController::searchForID(["id" => $_GET["id"]]);
+                                /* @var $DataMarca Marcas */
+                                if (!empty($DataMarca)) {
                                     ?>
                                     <div class="card-body">
                                         <!-- form start -->
                                         <form class="form-horizontal" method="post" id="frmEdit<?= $nameModel ?>"
                                               name="frmEdit<?= $nameModel ?>"
                                               action="../../../app/Controllers/MainController.php?controller=<?= $pluralModel ?>&action=edit">
-                                            <input id="id" name="id" value="<?= $DataProducto->getId(); ?>"
+                                            <input id="id" name="id" value="<?= $DataMarca->getId(); ?>"
                                                    hidden required="required" type="text">
                                             <div class="form-group row">
-                                                <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+                                                <label for="nombre" class="col-sm-2 col-form-label">Nombres</label>
                                                 <div class="col-sm-10">
                                                     <input required type="text" class="form-control" id="nombre"
-                                                           name="nombre" value="<?= $DataProducto->getNombre(); ?>"
+                                                           name="nombre" value="<?= $DataMarca->getNombre(); ?>"
                                                            placeholder="Ingrese el nombre">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="precio" class="col-sm-2 col-form-label">Precio</label>
+                                                <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
                                                 <div class="col-sm-10">
-                                                    <input required type="text" class="form-control" id="precio"
-                                                           name="precio" value="<?= $DataProducto->getPrecio(); ?>"
-                                                           placeholder="Ingrese el precio">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="porcentaje_ganancia" class="col-sm-2 col-form-label">Porcentaje de Ganancia</label>
-                                                <div class="col-sm-10">
-                                                    <input required type="number" min="1" step="0.1" class="form-control" id="porcentaje_ganancia" name="porcentaje_ganancia"
-                                                           value="<?= $DataProducto->getPorcentajeGanancia(); ?>" placeholder="Ingrese el porcentaje de ganancia">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="stock" class="col-sm-2 col-form-label">Stock</label>
-                                                <div class="col-sm-10">
-                                                    <input required type="number" minlength="6" class="form-control"
-                                                           id="stock" name="stock"
-                                                           value="<?= $DataProducto->getStock(); ?>"
-                                                           placeholder="Ingrese el stock">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="categoria_id" class="col-sm-2 col-form-label">Categoria</label>
-                                                <div class="col-sm-10 ">
-                                                    <?= CategoriasController::selectCategoria(
-                                                        array(
-                                                            'id' => 'categoria_id',
-                                                            'name' => 'categoria_id',
-                                                            'defaultValue' => (!empty($DataProducto)) ? $DataProducto->getCategoriaId() : '',
-                                                            'class' => 'form-control select2bs4 select2-info',
-                                                            'where' => "estado = 'Activo'"
-                                                        )
-                                                    )
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="marca_id" class="col-sm-2 col-form-label">Marca</label>
-                                                <div class="col-sm-10 ">
-                                                    <?= MarcasController::selectMarca(
-                                                        array(
-                                                            'id' => 'marca_id',
-                                                            'name' => 'marca_id',
-                                                            'defaultValue' => (!empty($DataProducto)) ? $DataProducto->getMarcaId() : '',
-                                                            'class' => 'form-control select2bs4 select2-info',
-                                                            'where' => "estado = 'Activo'"
-                                                        )
-                                                    )
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="color_id" class="col-sm-2 col-form-label">Color</label>
-                                                <div class="col-sm-10 ">
-                                                    <?= ColorsController::selectColor(
-                                                        array(
-                                                            'id' => 'color_id',
-                                                            'name' => 'color_id',
-                                                            'defaultValue' => (!empty($DataProducto)) ? $DataProducto->getColorId() : '',
-                                                            'class' => 'form-control select2bs4 select2-info',
-                                                            'where' => "estado = 'Activo'"
-                                                        )
-                                                    )
-                                                    ?>
+                                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="4"
+                                                              placeholder="Ingrese una descripción"><?= $DataMarca->getDescripcion()?></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="estado" class="col-sm-2 col-form-label">Estado</label>
                                                 <div class="col-sm-10">
                                                     <select id="estado" name="estado" class="custom-select">
-                                                        <option <?= ($DataProducto->getEstado() == "Activo") ? "selected" : ""; ?>
+                                                        <option <?= ($DataMarca->getEstado() == "Activo") ? "selected" : ""; ?>
                                                                 value="Activo">Activo
                                                         </option>
-                                                        <option <?= ($DataProducto->getEstado() == "Inactivo") ? "selected" : ""; ?>
+                                                        <option <?= ($DataMarca->getEstado() == "Inactivo") ? "selected" : ""; ?>
                                                                 value="Inactivo">Inactivo
                                                         </option>
                                                     </select>

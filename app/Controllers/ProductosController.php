@@ -20,6 +20,8 @@ class ProductosController{
         $this->dataProducto['porcentaje_ganancia'] = $_FORM['porcentaje_ganancia'] ?? 0.0;
         $this->dataProducto['stock'] = $_FORM['stock'] ?? 0.0;
         $this->dataProducto['categoria_id'] = $_FORM['categoria_id'] ?? 0;
+        $this->dataProducto['marca_id'] = $_FORM['marca_id'] ?? 0;
+        $this->dataProducto['color_id'] = $_FORM['color_id'] ?? 0;
         $this->dataProducto['estado'] = $_FORM['estado'] ?? 'Activo';
     }
 
